@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RelayDotNet", "RelayDotNet\RelayDotNet.csproj", "{232B6C86-C06C-4860-A31D-D32B7F87B164}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleAppSamples", "ConsoleAppSamples\ConsoleAppSamples.csproj", "{08D08E68-A38A-4212-834A-31E54F829084}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAppSamples", "WebAppSamples\WebAppSamples.csproj", "{4F8E8C51-3A64-4E8D-AD40-CDFF454E2934}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SamplesLibrary", "SamplesLibrary\SamplesLibrary.csproj", "{F2ED5270-BCDA-467B-BB63-98CA48CF945F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{232B6C86-C06C-4860-A31D-D32B7F87B164}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{232B6C86-C06C-4860-A31D-D32B7F87B164}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{232B6C86-C06C-4860-A31D-D32B7F87B164}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{232B6C86-C06C-4860-A31D-D32B7F87B164}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08D08E68-A38A-4212-834A-31E54F829084}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08D08E68-A38A-4212-834A-31E54F829084}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08D08E68-A38A-4212-834A-31E54F829084}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08D08E68-A38A-4212-834A-31E54F829084}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F8E8C51-3A64-4E8D-AD40-CDFF454E2934}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F8E8C51-3A64-4E8D-AD40-CDFF454E2934}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F8E8C51-3A64-4E8D-AD40-CDFF454E2934}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F8E8C51-3A64-4E8D-AD40-CDFF454E2934}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2ED5270-BCDA-467B-BB63-98CA48CF945F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2ED5270-BCDA-467B-BB63-98CA48CF945F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2ED5270-BCDA-467B-BB63-98CA48CF945F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2ED5270-BCDA-467B-BB63-98CA48CF945F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
