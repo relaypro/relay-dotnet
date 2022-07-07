@@ -1,0 +1,50 @@
+name: docs
+
+on:
+  push:
+    branches: [ adding-manual-docs ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    env:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          path: './src/'
+
+      - uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: '6.x'
+
+      - name: generate markdown and concatenate
+        run: |
+          cd src/RelayDotNet
+          sudo apt-get install doxygen doxygen-doc doxygen-gui graphviz
+          doxygen -g
+          doxygen ../DocumentationConfig/Doxyfile
+          
+      - uses: actions/checkout@v3
+        with:
+          ref: 'gh-pages'
+          path: './web/'
+
+      - name: promote
+        run: |
+          cd web
+          cp -rp ../src/RelayDotNet/html/classRelayDotNet_1_1Relay.html index
+          cp -rp ../src/RelayDotNet/html/classRelayDotNet_1_1RelayUri.html index
+          
+      - uses: EndBug/add-and-commit@v9
+        with:
+          message: 'publish generated docs'
+          add: 'index'
+          cwd: './web/'
+          author_name: 'Relay Pro builder'
+          author_email: 'info@relaypro.com'
+          push: true
