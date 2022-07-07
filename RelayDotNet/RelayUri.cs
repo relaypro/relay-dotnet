@@ -29,13 +29,6 @@ namespace RelayDotNet
         private static readonly string _AllDevicesOnAcct = $"{Scheme}:{RootPath}:{All}:{Device}";
         private static readonly string _RelayUriStartsWith = $"{Scheme}:{RootPath}";
         
-        /// <summary>
-        /// Creates a URN with the given resource type, id type, and id or name.
-        /// </summary>
-        /// <param name="resourceType">indicates whether the URN is for a device, group, or interaction.</param>
-        /// <param name="idType">indicates whether the URN has an ID type of 'name' or 'id'.</param>
-        /// <param name="idOrName">the id or name of the device or group.</param>
-        /// <returns>URN containing the resource type, id type, and id or name.  Excludes the scheme and optional query.</returns>
         private static string Nidnss(string resourceType, string idType, string idOrName)
         {
             return $"{RootPath}:{idType}:{resourceType}:{HttpUtility.UrlPathEncode(idOrName)}";
@@ -154,16 +147,6 @@ namespace RelayDotNet
             return Construct(Server, Name, Ibot);
         }
 
-        /// <summary>
-        /// Constructs a URN based off of the resource type, id type, and
-        /// id/name.  Used by methods that need to create a URN when given a
-        /// name or ID of a device or group.
-        /// </summary>
-        /// <param name="resourceType">indicates whether the URN is for a device, group, or interaction.</param>
-        /// <param name="idType">indicates whether the URN has an ID type of 'name' of 'id'.</param>
-        /// <param name="idOrName">the id or name of the device or group.</param>
-        /// <param name="filter">optional filter.</param>
-        /// <returns>the newly constructed URN.</returns>
         private static string Construct(string resourceType, string idType, string idOrName, List<KeyValuePair<string, string>> filter = null)
         {
             if (filter is {Count: > 0})
@@ -183,9 +166,6 @@ namespace RelayDotNet
             }
         }
 
-        /// <summary>
-        /// Includes components of a Relay URN.
-        /// </summary>
         private class ParseResult
         {
             public string ResourceType { get; init; }
@@ -197,11 +177,6 @@ namespace RelayDotNet
             public List<KeyValuePair<string, string>> Filter { get; init; }
         }
 
-        /// <summary>
-        /// Helper method of parsing out a URN into its components.
-        /// </summary>
-        /// <param name="uri">the URN to parse.</param>
-        /// <returns>an array containing the components of the URN.</returns>
         private static ParseResult Parse(string uri)
         {
             if (null == uri)

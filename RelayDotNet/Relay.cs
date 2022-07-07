@@ -1360,17 +1360,6 @@ namespace RelayDotNet
             return listenRequest;
         }
 
-        /// <summary>
-        /// Used by notification methods to send out a notification to a group of devices.
-        /// </summary>
-        /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the device or interaction URN that sent out the message.</param>
-        /// <param name="notificationType">the type of notification.  Can be either 'broadcast', 'notification', or 'alert'.</param>
-        /// <param name="text">the content of your notification.</param>
-        /// <param name="targets">the group URN that you are sending your message to.</param>
-        /// <param name="name">the name of your notification.</param>
-        /// <param name="notificationPushOptions">push options for if the notification is sent to the Relay App on a virtual device.</param>
-        /// <returns>the event response.</returns>
         private async Task<Dictionary<string, object>> SendNotification(IRelayWorkflow relayWorkflow, string sourceUri, NotificationType notificationType, string text, string[] targets, string name, NotificationPushOptions notificationPushOptions)
         {
             return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, SendNotification_(sourceUri, notificationType, text, targets, name, notificationPushOptions), DelayNotificationTimeout);
@@ -1563,15 +1552,6 @@ namespace RelayDotNet
             );
         }
         
-        /// <summary>
-        /// Used privately by device information functions to retrieve varying information
-        /// on the device, such as the ID, location, battery, name and type.
-        /// </summary>
-        /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the device or interaction URN.</param>
-        /// <param name="deviceInfoQuery">which category of information you are retrieving.</param>
-        /// <param name="refresh">whether to refresh before retrieving information on the device.</param>
-        /// <returns>information on the device based on the query.</returns>
         private async Task<Dictionary<string, object>> GetDeviceInfo(IRelayWorkflow relayWorkflow, string sourceUri, DeviceInfoQuery deviceInfoQuery, bool refresh = false)
         {
             return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, GetDeviceInfo_(sourceUri, deviceInfoQuery, refresh), refresh ? DelayRefreshTimeout : DelayTimeout);
@@ -1590,12 +1570,6 @@ namespace RelayDotNet
             );
         }
 
-        /// <summary>
-        /// Retrieves the dictionary key value and returns that value as a string.
-        /// </summary>
-        /// <param name="dictionary">the dictionary.</param>
-        /// <param name="key">the key whose value you need.</param>
-        /// <returns>the value as a string.</returns>
         private static string GetDictionaryKeyValueAsString(Dictionary<string, object> dictionary, string key)
         {
             if (dictionary.ContainsKey(key))
@@ -1606,12 +1580,6 @@ namespace RelayDotNet
             return null;
         }
         
-        /// <summary>
-        /// Retrieves the dictionary key value and returns that value as a float array.
-        /// </summary>
-        /// <param name="dictionary">the dictionary.</param>
-        /// <param name="key">the key whose value you need.</param>
-        /// <returns>the value as a float array.</returns>
         private static float[] GetDictionaryKeyValueAsFloatArray(Dictionary<string, object> dictionary, string key)
         {
             if (dictionary.ContainsKey(key))
@@ -1622,12 +1590,6 @@ namespace RelayDotNet
             return Array.Empty<float>();
         }
         
-        /// <summary>
-        /// Retrieves the dictionary key value and returns that value as an integer.
-        /// </summary>
-        /// <param name="dictionary">the dictionary.</param>
-        /// <param name="key">the key whose value you need.</param>
-        /// <returns>the value as an interger.</returns>
         private static int GetDictionaryKeyValueAsInt(Dictionary<string, object> dictionary, string key)
         {
             if (dictionary.ContainsKey(key))
@@ -1638,12 +1600,6 @@ namespace RelayDotNet
             return -1;
         }
         
-        /// <summary>
-        /// Retrieves the dictionary key value and returns that value as a device type.
-        /// </summary>
-        /// <param name="dictionary">the dictionary.</param>
-        /// <param name="key">the key whose value you need.</param>
-        /// <returns>the valuee as a device type.</returns>
         private static DeviceType GetDictionaryKeyValueAsDeviceType(Dictionary<string, object> dictionary, string key)
         {
             DeviceType deviceType = null;
@@ -1814,15 +1770,6 @@ namespace RelayDotNet
             );
         }
         
-        /// <summary>
-        /// Used privately by device information functions to set information fields on the device,
-        /// such as location, name, and channel of the device.
-        /// </summary>
-        /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the device or interaction URN.  This can only have one item.</param>
-        /// <param name="deviceInfoField">the type of information you would like to set, such as the 'name', 'channel', etc.</param>
-        /// <param name="value">the new value of the field.</param>
-        /// <returns>the event response.</returns>
         private async Task<Dictionary<string, object>> SetDeviceInfo(IRelayWorkflow relayWorkflow, string sourceUri, DeviceInfoField deviceInfoField, string value)
         {
             return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, SetDeviceInfo_(sourceUri, deviceInfoField, value));
@@ -1934,15 +1881,6 @@ namespace RelayDotNet
             return await SetHomeChannelState(relayWorkflow, sourceUri, targets, false);
         }
         
-        /// <summary>
-        /// Used by enable/disable home channel methods to set the home
-        /// channel state on the device to either true of false.
-        /// </summary>
-        /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the URN of the device that called the function.</param>
-        /// <param name="targets">the device URN.</param>
-        /// <param name="enabled">whether or not you would like to enable the home channel state.</param>
-        /// <returns>the event response.</returns>
         private async Task<Dictionary<string, object>> SetHomeChannelState(IRelayWorkflow relayWorkflow, string sourceUri, string[] targets, bool enabled)
         {
             return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, SetHomeChannelState_(sourceUri, targets, enabled));
