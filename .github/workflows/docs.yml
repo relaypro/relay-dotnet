@@ -37,7 +37,6 @@ jobs:
       - name: promote
         run: |
           cd web
-          mkdir index
           cp -rp ../src/RelayDotNet/html/classRelayDotNet_1_1Relay.html index
           cp -rp ../src/RelayDotNet/html/classRelayDotNet_1_1RelayUri.html index
           
