@@ -1241,7 +1241,7 @@ namespace RelayDotNet
         /// within the workflow, but is erased after the workflow terminates.
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="name">the name of the variable to be retrieved.</param>
+        /// <param name="name">name of the variable to be retrieved.</param>
         /// <param name="defaultValue">default value of the variable if it does not exist.  Defaults to undefined.</param>
         /// <returns>the variable requested.</returns>
         public async Task<string> GetVar(IRelayWorkflow relayWorkflow, string name, string defaultValue = null)
