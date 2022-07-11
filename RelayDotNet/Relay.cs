@@ -1030,7 +1030,7 @@ namespace RelayDotNet
         }
         
         /// <summary>
-        /// Makes the device vibrate in a particular pattern.  You can specify
+        /// Makes the device vibrate in a particular pattern. You can specify
         /// how many vibrations you would like, the duration of each vibration in
         /// milliseconds, and how long you would like the pauses between each vibration to last
         /// in milliseconds.
