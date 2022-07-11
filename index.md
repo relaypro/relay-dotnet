@@ -1893,7 +1893,7 @@ Public Attributes</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">relayWorkflow</td><td>the workflow.</td></tr>
-    <tr><td class="paramname">name</td><td>the name of the variable to be retrieved.</td></tr>
+    <tr><td class="paramname">name</td><td>name of the variable to be retrieved.</td></tr>
     <tr><td class="paramname">defaultValue</td><td>default value of the variable if it does not exist. Defaults to undefined.</td></tr>
   </table>
   </dd>
