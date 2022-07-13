@@ -1360,6 +1360,26 @@ namespace RelayDotNet
             return listenRequest;
         }
 
+        public async Task<string> Translate(IRelayWorkflow relayWorkflow, string text, Language from, Language to)
+        {
+            var translateRequest = await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, Translate_(text, from , to));
+            return (string) translateRequest["text"];
+        }
+
+        private static Dictionary<string, object> Translate_(string text, Language from, Language to)
+        {
+            return Request(
+                RequestType.Translate,
+                new Dictionary<string, object>
+                {
+                    ["text"] = text,
+                    ["from_lang"] = from.SerializedName,
+                    ["to_lang"] = to.SerializedName
+                }
+            );
+
+        }
+
         private async Task<Dictionary<string, object>> SendNotification(IRelayWorkflow relayWorkflow, string sourceUri, NotificationType notificationType, string text, string[] targets, string name, NotificationPushOptions notificationPushOptions)
         {
             return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, SendNotification_(sourceUri, notificationType, text, targets, name, notificationPushOptions), DelayNotificationTimeout);
