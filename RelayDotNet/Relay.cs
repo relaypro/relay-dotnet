@@ -1057,6 +1057,100 @@ namespace RelayDotNet
         }
 
         /// <summary>
+        /// Starts an unnamed timer, meaning this will be the only timer on your device.
+        /// The timer will stop when it reaches the limit of the 'timeout' parameter.
+        /// </summary>
+        /// <param name="relayWorkflow">the workflow.</param>
+        /// <param name="timeout">the number of seconds you would like to wait until the timer stops.</param>
+        /// <returns>the event response.</returns>
+        public async Task<Dictionary<string, object>> StartTimer(IRelayWorkflow relayWorkflow, int timeout)
+        {
+            return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, StartTimer_(timeout));
+        }
+
+        private static Dictionary<string, object> StartTimer_(int timeout)
+        {
+            return Request(
+                RequestType.StartTimer,
+                new Dictionary<string, object>
+                {
+                    ["timeout"] = timeout
+                }
+            );
+        }
+
+        /// <summary>
+        /// Stops an unnamed timer.
+        /// </summary>
+        /// <param name="relayWorkflow">the workflow.</param>
+        /// <returns>the event response.</returns>
+        public async Task<Dictionary<string, object>> StopTimer(IRelayWorkflow relayWorkflow)
+        {
+            return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, StopTimer_());
+        }
+
+        private static Dictionary<string, object> StopTimer_()
+        {
+            return Request(
+                RequestType.StopTimer,
+                new Dictionary<string, object>
+                {
+
+                }
+            );
+        }
+
+        /// <summary>
+        /// Serves as a named timer that can be either interval or timeout.  Allows you to specify the unit of time.
+        /// </summary>
+        /// <param name="relayWorkflow">the workflow.</param>
+        /// <param name="name">a name for your timer.</param>
+        /// <param name="timerType">can be "timeout" or "interval".  Defaults to "timeout"</param>
+        /// <param name="timeout">an integer representing when you would liek your timer to stop.</param>
+        /// <param name="timeoutType">can be "ms", "secs", "mins", or "hrs".  Defaults to "secs".</param>
+        /// <returns>the event response.</returns>
+        public async Task<Dictionary<string, object>> SetTimer(IRelayWorkflow relayWorkflow, string name, string timerType, int timeout, string timeoutType)
+        {
+            return await Send((await GetRunningRelayWorkflow(relayWorkflow)).WebSocketConnection, SetTimer_(name, timerType, timeout, timeoutType));
+        }
+
+        private static Dictionary<string, object> SetTimer_(string name, string timerType, int timeout, string timeoutType)
+        {
+            return Request(
+                RequestType.SetTimer,
+                new Dictionary<string, object>
+                {
+                    ["type"] = timerType,
+                    ["name"] = name,
+                    ["timeout"] = timeout,
+                    ["timeout_type"] = timeoutType
+                }
+            );
+        }
+
+        /// <summary>
+        /// Clears the specified timer.
+        /// </summary>
+        /// <param name="relayWorkflow">the workflow.</param>
+        /// <param name="name">the name of the timer that you would like to clear.</param>
+        /// <returns>the event response.</returns>
+        public async Task<Dictionary<string, object>> ClearTimer(IRelayWorkflow relayWorkflow, string name)
+        {
+            return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, ClearTimer_(name));
+        }
+
+        private static Dictionary<string, object> ClearTimer_(string name)
+        {
+            return Request(
+                RequestType.ClearTimer,
+                new Dictionary<string, object>
+                {
+                    ["name"] = name
+                }
+            );
+        }
+
+        /// <summary>
         /// Creates an incident that will alert the Relay Dash.
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
@@ -1847,6 +1941,14 @@ namespace RelayDotNet
             DeviceInfoQuery deviceInfoQuery = DeviceInfoQuery.TypeQuery;
             return GetDictionaryKeyValueAsDeviceType(await GetDeviceInfo(relayWorkflow, sourceUri, deviceInfoQuery, refresh), deviceInfoQuery.SerializedName);
         }
+
+        // public async Task<Dictionary<string, object>> GetUnreadInboxSize(IRelayWorkflow relayWorkflow, string sourceUri)
+        // {
+        //     Dictionary<string, object> response = await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, GetUnreadInboxSize_(sourceUri));
+        // }
+
+        // private static Dictionary<string, object> GetUnreadInboxSize(string sourceUri)
+        
         
         /// <summary>
         /// Returns the user profile of a targeted device.
@@ -1924,6 +2026,30 @@ namespace RelayDotNet
                 {
                     ["username"] = username,
                     ["force"] = force
+                }
+            );
+        }
+
+        /// <summary>
+        /// Sets the mode of the device.
+        /// </summary>
+        /// <param name="relayWorkflow">the workflow.</param>
+        /// <param name="sourceUri">the device or interaction URN.</param>
+        /// <param name="mode">the updated mode of the device, which can be "panic", "alarm", or "none".  Defaults to "none".</param>
+        /// <returns></returns>
+        public async Task<Dictionary<string, object>> SetDeviceMode(IRelayWorkflow relayWorkflow, string sourceUri, string mode)
+        {
+            return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, SetDeviceMode_(sourceUri, mode));
+        }
+
+        private static Dictionary<string, object> SetDeviceMode_(string sourceUri, string mode)
+        {
+            return Request(
+                RequestType.SetDeviceMode,
+                sourceUri,
+                new Dictionary<string, object>
+                {
+                    ["mode"] = mode
                 }
             );
         }
