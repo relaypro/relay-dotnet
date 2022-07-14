@@ -16,6 +16,7 @@ namespace RelayDotNet
         private static readonly DeviceInfoQuery _BatteryQuery = Add("BatteryQuery", "battery");
         private static readonly DeviceInfoQuery _IndoorLocationQuery = Add("IndoorLocationQuery", "indoor_location");
         private static readonly DeviceInfoQuery _LocationQuery = Add("LocationQuery", "location");
+        private static readonly DeviceInfoQuery _LocationEnabledQuery = Add("LocationEnabledQuery", "location_enabled");
         private static readonly DeviceInfoQuery _UsernameQuery = Add("UsernameQuery", "username");
 
         public static DeviceInfoQuery NameQuery => _NameQuery;
@@ -26,6 +27,7 @@ namespace RelayDotNet
         public static DeviceInfoQuery BatteryQuery => _BatteryQuery;
         public static DeviceInfoQuery IndoorLocationQuery => _IndoorLocationQuery;
         public static DeviceInfoQuery LocationQuery => _LocationQuery;
+        public static DeviceInfoQuery LocationEnabledQuery => _LocationEnabledQuery;
         public static DeviceInfoQuery UsernameQuery => _UsernameQuery;
 
         private static DeviceInfoQuery Add(string name, string serializedName)

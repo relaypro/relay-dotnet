@@ -1631,6 +1631,15 @@ namespace RelayDotNet
 
             return deviceType;
         }
+
+        private static bool GetDictionaryKeyValueAsBool(Dictionary<string, object> dictionary, string key)
+        {
+            if (dictionary.ContainsKey(key))
+            {
+                return (bool) dictionary[key];
+            }
+            return false;
+        }
         
         /// <summary>
         /// Returns the name of a targeted device.
@@ -1756,7 +1765,23 @@ namespace RelayDotNet
             DeviceInfoQuery deviceInfoQuery = DeviceInfoQuery.UsernameQuery;
             return GetDictionaryKeyValueAsString(await GetDeviceInfo(relayWorkflow, sourceUri, deviceInfoQuery), deviceInfoQuery.SerializedName);
         }
+
+        public async Task<Dictionary<string, object>> EnableLocation(IRelayWorkflow relayWorkflow, string sourceUri) 
+        {
+            return await SetDeviceInfo(relayWorkflow, sourceUri, DeviceInfoField.Location, "true");
+        }
         
+        public async Task<Dictionary<string, object>> DisableLocation(IRelayWorkflow relayWorkflow, string sourceUri) 
+        {
+            return await SetDeviceInfo(relayWorkflow, sourceUri, DeviceInfoField.Location, "false");
+        }
+
+        public async Task<bool> GetDeviceLocationEnabled(IRelayWorkflow relayWorkflow, string sourceUri, bool refresh) 
+        {
+            DeviceInfoQuery deviceInfoQuery = DeviceInfoQuery.LocationEnabledQuery;
+            return GetDictionaryKeyValueAsBool(await GetDeviceInfo(relayWorkflow, sourceUri, deviceInfoQuery, refresh), deviceInfoQuery.SerializedName);
+        }
+
         /// <summary>
         /// Sets the profile of a user by updating the username.
         /// </summary>
