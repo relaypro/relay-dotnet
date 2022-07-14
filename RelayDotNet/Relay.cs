@@ -2240,6 +2240,30 @@ namespace RelayDotNet
         }
         
         /// <summary>
+        /// Answers a call on your device.
+        /// </summary>
+        /// <param name="relayWorkflow">the workflow.</param>
+        /// <param name="sourceUri">the device URN.</param>
+        /// <param name="callId">the call ID.</param>
+        /// <returns></returns>
+        public async Task<Dictionary<string, object>> AnswerCall(IRelayWorkflow relayWorkflow, string sourceUri, string callId)
+        {
+            return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, AnswerCall_(sourceUri, callId));
+        }
+
+        private static Dictionary<string, object> AnswerCall_(string sourceUri, string callId)
+        {
+            return Request(
+                RequestType.Answer,
+                sourceUri,
+                new Dictionary<string, object>
+                {
+                    ["call_id"] = callId
+                }
+            );
+        }
+
+        /// <summary>
         /// Places a call to another device.
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
