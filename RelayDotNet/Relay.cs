@@ -1055,6 +1055,100 @@ namespace RelayDotNet
                 }
             );
         }
+
+        /// <summary>
+        /// Creates an incident that will alert the Relay Dash.
+        /// </summary>
+        /// <param name="relayWorkflow">the workflow.</param>
+        /// <param name="originator">the device URN that triggered the incident.</param>
+        /// <param name="iType">the type of incident that occurred.</param>
+        /// <returns>the event response.</returns>
+        public async Task<Dictionary<string, object>> CreateIncident(IRelayWorkflow relayWorkflow, string originator, string iType)
+        {
+            return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, CreateIncident_(originator, iType));
+        }
+
+        private static Dictionary<string, object> CreateIncident_(string originator, string iType)
+        {
+            return Request(
+                RequestType.CreateIncident,
+                new Dictionary<string, object>
+                {
+                    ["type"] = iType,
+                    ["originator_uri"] = originator
+                }
+            );
+        }
+
+        /// <summary>
+        /// Resolves an incident that was created.
+        /// </summary>
+        /// <param name="relayWorkflow">the workflow.</param>
+        /// <param name="incidentId">the ID of the incident you would like to resolve.</param>
+        /// <param name="reason">the reason for resolving the incident.</param>
+        /// <returns></returns>
+        public async Task<Dictionary<string, object>> ResolveIncident(IRelayWorkflow relayWorkflow, string incidentId, string reason)
+        {
+            return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, ResolveIncident_(incidentId, reason));
+        }
+
+        private static Dictionary<string, object> ResolveIncident_(string incidentId, string reason)
+        {
+            return Request(
+                RequestType.ResolveIncident,
+                new Dictionary<string, object>
+                {
+                    ["incident_id"] = incidentId,
+                    ["reason"] = reason
+                }
+            );
+        }
+
+        /// <summary>
+        /// Restarts a device during a workflow, without having to physically restart the device via hodling down the '-' button.
+        /// </summary>
+        /// <param name="relayWorkflow">the workflow.</param>
+        /// <param name="sourceUri">the URN of the device you would like to restart.</param>
+        /// <returns></returns>
+        public async Task<Dictionary<string, object>> RestartDevice(IRelayWorkflow relayWorkflow, string sourceUri)
+        {
+            return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, RestartDevice_(sourceUri));
+        }
+
+        private static Dictionary<string, object> RestartDevice_ (string sourceUri)
+        {
+            return Request (
+                RequestType.DevicePowerOff,
+                sourceUri,
+                new Dictionary<string, object>
+                {
+                    ["restart"] = true
+                }
+            );
+        }
+        
+        /// <summary>
+        /// Powers down a device during a workflow, without having to physically power down the device via holding down the '+' button.
+        /// </summary>
+        /// <param name="relayWorkflow">the workflow.</param>
+        /// <param name="sourceUri">the URN of the device you would like to power down.</param>
+        /// <returns></returns>
+        public async Task<Dictionary<string, object>> PowerDownDevice(IRelayWorkflow relayWorkflow, string sourceUri)
+        {
+            return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, PowerDownDevice_(sourceUri));
+        }
+
+        private static Dictionary<string, object> PowerDownDevice_ (string sourceUri)
+        {
+            return Request (
+                RequestType.DevicePowerOff,
+                sourceUri,
+                new Dictionary<string, object>
+                {
+                    ["restart"] = false
+                }
+            );
+        }
         
         /// <summary>
         /// Used for performing actions on the LEDs, such as creating a rainbow, flashing, rotating, etc.
@@ -1766,16 +1860,35 @@ namespace RelayDotNet
             return GetDictionaryKeyValueAsString(await GetDeviceInfo(relayWorkflow, sourceUri, deviceInfoQuery), deviceInfoQuery.SerializedName);
         }
 
+        /// <summary>
+        /// Enables the location services on a device.
+        /// </summary>
+        /// <param name="relayWorkflow">the workflow.</param>
+        /// <param name="sourceUri">the device or interaction URN.</param>
+        /// <returns>the event response.</returns>
         public async Task<Dictionary<string, object>> EnableLocation(IRelayWorkflow relayWorkflow, string sourceUri) 
         {
             return await SetDeviceInfo(relayWorkflow, sourceUri, DeviceInfoField.Location, "true");
         }
         
+        /// <summary>
+        /// Disables the location services on a device.
+        /// </summary>
+        /// <param name="relayWorkflow">the workflow.</param>
+        /// <param name="sourceUri">the device or interaction URN.</param>
+        /// <returns>the event response.</returns>
         public async Task<Dictionary<string, object>> DisableLocation(IRelayWorkflow relayWorkflow, string sourceUri) 
         {
             return await SetDeviceInfo(relayWorkflow, sourceUri, DeviceInfoField.Location, "false");
         }
 
+        /// <summary>
+        /// Returns true if the device's location services are enabled, false otherwise.
+        /// </summary>
+        /// <param name="relayWorkflow">the workflow</param>
+        /// <param name="sourceUri">the device or interaction URN.</param>
+        /// <param name="refresh">whether you would like to refresh before retrieving the query information.</param>
+        /// <returns>true if the device's location services are enabled, false otherwise.</returns>
         public async Task<bool> GetDeviceLocationEnabled(IRelayWorkflow relayWorkflow, string sourceUri, bool refresh) 
         {
             DeviceInfoQuery deviceInfoQuery = DeviceInfoQuery.LocationEnabledQuery;
@@ -1815,6 +1928,62 @@ namespace RelayDotNet
             );
         }
         
+        /// <summary>
+        /// Log an analytic event from a workflow with the specified content and
+        /// under a specified category.  This includes the device who triggered the workflow
+        /// that called this function.
+        /// </summary>
+        /// <param name="relayWorkflow">the workflow.</param>
+        /// <param name="message">a description for your analytical event.</param>
+        /// <param name="sourceUri">the URN of a device that triggered this function.  Defaults to None.</param>
+        /// <param name="category">a category for your analytical event.</param>
+        /// <returns></returns>
+        public async Task<Dictionary<string, object>> LogUserMessage(IRelayWorkflow relayWorkflow, string message, string sourceUri, string category)
+        {
+            return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, LogUserMessage_(message, sourceUri, category));
+        }  
+
+        private static Dictionary<string, object> LogUserMessage_(string message, string sourceUri, string category)
+        {
+            return Request(
+                RequestType.LogAnalyticsEvent,
+                new Dictionary<string, object>
+                {
+                    ["content"] = message,
+                    ["content_type"] = "text/plain",
+                    ["category"] = category,
+                    ["device_uri"] = sourceUri
+                }
+            );
+        }
+
+        /// <summary>
+        /// Log an analytics event from a workflow with the specified content and
+        /// under a specified category. This does not log the device who
+        /// triggered the workflow that called this function.
+        /// </summary>
+        /// <param name="relayWorkflow">the workflow.</param>
+        /// <param name="message">a description for your analytical event.</param>
+        /// <param name="category">a category for your analytical event.</param>
+        /// <returns></returns>
+        public async Task<Dictionary<string, object>> LogMessage(IRelayWorkflow relayWorkflow, string message, string category)
+        {
+            return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, LogMessage_(message, category));
+        }
+
+        private static Dictionary<string, object> LogMessage_(string message, string category)
+        {
+            return Request(
+                RequestType.LogAnalyticsEvent,
+                new Dictionary<string, object>
+                {
+                    ["content"] = message,
+                    ["content_type"] = "text/plain",
+                    ["category"] = category
+                }
+            );
+        }
+
         private async Task<Dictionary<string, object>> SetDeviceInfo(IRelayWorkflow relayWorkflow, string sourceUri, DeviceInfoField deviceInfoField, string value)
         {
             return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, SetDeviceInfo_(sourceUri, deviceInfoField, value));
