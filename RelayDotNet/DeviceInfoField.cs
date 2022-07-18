@@ -10,9 +10,11 @@ namespace RelayDotNet
         
         private static readonly DeviceInfoField _Label = Add("Label", "label");
         private static readonly DeviceInfoField _Channel = Add("Channel", "channel");
+        private static readonly DeviceInfoField _Location = Add("Location", "location_enabled");
 
         public static DeviceInfoField Label => _Label;
         public static DeviceInfoField Channel => _Channel;
+        public static DeviceInfoField Location => _Location;
 
         private static DeviceInfoField Add(string name, string serializedName)
         {
