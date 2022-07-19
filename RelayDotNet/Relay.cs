@@ -1384,12 +1384,12 @@ namespace RelayDotNet
         /// <param name="name">name of the variable to be created.</param>
         /// <param name="value">value that the variable will hold.</param>
         /// <returns>the event response.</returns>
-        public async Task<Dictionary<string, object>> SetVar(IRelayWorkflow relayWorkflow, string name, string value)
+        public async Task<Dictionary<string, object>> SetVar(IRelayWorkflow relayWorkflow, string name, object value)
         {
             return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, SetVar_(name, value));
         }
         
-        private static Dictionary<string, object> SetVar_(string name, string value)
+        private static Dictionary<string, object> SetVar_(string name, object value)
         {
             return Request(
                 RequestType.SetVar,
@@ -1437,10 +1437,28 @@ namespace RelayDotNet
             Dictionary<string, object> dictionary = await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, GetVar_(name));
             
             if (null != dictionary && dictionary.ContainsKey("value") && null != dictionary["value"])
-            {
+            {   
                 return (string) dictionary["value"];
             }
 
+            return defaultValue;
+        }
+
+        /// <summary>
+        /// Retrieves a variable that is an integer type.
+        /// </summary>
+        /// <param name="relayWorkflow">the workflow.</param>
+        /// <param name="name">the name of the variable to retrieve.</param>
+        /// <param name="defaultValue">the default value for the variable if it does not exist.</param>
+        /// <returns>the variable requested</returns>
+        public async Task<int> GetNumberVar(IRelayWorkflow relayWorkflow, string name, int defaultValue = -1)
+        {
+            Dictionary<string, object> dictionary = await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, GetVar_(name));
+
+            if(null != dictionary && dictionary.ContainsKey("value") && null != dictionary["value"])
+            {
+                return Int32.Parse((string) dictionary["value"]);
+            }
             return defaultValue;
         }
         
