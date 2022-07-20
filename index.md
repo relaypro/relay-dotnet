@@ -158,12 +158,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad0473751c1f6f4b02aa89e7a426d48c2"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#ad0473751c1f6f4b02aa89e7a426d48c2">ResolveIncident</a> (IRelayWorkflow relayWorkflow, string incidentId, string reason)</td></tr>
 <tr class="memdesc:ad0473751c1f6f4b02aa89e7a426d48c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resolves an incident that was created.  <a href="classRelayDotNet_1_1Relay.html#ad0473751c1f6f4b02aa89e7a426d48c2">More...</a><br /></td></tr>
 <tr class="separator:ad0473751c1f6f4b02aa89e7a426d48c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a99055e4f59976d4350f983794fe5f3fe"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#a99055e4f59976d4350f983794fe5f3fe">RestartDevice</a> (IRelayWorkflow relayWorkflow, string sourceUri)</td></tr>
-<tr class="memdesc:a99055e4f59976d4350f983794fe5f3fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Restarts a device during a workflow, without having to physically restart the device via hodling down the '-' button.  <a href="classRelayDotNet_1_1Relay.html#a99055e4f59976d4350f983794fe5f3fe">More...</a><br /></td></tr>
-<tr class="separator:a99055e4f59976d4350f983794fe5f3fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a69922ce7b7d8bc91cb9e8bef9a9b1d9b"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#a69922ce7b7d8bc91cb9e8bef9a9b1d9b">PowerDownDevice</a> (IRelayWorkflow relayWorkflow, string sourceUri)</td></tr>
-<tr class="memdesc:a69922ce7b7d8bc91cb9e8bef9a9b1d9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Powers down a device during a workflow, without having to physically power down the device via holding down the '+' button.  <a href="classRelayDotNet_1_1Relay.html#a69922ce7b7d8bc91cb9e8bef9a9b1d9b">More...</a><br /></td></tr>
-<tr class="separator:a69922ce7b7d8bc91cb9e8bef9a9b1d9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aadb421351633e256cbb25c4fab6802c6"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#aadb421351633e256cbb25c4fab6802c6">SetLed</a> (IRelayWorkflow relayWorkflow, string sourceUri, LedEffect ledEffect, LedInfo ledInfo)</td></tr>
 <tr class="memdesc:aadb421351633e256cbb25c4fab6802c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used for performing actions on the LEDs, such as creating a rainbow, flashing, rotating, etc.  <a href="classRelayDotNet_1_1Relay.html#aadb421351633e256cbb25c4fab6802c6">More...</a><br /></td></tr>
 <tr class="separator:aadb421351633e256cbb25c4fab6802c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -188,15 +182,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0f033ad67f11c88195596afc32655e7b"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#a0f033ad67f11c88195596afc32655e7b">Breathe</a> (IRelayWorkflow relayWorkflow, string sourceUri, string color=&quot;0000FF&quot;)</td></tr>
 <tr class="memdesc:a0f033ad67f11c88195596afc32655e7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Switches all of the LEDs on a device to a certain color and creates a 'breathing' effect, where the LEDs will slowly light up a specified number of times.  <a href="classRelayDotNet_1_1Relay.html#a0f033ad67f11c88195596afc32655e7b">More...</a><br /></td></tr>
 <tr class="separator:a0f033ad67f11c88195596afc32655e7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a967df5e6d9f6c41f4fc15f25d88914c1"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#a967df5e6d9f6c41f4fc15f25d88914c1">SetVar</a> (IRelayWorkflow relayWorkflow, string name, string value)</td></tr>
-<tr class="memdesc:a967df5e6d9f6c41f4fc15f25d88914c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a variable with the corresponding name and value. Scope of the variable is from start to end of a workflow.  <a href="classRelayDotNet_1_1Relay.html#a967df5e6d9f6c41f4fc15f25d88914c1">More...</a><br /></td></tr>
-<tr class="separator:a967df5e6d9f6c41f4fc15f25d88914c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acea42e1c626001c8868ce145eb96fa13"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#acea42e1c626001c8868ce145eb96fa13">SetVar</a> (IRelayWorkflow relayWorkflow, string name, object value)</td></tr>
+<tr class="memdesc:acea42e1c626001c8868ce145eb96fa13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a variable with the corresponding name and value. Scope of the variable is from start to end of a workflow.  <a href="classRelayDotNet_1_1Relay.html#acea42e1c626001c8868ce145eb96fa13">More...</a><br /></td></tr>
+<tr class="separator:acea42e1c626001c8868ce145eb96fa13"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a846ba92d95860532bd1c34367ff0f88d"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#a846ba92d95860532bd1c34367ff0f88d">UnsetVar</a> (IRelayWorkflow relayWorkflow, string name)</td></tr>
 <tr class="memdesc:a846ba92d95860532bd1c34367ff0f88d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unsets the value of a variable.  <a href="classRelayDotNet_1_1Relay.html#a846ba92d95860532bd1c34367ff0f88d">More...</a><br /></td></tr>
 <tr class="separator:a846ba92d95860532bd1c34367ff0f88d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8e4a49291b750122f52e804e8399033e"><td class="memItemLeft" align="right" valign="top">async Task&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#a8e4a49291b750122f52e804e8399033e">GetVar</a> (IRelayWorkflow relayWorkflow, string name, string defaultValue=null)</td></tr>
 <tr class="memdesc:a8e4a49291b750122f52e804e8399033e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves a variable that was set either during workflow registration or through the set_var() function. The variable can be retrieved anywhere within the workflow, but is erased after the workflow terminates.  <a href="classRelayDotNet_1_1Relay.html#a8e4a49291b750122f52e804e8399033e">More...</a><br /></td></tr>
 <tr class="separator:a8e4a49291b750122f52e804e8399033e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28d1ad3573ab5d7848ce8130322957ee"><td class="memItemLeft" align="right" valign="top">async Task&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#a28d1ad3573ab5d7848ce8130322957ee">GetNumberVar</a> (IRelayWorkflow relayWorkflow, string name, int defaultValue=-1)</td></tr>
+<tr class="memdesc:a28d1ad3573ab5d7848ce8130322957ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves a variable that is an integer type.  <a href="classRelayDotNet_1_1Relay.html#a28d1ad3573ab5d7848ce8130322957ee">More...</a><br /></td></tr>
+<tr class="separator:a28d1ad3573ab5d7848ce8130322957ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af0bae904854f2e7f9bfce0c5103338cc"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#af0bae904854f2e7f9bfce0c5103338cc">Listen</a> (IRelayWorkflow relayWorkflow, string sourceUri)</td></tr>
 <tr class="memdesc:af0bae904854f2e7f9bfce0c5103338cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Listens for the user to speak into the device. Utilizes speech to text functionality to interact with the user.  <a href="classRelayDotNet_1_1Relay.html#af0bae904854f2e7f9bfce0c5103338cc">More...</a><br /></td></tr>
 <tr class="separator:af0bae904854f2e7f9bfce0c5103338cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -211,6 +208,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a61c0cbb0b689feecca8fa848d4066b48"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad7c302c4b23d5c0c400063761c9f2c99"><td class="memItemLeft" align="right" valign="top">async Task&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#ad7c302c4b23d5c0c400063761c9f2c99">Translate</a> (IRelayWorkflow relayWorkflow, string text, Language from, Language to)</td></tr>
 <tr class="separator:ad7c302c4b23d5c0c400063761c9f2c99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a843642df8b27e7006d7259bcbd1d68c7"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#a843642df8b27e7006d7259bcbd1d68c7">PlayUnreadInboxMessages</a> (IRelayWorkflow relayWorkflow, string sourceUri)</td></tr>
+<tr class="separator:a843642df8b27e7006d7259bcbd1d68c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa99f9d1af832737f16225be89d1f5fad"><td class="memItemLeft" align="right" valign="top">async Task&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#aa99f9d1af832737f16225be89d1f5fad">GetUnreadInboxSize</a> (IRelayWorkflow relayWorkflow, string sourceUri)</td></tr>
+<tr class="separator:aa99f9d1af832737f16225be89d1f5fad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa9697e8d71701586a6ee1b6d4b31e996"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#aa9697e8d71701586a6ee1b6d4b31e996">CancelNotification</a> (IRelayWorkflow relayWorkflow, string sourceUri, string name, string[] targets)</td></tr>
 <tr class="memdesc:aa9697e8d71701586a6ee1b6d4b31e996"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cancels a notification of any type that was sent to a group of devices.  <a href="classRelayDotNet_1_1Relay.html#aa9697e8d71701586a6ee1b6d4b31e996">More...</a><br /></td></tr>
 <tr class="separator:aa9697e8d71701586a6ee1b6d4b31e996"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -286,9 +287,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:abda42a1c778d75e56244b5152b524916"><td class="memItemLeft" align="right" valign="top">async Task&lt; string[]&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#abda42a1c778d75e56244b5152b524916">SetUserProfile</a> (IRelayWorkflow relayWorkflow, string sourceUri, string username, bool force=false)</td></tr>
 <tr class="memdesc:abda42a1c778d75e56244b5152b524916"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the profile of a user by updating the username.  <a href="classRelayDotNet_1_1Relay.html#abda42a1c778d75e56244b5152b524916">More...</a><br /></td></tr>
 <tr class="separator:abda42a1c778d75e56244b5152b524916"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a74132a74c38bd7c2870bb2e1b0e5000a"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#a74132a74c38bd7c2870bb2e1b0e5000a">SetDeviceMode</a> (IRelayWorkflow relayWorkflow, string sourceUri, string mode)</td></tr>
-<tr class="memdesc:a74132a74c38bd7c2870bb2e1b0e5000a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the mode of the device.  <a href="classRelayDotNet_1_1Relay.html#a74132a74c38bd7c2870bb2e1b0e5000a">More...</a><br /></td></tr>
-<tr class="separator:a74132a74c38bd7c2870bb2e1b0e5000a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1391c0aba85616ba7b5aa2b3bbaa25ca"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#a1391c0aba85616ba7b5aa2b3bbaa25ca">LogUserMessage</a> (IRelayWorkflow relayWorkflow, string message, string sourceUri, string category)</td></tr>
 <tr class="memdesc:a1391c0aba85616ba7b5aa2b3bbaa25ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log an analytic event from a workflow with the specified content and under a specified category. This includes the device who triggered the workflow that called this function.  <a href="classRelayDotNet_1_1Relay.html#a1391c0aba85616ba7b5aa2b3bbaa25ca">More...</a><br /></td></tr>
 <tr class="separator:a1391c0aba85616ba7b5aa2b3bbaa25ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -298,9 +296,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a779cda162dcb8d5cb98a2b9f11d2b099"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#a779cda162dcb8d5cb98a2b9f11d2b099">SetDeviceName</a> (IRelayWorkflow relayWorkflow, string sourceUri, string name)</td></tr>
 <tr class="memdesc:a779cda162dcb8d5cb98a2b9f11d2b099"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the name of a targeted device and updates it on the <a class="el" href="classRelayDotNet_1_1Relay.html" title="The Relay class is responsible for defining the main functionalities that are used within workflows,...">Relay</a> Dash. The name remains updated until it is set again via a workflow or updated manually on the <a class="el" href="classRelayDotNet_1_1Relay.html" title="The Relay class is responsible for defining the main functionalities that are used within workflows,...">Relay</a> Dash.  <a href="classRelayDotNet_1_1Relay.html#a779cda162dcb8d5cb98a2b9f11d2b099">More...</a><br /></td></tr>
 <tr class="separator:a779cda162dcb8d5cb98a2b9f11d2b099"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad4ca01d04d7579aa40d9fa28cb7f16a6"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#ad4ca01d04d7579aa40d9fa28cb7f16a6">SetDeviceChannel</a> (IRelayWorkflow relayWorkflow, string sourceUri, string channel)</td></tr>
-<tr class="memdesc:ad4ca01d04d7579aa40d9fa28cb7f16a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the channel of a targeted device and updates it on the <a class="el" href="classRelayDotNet_1_1Relay.html" title="The Relay class is responsible for defining the main functionalities that are used within workflows,...">Relay</a> Dash. The new channel remains until it is set again via a workflow or updated on the <a class="el" href="classRelayDotNet_1_1Relay.html" title="The Relay class is responsible for defining the main functionalities that are used within workflows,...">Relay</a> Dash.  <a href="classRelayDotNet_1_1Relay.html#ad4ca01d04d7579aa40d9fa28cb7f16a6">More...</a><br /></td></tr>
-<tr class="separator:ad4ca01d04d7579aa40d9fa28cb7f16a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a27334c5082e7a29425bb16247cc8e20b"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#a27334c5082e7a29425bb16247cc8e20b">SetChannel</a> (IRelayWorkflow relayWorkflow, string sourceUri, string channel, string[] targets, bool suppressTts=false, bool disableHomeChannel=false)</td></tr>
 <tr class="memdesc:a27334c5082e7a29425bb16247cc8e20b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the channel that a device is on. This can be used to change the channel of a device during a workflow, where the channel will also be updated on the <a class="el" href="classRelayDotNet_1_1Relay.html" title="The Relay class is responsible for defining the main functionalities that are used within workflows,...">Relay</a> Dash.  <a href="classRelayDotNet_1_1Relay.html#a27334c5082e7a29425bb16247cc8e20b">More...</a><br /></td></tr>
 <tr class="separator:a27334c5082e7a29425bb16247cc8e20b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -2147,6 +2142,95 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a28d1ad3573ab5d7848ce8130322957ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28d1ad3573ab5d7848ce8130322957ee">&#9670;&nbsp;</a></span>GetNumberVar()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt;int&gt; RelayDotNet.Relay.GetNumberVar </td>
+          <td>(</td>
+          <td class="paramtype">IRelayWorkflow&#160;</td>
+          <td class="paramname"><em>relayWorkflow</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>defaultValue</em> = <code>-1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Retrieves a variable that is an integer type. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">relayWorkflow</td><td>the workflow.</td></tr>
+    <tr><td class="paramname">name</td><td>the name of the variable to retrieve.</td></tr>
+    <tr><td class="paramname">defaultValue</td><td>the default value for the variable if it does not exist.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the variable requested</dd></dl>
+
+</div>
+</div>
+<a id="aa99f9d1af832737f16225be89d1f5fad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa99f9d1af832737f16225be89d1f5fad">&#9670;&nbsp;</a></span>GetUnreadInboxSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt;int&gt; RelayDotNet.Relay.GetUnreadInboxSize </td>
+          <td>(</td>
+          <td class="paramtype">IRelayWorkflow&#160;</td>
+          <td class="paramname"><em>relayWorkflow</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>sourceUri</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a9f9c40ccbd09656476e18c6c8bf7a37a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9f9c40ccbd09656476e18c6c8bf7a37a">&#9670;&nbsp;</a></span>GetUserProfile()</h2>
 
@@ -3026,8 +3110,8 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a69922ce7b7d8bc91cb9e8bef9a9b1d9b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a69922ce7b7d8bc91cb9e8bef9a9b1d9b">&#9670;&nbsp;</a></span>PowerDownDevice()</h2>
+<a id="a843642df8b27e7006d7259bcbd1d68c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a843642df8b27e7006d7259bcbd1d68c7">&#9670;&nbsp;</a></span>PlayUnreadInboxMessages()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3036,7 +3120,7 @@ Public Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">async Task&lt;Dictionary&lt;string, object&gt; &gt; RelayDotNet.Relay.PowerDownDevice </td>
+          <td class="memname">async Task&lt;Dictionary&lt;string, object&gt; &gt; RelayDotNet.Relay.PlayUnreadInboxMessages </td>
           <td>(</td>
           <td class="paramtype">IRelayWorkflow&#160;</td>
           <td class="paramname"><em>relayWorkflow</em>, </td>
@@ -3059,16 +3143,6 @@ Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Powers down a device during a workflow, without having to physically power down the device via holding down the '+' button. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">relayWorkflow</td><td>the workflow.</td></tr>
-    <tr><td class="paramname">sourceUri</td><td>the URN of the device you would like to power down.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
 </div>
 </div>
@@ -3197,52 +3271,6 @@ Public Attributes</h2></td></tr>
     <tr><td class="paramname">relayWorkflow</td><td>the workflow.</td></tr>
     <tr><td class="paramname">incidentId</td><td>the ID of the incident you would like to resolve.</td></tr>
     <tr><td class="paramname">reason</td><td>the reason for resolving the incident.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
-
-</div>
-</div>
-<a id="a99055e4f59976d4350f983794fe5f3fe"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a99055e4f59976d4350f983794fe5f3fe">&#9670;&nbsp;</a></span>RestartDevice()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">async Task&lt;Dictionary&lt;string, object&gt; &gt; RelayDotNet.Relay.RestartDevice </td>
-          <td>(</td>
-          <td class="paramtype">IRelayWorkflow&#160;</td>
-          <td class="paramname"><em>relayWorkflow</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>sourceUri</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Restarts a device during a workflow, without having to physically restart the device via hodling down the '-' button. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">relayWorkflow</td><td>the workflow.</td></tr>
-    <tr><td class="paramname">sourceUri</td><td>the URN of the device you would like to restart.</td></tr>
   </table>
   </dd>
 </dl>
@@ -3603,112 +3631,6 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="ad4ca01d04d7579aa40d9fa28cb7f16a6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad4ca01d04d7579aa40d9fa28cb7f16a6">&#9670;&nbsp;</a></span>SetDeviceChannel()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">async Task&lt;Dictionary&lt;string, object&gt; &gt; RelayDotNet.Relay.SetDeviceChannel </td>
-          <td>(</td>
-          <td class="paramtype">IRelayWorkflow&#160;</td>
-          <td class="paramname"><em>relayWorkflow</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>sourceUri</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>channel</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Sets the channel of a targeted device and updates it on the <a class="el" href="classRelayDotNet_1_1Relay.html" title="The Relay class is responsible for defining the main functionalities that are used within workflows,...">Relay</a> Dash. The new channel remains until it is set again via a workflow or updated on the <a class="el" href="classRelayDotNet_1_1Relay.html" title="The Relay class is responsible for defining the main functionalities that are used within workflows,...">Relay</a> Dash. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">relayWorkflow</td><td>the workflow.</td></tr>
-    <tr><td class="paramname">sourceUri</td><td>the device or interaction URN.</td></tr>
-    <tr><td class="paramname">channel</td><td>the channel that you would like to update your device to.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>the event response.</dd></dl>
-
-</div>
-</div>
-<a id="a74132a74c38bd7c2870bb2e1b0e5000a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a74132a74c38bd7c2870bb2e1b0e5000a">&#9670;&nbsp;</a></span>SetDeviceMode()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">async Task&lt;Dictionary&lt;string, object&gt; &gt; RelayDotNet.Relay.SetDeviceMode </td>
-          <td>(</td>
-          <td class="paramtype">IRelayWorkflow&#160;</td>
-          <td class="paramname"><em>relayWorkflow</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>sourceUri</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>mode</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Sets the mode of the device. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">relayWorkflow</td><td>the workflow.</td></tr>
-    <tr><td class="paramname">sourceUri</td><td>the device or interaction URN.</td></tr>
-    <tr><td class="paramname">mode</td><td>the updated mode of the device, which can be "panic", "alarm", or "none". Defaults to "none".</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
-
-</div>
-</div>
 <a id="a779cda162dcb8d5cb98a2b9f11d2b099"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a779cda162dcb8d5cb98a2b9f11d2b099">&#9670;&nbsp;</a></span>SetDeviceName()</h2>
 
@@ -3949,8 +3871,8 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a967df5e6d9f6c41f4fc15f25d88914c1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a967df5e6d9f6c41f4fc15f25d88914c1">&#9670;&nbsp;</a></span>SetVar()</h2>
+<a id="acea42e1c626001c8868ce145eb96fa13"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acea42e1c626001c8868ce145eb96fa13">&#9670;&nbsp;</a></span>SetVar()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3973,7 +3895,7 @@ Public Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">string&#160;</td>
+          <td class="paramtype">object&#160;</td>
           <td class="paramname"><em>value</em>&#160;</td>
         </tr>
         <tr>
