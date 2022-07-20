@@ -1198,51 +1198,53 @@ namespace RelayDotNet
             );
         }
 
-        /// <summary>
-        /// Restarts a device during a workflow, without having to physically restart the device via hodling down the '-' button.
-        /// </summary>
-        /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the URN of the device you would like to restart.</param>
-        /// <returns></returns>
-        public async Task<Dictionary<string, object>> RestartDevice(IRelayWorkflow relayWorkflow, string sourceUri)
-        {
-            return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, RestartDevice_(sourceUri));
-        }
+        // RESTART/POWERING DOWN THE DEVICE CURRENTLY DO NOT WORK
 
-        private static Dictionary<string, object> RestartDevice_ (string sourceUri)
-        {
-            return Request (
-                RequestType.DevicePowerOff,
-                sourceUri,
-                new Dictionary<string, object>
-                {
-                    ["restart"] = true
-                }
-            );
-        }
+        // /// <summary>
+        // /// Restarts a device during a workflow, without having to physically restart the device via hodling down the '-' button.
+        // /// </summary>
+        // /// <param name="relayWorkflow">the workflow.</param>
+        // /// <param name="sourceUri">the URN of the device you would like to restart.</param>
+        // /// <returns></returns>
+        // public async Task<Dictionary<string, object>> RestartDevice(IRelayWorkflow relayWorkflow, string sourceUri)
+        // {
+        //     return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, RestartDevice_(sourceUri));
+        // }
+
+        // private static Dictionary<string, object> RestartDevice_ (string sourceUri)
+        // {
+        //     return Request (
+        //         RequestType.DevicePowerOff,
+        //         sourceUri,
+        //         new Dictionary<string, object>
+        //         {
+        //             ["restart"] = true
+        //         }
+        //     );
+        // }
         
-        /// <summary>
-        /// Powers down a device during a workflow, without having to physically power down the device via holding down the '+' button.
-        /// </summary>
-        /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the URN of the device you would like to power down.</param>
-        /// <returns></returns>
-        public async Task<Dictionary<string, object>> PowerDownDevice(IRelayWorkflow relayWorkflow, string sourceUri)
-        {
-            return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, PowerDownDevice_(sourceUri));
-        }
+        // /// <summary>
+        // /// Powers down a device during a workflow, without having to physically power down the device via holding down the '+' button.
+        // /// </summary>
+        // /// <param name="relayWorkflow">the workflow.</param>
+        // /// <param name="sourceUri">the URN of the device you would like to power down.</param>
+        // /// <returns></returns>
+        // public async Task<Dictionary<string, object>> PowerDownDevice(IRelayWorkflow relayWorkflow, string sourceUri)
+        // {
+        //     return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, PowerDownDevice_(sourceUri));
+        // }
 
-        private static Dictionary<string, object> PowerDownDevice_ (string sourceUri)
-        {
-            return Request (
-                RequestType.DevicePowerOff,
-                sourceUri,
-                new Dictionary<string, object>
-                {
-                    ["restart"] = false
-                }
-            );
-        }
+        // private static Dictionary<string, object> PowerDownDevice_ (string sourceUri)
+        // {
+        //     return Request (
+        //         RequestType.DevicePowerOff,
+        //         sourceUri,
+        //         new Dictionary<string, object>
+        //         {
+        //             ["restart"] = false
+        //         }
+        //     );
+        // }
         
         /// <summary>
         /// Used for performing actions on the LEDs, such as creating a rainbow, flashing, rotating, etc.
@@ -1584,6 +1586,46 @@ namespace RelayDotNet
                 }
             );
 
+        }
+
+        public async Task<Dictionary<string, object>> PlayUnreadInboxMessages(IRelayWorkflow relayWorkflow, string sourceUri)
+        {
+            return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, PlayUnreadInboxMessages_(sourceUri));
+
+        }
+
+        private static Dictionary<string, object> PlayUnreadInboxMessages_(string sourceUri)
+        {
+            return Request(
+                RequestType.PlayInboxMessages, 
+                sourceUri,
+                new Dictionary<string, object>
+                {
+
+                }
+            );
+        }
+
+        public async Task<int> GetUnreadInboxSize(IRelayWorkflow relayWorkflow, string sourceUri)
+        {
+            Dictionary<string, object> dictionary = await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, GetUnreadInboxSize_(sourceUri));
+            if(null != dictionary && dictionary.ContainsKey("count") && null != dictionary["count"])
+            {
+                return Int32.Parse((string) dictionary["count"]);
+            }
+            return -1;
+        }
+
+        private static Dictionary<string, object> GetUnreadInboxSize_(string sourceUri)
+        {
+            return Request(
+                RequestType.InboxCount,
+                sourceUri,
+                new Dictionary<string, object>
+                {
+
+                }
+            );
         }
 
         private async Task<Dictionary<string, object>> SendNotification(IRelayWorkflow relayWorkflow, string sourceUri, NotificationType notificationType, string text, string[] targets, string name, NotificationPushOptions notificationPushOptions)
@@ -2048,29 +2090,31 @@ namespace RelayDotNet
             );
         }
 
-        /// <summary>
-        /// Sets the mode of the device.
-        /// </summary>
-        /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the device or interaction URN.</param>
-        /// <param name="mode">the updated mode of the device, which can be "panic", "alarm", or "none".  Defaults to "none".</param>
-        /// <returns></returns>
-        public async Task<Dictionary<string, object>> SetDeviceMode(IRelayWorkflow relayWorkflow, string sourceUri, string mode)
-        {
-            return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, SetDeviceMode_(sourceUri, mode));
-        }
+        // SETDEVICEMODE CURRENTLY DOES NOT WORK
 
-        private static Dictionary<string, object> SetDeviceMode_(string sourceUri, string mode)
-        {
-            return Request(
-                RequestType.SetDeviceMode,
-                sourceUri,
-                new Dictionary<string, object>
-                {
-                    ["mode"] = mode
-                }
-            );
-        }
+        // /// <summary>
+        // /// Sets the mode of the device.
+        // /// </summary>
+        // /// <param name="relayWorkflow">the workflow.</param>
+        // /// <param name="sourceUri">the device or interaction URN.</param>
+        // /// <param name="mode">the updated mode of the device, which can be "panic", "alarm", or "none".  Defaults to "none".</param>
+        // /// <returns></returns>
+        // public async Task<Dictionary<string, object>> SetDeviceMode(IRelayWorkflow relayWorkflow, string sourceUri, string mode)
+        // {
+        //     return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, SetDeviceMode_(sourceUri, mode));
+        // }
+
+        // private static Dictionary<string, object> SetDeviceMode_(string sourceUri, string mode)
+        // {
+        //     return Request(
+        //         RequestType.SetChannel,
+        //         sourceUri,
+        //         new Dictionary<string, object>
+        //         {
+        //             ["mode"] = mode
+        //         }
+        //     );
+        // }
         
         /// <summary>
         /// Log an analytic event from a workflow with the specified content and
@@ -2160,19 +2204,28 @@ namespace RelayDotNet
             return await SetDeviceInfo(relayWorkflow, sourceUri, DeviceInfoField.Label, name);
         }
         
-        /// <summary>
-        /// Sets the channel of a targeted device and updates it on the Relay Dash.
-        /// The new channel remains until it is set again via a workflow or updated on the
-        /// Relay Dash.
-        /// </summary>
-        /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the device or interaction URN.</param>
-        /// <param name="channel">the channel that you would like to update your device to.</param>
-        /// <returns>the event response.</returns>
-        public async Task<Dictionary<string, object>> SetDeviceChannel(IRelayWorkflow relayWorkflow, string sourceUri, string channel)
-        {
-            return await SetDeviceInfo(relayWorkflow, sourceUri, DeviceInfoField.Channel, channel);
-        }
+        // SETDEVICECHANNEL CURRENTLY DOES NOT WORK
+
+        // /// <summary>
+        // /// Sets the channel of a targeted device and updates it on the Relay Dash.
+        // /// The new channel remains until it is set again via a workflow or updated on the
+        // /// Relay Dash.
+        // /// </summary>
+        // /// <param name="relayWorkflow">the workflow.</param> 
+        // /// <param name="sourceUri">the device or interaction URN.</param>
+        // /// <param name="channel">the channel that you would like to update your device to.</param>
+        // /// <returns>the event response.</returns>
+        // public async Task<Dictionary<string, object>> SetDeviceChannel(IRelayWorkflow relayWorkflow, string sourceUri, string channel)
+        // {
+        //     return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, SetDeviceChannel_(sourceUri, channel));
+        // }
+
+        // private static Dictionary<string, object> SetDeviceChannel_(string sourceUri, string channel)
+        // {
+        //     return Request (
+        //         RequestType.
+        //     )
+        // }
         
         /// <summary>
         /// Sets the channel that a device is on.  This can be used to change the channel of a device during a workflow,
