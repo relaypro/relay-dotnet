@@ -1386,12 +1386,12 @@ namespace RelayDotNet
         /// <param name="name">name of the variable to be created.</param>
         /// <param name="value">value that the variable will hold.</param>
         /// <returns>the event response.</returns>
-        public async Task<Dictionary<string, object>> SetVar(IRelayWorkflow relayWorkflow, string name, object value)
+        public async Task<Dictionary<string, object>> SetVar(IRelayWorkflow relayWorkflow, string name, string value)
         {
             return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, SetVar_(name, value));
         }
         
-        private static Dictionary<string, object> SetVar_(string name, object value)
+        private static Dictionary<string, object> SetVar_(string name, string value)
         {
             return Request(
                 RequestType.SetVar,
@@ -1628,23 +1628,28 @@ namespace RelayDotNet
             );
         }
 
-        private async Task<Dictionary<string, object>> SendNotification(IRelayWorkflow relayWorkflow, string sourceUri, NotificationType notificationType, string text, string[] targets, string name, NotificationPushOptions notificationPushOptions)
+        private async Task<Dictionary<string, object>> SendNotification(IRelayWorkflow relayWorkflow, string sourceUri, NotificationType notificationType, string text, string targets, string name, NotificationPushOptions notificationPushOptions)
         {
             return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, SendNotification_(sourceUri, notificationType, text, targets, name, notificationPushOptions), DelayNotificationTimeout);
         }
         
-        private static Dictionary<string, object> SendNotification_(string sourceUri, NotificationType notificationType, string text, string[] targets, string name, NotificationPushOptions notificationPushOptions)
+        private static Dictionary<string, object> SendNotification_(string sourceUri, NotificationType notificationType, string text, string targets, string name, NotificationPushOptions notificationPushOptions)
         {
+            if (notificationPushOptions == null)
+            {
+                notificationPushOptions = new NotificationPushOptions();
+            }
             return Request(
                 RequestType.Notification,
-                sourceUri,
+                targets,
                 new Dictionary<string, object>
                 {
+                    ["_type"] = RequestType.Notification.SerializedName,
+                    ["originator"] = sourceUri,
                     ["type"] = notificationType.SerializedName,
                     ["name"] = name,
                     ["text"] = text,
-                    ["target"] = targets,
-                    ["push_opts"] = notificationPushOptions
+                    ["push_opts"] = notificationPushOptions.Dictionary
                 }
             );
         }
@@ -1657,7 +1662,7 @@ namespace RelayDotNet
         /// <param name="name">the name of the notification to cancel.</param>
         /// <param name="targets">the group URN that received the notification.</param>
         /// <returns>the event response.</returns>
-        public async Task<Dictionary<string, object>> CancelNotification(IRelayWorkflow relayWorkflow, string sourceUri, string name, string[] targets)
+        public async Task<Dictionary<string, object>> CancelNotification(IRelayWorkflow relayWorkflow, string sourceUri, string name, string targets)
         {
             return await SendNotification(relayWorkflow, sourceUri, NotificationType.Cancel, null, targets, name, null);
         }
@@ -1672,9 +1677,9 @@ namespace RelayDotNet
         /// <param name="text">the text that you would like to be broadcasted to your group.</param>
         /// <param name="targets">the group URN that you would like to broadcast your message to.</param>
         /// <returns>the event response.</returns>
-        public async Task<Dictionary<string, object>> Broadcast(IRelayWorkflow relayWorkflow, string sourceUri, string name, string text, string[] targets)
+        public async Task<Dictionary<string, object>> Broadcast(IRelayWorkflow relayWorkflow, string targets, string sourceUri, string name, string text)
         {
-            return await Broadcast(relayWorkflow, sourceUri, name, text, targets, null);
+            return await Broadcast(relayWorkflow, targets, sourceUri, name, text, null);
         }
         
         /// <summary>
@@ -1688,7 +1693,7 @@ namespace RelayDotNet
         /// <param name="targets">the group URN that you would like to broadcast your message to.</param>
         /// <param name="notificationPushOptions">push options for if the notification is sent to the Relay app on a virtual device.  Defaults to {}.</param>
         /// <returns>the event response.</returns>
-        public async Task<Dictionary<string, object>> Broadcast(IRelayWorkflow relayWorkflow, string sourceUri, string name, string text, string[] targets, NotificationPushOptions notificationPushOptions)
+        public async Task<Dictionary<string, object>> Broadcast(IRelayWorkflow relayWorkflow, string targets, string sourceUri, string name, string text, NotificationPushOptions notificationPushOptions)
         {
             return await SendNotification(relayWorkflow, sourceUri, NotificationType.Broadcast, text, targets, name, notificationPushOptions);
         }
@@ -1701,7 +1706,7 @@ namespace RelayDotNet
         /// <param name="name">the name of the broadcast you would like to cancel.</param>
         /// <param name="targets">the group URN that received the broadcast.</param>
         /// <returns>the event response.</returns>
-        public async Task<Dictionary<string, object>> CancelBroadcast(IRelayWorkflow relayWorkflow, string sourceUri, string name, string[] targets)
+        public async Task<Dictionary<string, object>> CancelBroadcast(IRelayWorkflow relayWorkflow, string sourceUri, string name, string targets)
         {
             return await CancelNotification(relayWorkflow, sourceUri, name, targets);
         }
@@ -1715,9 +1720,9 @@ namespace RelayDotNet
         /// <param name="text">the text that you would like to be spoken out of the device as your notification.</param>
         /// <param name="targets">the group URN that you would like to notify</param>
         /// <returns>the event response.</returns>
-        public async Task<Dictionary<string, object>> Notify(IRelayWorkflow relayWorkflow, string sourceUri, string name, string text, string[] targets)
+        public async Task<Dictionary<string, object>> Notify(IRelayWorkflow relayWorkflow, string targets, string sourceUri, string name, string text)
         {
-            return await Notify(relayWorkflow, sourceUri, name, text, targets, null);
+            return await Notify(relayWorkflow, targets, sourceUri, name, text, null);
         }
         
         /// <summary>
@@ -1730,7 +1735,7 @@ namespace RelayDotNet
         /// <param name="targets">the group URN that you would like to notify.</param>
         /// <param name="notificationPushOptions">push options for if the notification is sent to the Relay app on a virtual device.  Defaults to {}.</param>
         /// <returns>the event response.</returns>
-        public async Task<Dictionary<string, object>> Notify(IRelayWorkflow relayWorkflow, string sourceUri, string name, string text, string[] targets, NotificationPushOptions notificationPushOptions)
+        public async Task<Dictionary<string, object>> Notify(IRelayWorkflow relayWorkflow, string targets, string sourceUri, string name, string text, NotificationPushOptions notificationPushOptions)
         {
             return await SendNotification(relayWorkflow, sourceUri, NotificationType.Notify, text, targets, name, notificationPushOptions);
         }
@@ -1743,7 +1748,7 @@ namespace RelayDotNet
         /// <param name="name">the name of the notification that you would like to cancel.</param>
         /// <param name="targets">the group URN that received the notification.</param>
         /// <returns>the event response.</returns>
-        public async Task<Dictionary<string, object>> CancelNotify(IRelayWorkflow relayWorkflow, string sourceUri, string name, string[] targets)
+        public async Task<Dictionary<string, object>> CancelNotify(IRelayWorkflow relayWorkflow, string sourceUri, string name, string targets)
         {
             return await CancelNotification(relayWorkflow, sourceUri, name, targets);
         }
@@ -1757,9 +1762,9 @@ namespace RelayDotNet
         /// <param name="text">the text that you would like to be spoken to the group as your alert.</param>
         /// <param name="targets">the group URN that you would like to send your alert to.</param>
         /// <returns>the event response.</returns>
-        public async Task<Dictionary<string, object>> Alert(IRelayWorkflow relayWorkflow, string sourceUri, string name, string text, string[] targets)
+        public async Task<Dictionary<string, object>> Alert(IRelayWorkflow relayWorkflow, string targets, string sourceUri, string name, string text)
         {
-            return await Alert(relayWorkflow, sourceUri, name, text, targets, null);
+            return await Alert(relayWorkflow, targets, sourceUri, name, text, null);
         }
         
         /// <summary>
@@ -1772,7 +1777,7 @@ namespace RelayDotNet
         /// <param name="targets">the group URN that you would like to send your alert to.</param>
         /// <param name="notificationPushOptions">push options for if the alert is sent to the Relay app on a virtual device. Defaults to {}.</param>
         /// <returns>the event response.</returns>
-        public async Task<Dictionary<string, object>> Alert(IRelayWorkflow relayWorkflow, string sourceUri, string name, string text, string[] targets, NotificationPushOptions notificationPushOptions)
+        public async Task<Dictionary<string, object>> Alert(IRelayWorkflow relayWorkflow, string targets, string sourceUri, string name, string text, NotificationPushOptions notificationPushOptions)
         {
             return await SendNotification(relayWorkflow, sourceUri, NotificationType.Alert, text, targets, name, notificationPushOptions);
         }
@@ -1786,7 +1791,7 @@ namespace RelayDotNet
         /// <param name="name">the name of the alert.</param>
         /// <param name="targets">the group URN that received the alert.</param>
         /// <returns>the event response.</returns>
-        public async Task<Dictionary<string, object>> CancelAlert(IRelayWorkflow relayWorkflow, string sourceUri, string name, string[] targets)
+        public async Task<Dictionary<string, object>> CancelAlert(IRelayWorkflow relayWorkflow, string sourceUri, string name, string targets)
         {
             return await CancelNotification(relayWorkflow, sourceUri, name, targets);
         }
