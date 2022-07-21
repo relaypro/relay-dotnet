@@ -182,9 +182,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0f033ad67f11c88195596afc32655e7b"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#a0f033ad67f11c88195596afc32655e7b">Breathe</a> (IRelayWorkflow relayWorkflow, string sourceUri, string color=&quot;0000FF&quot;)</td></tr>
 <tr class="memdesc:a0f033ad67f11c88195596afc32655e7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Switches all of the LEDs on a device to a certain color and creates a 'breathing' effect, where the LEDs will slowly light up a specified number of times.  <a href="classRelayDotNet_1_1Relay.html#a0f033ad67f11c88195596afc32655e7b">More...</a><br /></td></tr>
 <tr class="separator:a0f033ad67f11c88195596afc32655e7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acea42e1c626001c8868ce145eb96fa13"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#acea42e1c626001c8868ce145eb96fa13">SetVar</a> (IRelayWorkflow relayWorkflow, string name, object value)</td></tr>
-<tr class="memdesc:acea42e1c626001c8868ce145eb96fa13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a variable with the corresponding name and value. Scope of the variable is from start to end of a workflow.  <a href="classRelayDotNet_1_1Relay.html#acea42e1c626001c8868ce145eb96fa13">More...</a><br /></td></tr>
-<tr class="separator:acea42e1c626001c8868ce145eb96fa13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a967df5e6d9f6c41f4fc15f25d88914c1"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#a967df5e6d9f6c41f4fc15f25d88914c1">SetVar</a> (IRelayWorkflow relayWorkflow, string name, string value)</td></tr>
+<tr class="memdesc:a967df5e6d9f6c41f4fc15f25d88914c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a variable with the corresponding name and value. Scope of the variable is from start to end of a workflow.  <a href="classRelayDotNet_1_1Relay.html#a967df5e6d9f6c41f4fc15f25d88914c1">More...</a><br /></td></tr>
+<tr class="separator:a967df5e6d9f6c41f4fc15f25d88914c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a846ba92d95860532bd1c34367ff0f88d"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#a846ba92d95860532bd1c34367ff0f88d">UnsetVar</a> (IRelayWorkflow relayWorkflow, string name)</td></tr>
 <tr class="memdesc:a846ba92d95860532bd1c34367ff0f88d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unsets the value of a variable.  <a href="classRelayDotNet_1_1Relay.html#a846ba92d95860532bd1c34367ff0f88d">More...</a><br /></td></tr>
 <tr class="separator:a846ba92d95860532bd1c34367ff0f88d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -212,36 +212,36 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a843642df8b27e7006d7259bcbd1d68c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa99f9d1af832737f16225be89d1f5fad"><td class="memItemLeft" align="right" valign="top">async Task&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#aa99f9d1af832737f16225be89d1f5fad">GetUnreadInboxSize</a> (IRelayWorkflow relayWorkflow, string sourceUri)</td></tr>
 <tr class="separator:aa99f9d1af832737f16225be89d1f5fad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa9697e8d71701586a6ee1b6d4b31e996"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#aa9697e8d71701586a6ee1b6d4b31e996">CancelNotification</a> (IRelayWorkflow relayWorkflow, string sourceUri, string name, string[] targets)</td></tr>
-<tr class="memdesc:aa9697e8d71701586a6ee1b6d4b31e996"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cancels a notification of any type that was sent to a group of devices.  <a href="classRelayDotNet_1_1Relay.html#aa9697e8d71701586a6ee1b6d4b31e996">More...</a><br /></td></tr>
-<tr class="separator:aa9697e8d71701586a6ee1b6d4b31e996"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aadfd7d1d1b497f33b9cc22009fed2897"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#aadfd7d1d1b497f33b9cc22009fed2897">Broadcast</a> (IRelayWorkflow relayWorkflow, string sourceUri, string name, string text, string[] targets)</td></tr>
-<tr class="memdesc:aadfd7d1d1b497f33b9cc22009fed2897"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends out a broadcasted message to a group of devices. The message is played out on all devices, as well as sent to the <a class="el" href="classRelayDotNet_1_1Relay.html" title="The Relay class is responsible for defining the main functionalities that are used within workflows,...">Relay</a> Dash.  <a href="classRelayDotNet_1_1Relay.html#aadfd7d1d1b497f33b9cc22009fed2897">More...</a><br /></td></tr>
-<tr class="separator:aadfd7d1d1b497f33b9cc22009fed2897"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f3d2de4ffb212201754cda86e85eaff"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#a2f3d2de4ffb212201754cda86e85eaff">Broadcast</a> (IRelayWorkflow relayWorkflow, string sourceUri, string name, string text, string[] targets, NotificationPushOptions notificationPushOptions)</td></tr>
-<tr class="memdesc:a2f3d2de4ffb212201754cda86e85eaff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends out a broadcasted message to a group of devices. The message is played out on all devices, as well as sent to the <a class="el" href="classRelayDotNet_1_1Relay.html" title="The Relay class is responsible for defining the main functionalities that are used within workflows,...">Relay</a> Dash.  <a href="classRelayDotNet_1_1Relay.html#a2f3d2de4ffb212201754cda86e85eaff">More...</a><br /></td></tr>
-<tr class="separator:a2f3d2de4ffb212201754cda86e85eaff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acc1c81cee95bb84cbac4b4d4877ad8dc"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#acc1c81cee95bb84cbac4b4d4877ad8dc">CancelBroadcast</a> (IRelayWorkflow relayWorkflow, string sourceUri, string name, string[] targets)</td></tr>
-<tr class="memdesc:acc1c81cee95bb84cbac4b4d4877ad8dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cancels the broadcast that was sent to a group of devices.  <a href="classRelayDotNet_1_1Relay.html#acc1c81cee95bb84cbac4b4d4877ad8dc">More...</a><br /></td></tr>
-<tr class="separator:acc1c81cee95bb84cbac4b4d4877ad8dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a84ec85aeb7f14693ccd8f77d698693"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#a4a84ec85aeb7f14693ccd8f77d698693">Notify</a> (IRelayWorkflow relayWorkflow, string sourceUri, string name, string text, string[] targets)</td></tr>
-<tr class="memdesc:a4a84ec85aeb7f14693ccd8f77d698693"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends out a notification message to a group of devices.  <a href="classRelayDotNet_1_1Relay.html#a4a84ec85aeb7f14693ccd8f77d698693">More...</a><br /></td></tr>
-<tr class="separator:a4a84ec85aeb7f14693ccd8f77d698693"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa528a878400dfb5927c0c682049fba2b"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#aa528a878400dfb5927c0c682049fba2b">Notify</a> (IRelayWorkflow relayWorkflow, string sourceUri, string name, string text, string[] targets, NotificationPushOptions notificationPushOptions)</td></tr>
-<tr class="memdesc:aa528a878400dfb5927c0c682049fba2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends out a notification message to a group of devices.  <a href="classRelayDotNet_1_1Relay.html#aa528a878400dfb5927c0c682049fba2b">More...</a><br /></td></tr>
-<tr class="separator:aa528a878400dfb5927c0c682049fba2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e18c9c53cb1b745d6f44ee9a2de0fe4"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#a0e18c9c53cb1b745d6f44ee9a2de0fe4">CancelNotify</a> (IRelayWorkflow relayWorkflow, string sourceUri, string name, string[] targets)</td></tr>
-<tr class="memdesc:a0e18c9c53cb1b745d6f44ee9a2de0fe4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cancels the notification that was sent to a group of devices.  <a href="classRelayDotNet_1_1Relay.html#a0e18c9c53cb1b745d6f44ee9a2de0fe4">More...</a><br /></td></tr>
-<tr class="separator:a0e18c9c53cb1b745d6f44ee9a2de0fe4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1a2572e468892c3eafbdd841ae79ae47"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#a1a2572e468892c3eafbdd841ae79ae47">Alert</a> (IRelayWorkflow relayWorkflow, string sourceUri, string name, string text, string[] targets)</td></tr>
-<tr class="memdesc:a1a2572e468892c3eafbdd841ae79ae47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends out an alert to the specified group of devices and the <a class="el" href="classRelayDotNet_1_1Relay.html" title="The Relay class is responsible for defining the main functionalities that are used within workflows,...">Relay</a> Dash.  <a href="classRelayDotNet_1_1Relay.html#a1a2572e468892c3eafbdd841ae79ae47">More...</a><br /></td></tr>
-<tr class="separator:a1a2572e468892c3eafbdd841ae79ae47"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a196e545493bf7a5b2494be003cd88c4a"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#a196e545493bf7a5b2494be003cd88c4a">Alert</a> (IRelayWorkflow relayWorkflow, string sourceUri, string name, string text, string[] targets, NotificationPushOptions notificationPushOptions)</td></tr>
-<tr class="memdesc:a196e545493bf7a5b2494be003cd88c4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends out an alert to the specified group of devices and the <a class="el" href="classRelayDotNet_1_1Relay.html" title="The Relay class is responsible for defining the main functionalities that are used within workflows,...">Relay</a> Dash.  <a href="classRelayDotNet_1_1Relay.html#a196e545493bf7a5b2494be003cd88c4a">More...</a><br /></td></tr>
-<tr class="separator:a196e545493bf7a5b2494be003cd88c4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9f41cd30f124041f43fa7007ed4a4741"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#a9f41cd30f124041f43fa7007ed4a4741">CancelAlert</a> (IRelayWorkflow relayWorkflow, string sourceUri, string name, string[] targets)</td></tr>
-<tr class="memdesc:a9f41cd30f124041f43fa7007ed4a4741"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cancels an alert that was sent to a group of devices. Particularly useful if you would like to cancel the alert on all devices after one device has acknowledged the alert.  <a href="classRelayDotNet_1_1Relay.html#a9f41cd30f124041f43fa7007ed4a4741">More...</a><br /></td></tr>
-<tr class="separator:a9f41cd30f124041f43fa7007ed4a4741"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a902bbe1c5e343dcdc4da4f736a7b644d"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#a902bbe1c5e343dcdc4da4f736a7b644d">CancelNotification</a> (IRelayWorkflow relayWorkflow, string sourceUri, string name, string targets)</td></tr>
+<tr class="memdesc:a902bbe1c5e343dcdc4da4f736a7b644d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cancels a notification of any type that was sent to a group of devices.  <a href="classRelayDotNet_1_1Relay.html#a902bbe1c5e343dcdc4da4f736a7b644d">More...</a><br /></td></tr>
+<tr class="separator:a902bbe1c5e343dcdc4da4f736a7b644d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a335a03e3d1696a1b25b1d0945fe41682"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#a335a03e3d1696a1b25b1d0945fe41682">Broadcast</a> (IRelayWorkflow relayWorkflow, string targets, string sourceUri, string name, string text)</td></tr>
+<tr class="memdesc:a335a03e3d1696a1b25b1d0945fe41682"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends out a broadcasted message to a group of devices. The message is played out on all devices, as well as sent to the <a class="el" href="classRelayDotNet_1_1Relay.html" title="The Relay class is responsible for defining the main functionalities that are used within workflows,...">Relay</a> Dash.  <a href="classRelayDotNet_1_1Relay.html#a335a03e3d1696a1b25b1d0945fe41682">More...</a><br /></td></tr>
+<tr class="separator:a335a03e3d1696a1b25b1d0945fe41682"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a315975e070f89442d38b3a35728f16d9"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#a315975e070f89442d38b3a35728f16d9">Broadcast</a> (IRelayWorkflow relayWorkflow, string targets, string sourceUri, string name, string text, NotificationPushOptions notificationPushOptions)</td></tr>
+<tr class="memdesc:a315975e070f89442d38b3a35728f16d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends out a broadcasted message to a group of devices. The message is played out on all devices, as well as sent to the <a class="el" href="classRelayDotNet_1_1Relay.html" title="The Relay class is responsible for defining the main functionalities that are used within workflows,...">Relay</a> Dash.  <a href="classRelayDotNet_1_1Relay.html#a315975e070f89442d38b3a35728f16d9">More...</a><br /></td></tr>
+<tr class="separator:a315975e070f89442d38b3a35728f16d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82217a04532c11a2eabf81f857eccc7c"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#a82217a04532c11a2eabf81f857eccc7c">CancelBroadcast</a> (IRelayWorkflow relayWorkflow, string sourceUri, string name, string targets)</td></tr>
+<tr class="memdesc:a82217a04532c11a2eabf81f857eccc7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cancels the broadcast that was sent to a group of devices.  <a href="classRelayDotNet_1_1Relay.html#a82217a04532c11a2eabf81f857eccc7c">More...</a><br /></td></tr>
+<tr class="separator:a82217a04532c11a2eabf81f857eccc7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd01c4889a7c3a33e1a0c790d3fb552f"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#afd01c4889a7c3a33e1a0c790d3fb552f">Notify</a> (IRelayWorkflow relayWorkflow, string targets, string sourceUri, string name, string text)</td></tr>
+<tr class="memdesc:afd01c4889a7c3a33e1a0c790d3fb552f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends out a notification message to a group of devices.  <a href="classRelayDotNet_1_1Relay.html#afd01c4889a7c3a33e1a0c790d3fb552f">More...</a><br /></td></tr>
+<tr class="separator:afd01c4889a7c3a33e1a0c790d3fb552f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab13663f82e717a508ea9b747e3acfc38"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#ab13663f82e717a508ea9b747e3acfc38">Notify</a> (IRelayWorkflow relayWorkflow, string targets, string sourceUri, string name, string text, NotificationPushOptions notificationPushOptions)</td></tr>
+<tr class="memdesc:ab13663f82e717a508ea9b747e3acfc38"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends out a notification message to a group of devices.  <a href="classRelayDotNet_1_1Relay.html#ab13663f82e717a508ea9b747e3acfc38">More...</a><br /></td></tr>
+<tr class="separator:ab13663f82e717a508ea9b747e3acfc38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a461275ffe7aa16437588e216809d2ff5"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#a461275ffe7aa16437588e216809d2ff5">CancelNotify</a> (IRelayWorkflow relayWorkflow, string sourceUri, string name, string targets)</td></tr>
+<tr class="memdesc:a461275ffe7aa16437588e216809d2ff5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cancels the notification that was sent to a group of devices.  <a href="classRelayDotNet_1_1Relay.html#a461275ffe7aa16437588e216809d2ff5">More...</a><br /></td></tr>
+<tr class="separator:a461275ffe7aa16437588e216809d2ff5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7f6431cd4f933886da8052fc47dba93"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#ab7f6431cd4f933886da8052fc47dba93">Alert</a> (IRelayWorkflow relayWorkflow, string targets, string sourceUri, string name, string text)</td></tr>
+<tr class="memdesc:ab7f6431cd4f933886da8052fc47dba93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends out an alert to the specified group of devices and the <a class="el" href="classRelayDotNet_1_1Relay.html" title="The Relay class is responsible for defining the main functionalities that are used within workflows,...">Relay</a> Dash.  <a href="classRelayDotNet_1_1Relay.html#ab7f6431cd4f933886da8052fc47dba93">More...</a><br /></td></tr>
+<tr class="separator:ab7f6431cd4f933886da8052fc47dba93"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a472c0c73754eb35e3e9fdd230e61c567"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#a472c0c73754eb35e3e9fdd230e61c567">Alert</a> (IRelayWorkflow relayWorkflow, string targets, string sourceUri, string name, string text, NotificationPushOptions notificationPushOptions)</td></tr>
+<tr class="memdesc:a472c0c73754eb35e3e9fdd230e61c567"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends out an alert to the specified group of devices and the <a class="el" href="classRelayDotNet_1_1Relay.html" title="The Relay class is responsible for defining the main functionalities that are used within workflows,...">Relay</a> Dash.  <a href="classRelayDotNet_1_1Relay.html#a472c0c73754eb35e3e9fdd230e61c567">More...</a><br /></td></tr>
+<tr class="separator:a472c0c73754eb35e3e9fdd230e61c567"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae37b55385656e88e8aafb3edeed6d6a0"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#ae37b55385656e88e8aafb3edeed6d6a0">CancelAlert</a> (IRelayWorkflow relayWorkflow, string sourceUri, string name, string targets)</td></tr>
+<tr class="memdesc:ae37b55385656e88e8aafb3edeed6d6a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cancels an alert that was sent to a group of devices. Particularly useful if you would like to cancel the alert on all devices after one device has acknowledged the alert.  <a href="classRelayDotNet_1_1Relay.html#ae37b55385656e88e8aafb3edeed6d6a0">More...</a><br /></td></tr>
+<tr class="separator:ae37b55385656e88e8aafb3edeed6d6a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a100e260d4bd0107cc7b21f0e00bd50da"><td class="memItemLeft" align="right" valign="top">async Task&lt; string[]&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#a100e260d4bd0107cc7b21f0e00bd50da">GetGroupMembers</a> (IRelayWorkflow relayWorkflow, string groupName)</td></tr>
 <tr class="memdesc:a100e260d4bd0107cc7b21f0e00bd50da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the members of a particular group.  <a href="classRelayDotNet_1_1Relay.html#a100e260d4bd0107cc7b21f0e00bd50da">More...</a><br /></td></tr>
 <tr class="separator:a100e260d4bd0107cc7b21f0e00bd50da"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -440,8 +440,8 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a1a2572e468892c3eafbdd841ae79ae47"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1a2572e468892c3eafbdd841ae79ae47">&#9670;&nbsp;</a></span>Alert() <span class="overload">[1/2]</span></h2>
+<a id="ab7f6431cd4f933886da8052fc47dba93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7f6431cd4f933886da8052fc47dba93">&#9670;&nbsp;</a></span>Alert() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -459,6 +459,12 @@ Public Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>targets</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
           <td class="paramname"><em>sourceUri</em>, </td>
         </tr>
         <tr>
@@ -471,13 +477,7 @@ Public Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>text</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string[]&#160;</td>
-          <td class="paramname"><em>targets</em>&#160;</td>
+          <td class="paramname"><em>text</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -507,8 +507,8 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a196e545493bf7a5b2494be003cd88c4a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a196e545493bf7a5b2494be003cd88c4a">&#9670;&nbsp;</a></span>Alert() <span class="overload">[2/2]</span></h2>
+<a id="a472c0c73754eb35e3e9fdd230e61c567"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a472c0c73754eb35e3e9fdd230e61c567">&#9670;&nbsp;</a></span>Alert() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -521,6 +521,12 @@ Public Attributes</h2></td></tr>
           <td>(</td>
           <td class="paramtype">IRelayWorkflow&#160;</td>
           <td class="paramname"><em>relayWorkflow</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>targets</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -539,12 +545,6 @@ Public Attributes</h2></td></tr>
           <td></td>
           <td class="paramtype">string&#160;</td>
           <td class="paramname"><em>text</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string[]&#160;</td>
-          <td class="paramname"><em>targets</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -687,8 +687,8 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="aadfd7d1d1b497f33b9cc22009fed2897"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aadfd7d1d1b497f33b9cc22009fed2897">&#9670;&nbsp;</a></span>Broadcast() <span class="overload">[1/2]</span></h2>
+<a id="a335a03e3d1696a1b25b1d0945fe41682"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a335a03e3d1696a1b25b1d0945fe41682">&#9670;&nbsp;</a></span>Broadcast() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -706,6 +706,12 @@ Public Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>targets</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
           <td class="paramname"><em>sourceUri</em>, </td>
         </tr>
         <tr>
@@ -718,13 +724,7 @@ Public Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>text</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string[]&#160;</td>
-          <td class="paramname"><em>targets</em>&#160;</td>
+          <td class="paramname"><em>text</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -754,8 +754,8 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a2f3d2de4ffb212201754cda86e85eaff"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2f3d2de4ffb212201754cda86e85eaff">&#9670;&nbsp;</a></span>Broadcast() <span class="overload">[2/2]</span></h2>
+<a id="a315975e070f89442d38b3a35728f16d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a315975e070f89442d38b3a35728f16d9">&#9670;&nbsp;</a></span>Broadcast() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -768,6 +768,12 @@ Public Attributes</h2></td></tr>
           <td>(</td>
           <td class="paramtype">IRelayWorkflow&#160;</td>
           <td class="paramname"><em>relayWorkflow</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>targets</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -786,12 +792,6 @@ Public Attributes</h2></td></tr>
           <td></td>
           <td class="paramtype">string&#160;</td>
           <td class="paramname"><em>text</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string[]&#160;</td>
-          <td class="paramname"><em>targets</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -828,8 +828,8 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a9f41cd30f124041f43fa7007ed4a4741"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9f41cd30f124041f43fa7007ed4a4741">&#9670;&nbsp;</a></span>CancelAlert()</h2>
+<a id="ae37b55385656e88e8aafb3edeed6d6a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae37b55385656e88e8aafb3edeed6d6a0">&#9670;&nbsp;</a></span>CancelAlert()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -858,7 +858,7 @@ Public Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">string[]&#160;</td>
+          <td class="paramtype">string&#160;</td>
           <td class="paramname"><em>targets</em>&#160;</td>
         </tr>
         <tr>
@@ -888,8 +888,8 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="acc1c81cee95bb84cbac4b4d4877ad8dc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acc1c81cee95bb84cbac4b4d4877ad8dc">&#9670;&nbsp;</a></span>CancelBroadcast()</h2>
+<a id="a82217a04532c11a2eabf81f857eccc7c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82217a04532c11a2eabf81f857eccc7c">&#9670;&nbsp;</a></span>CancelBroadcast()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -918,7 +918,7 @@ Public Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">string[]&#160;</td>
+          <td class="paramtype">string&#160;</td>
           <td class="paramname"><em>targets</em>&#160;</td>
         </tr>
         <tr>
@@ -948,8 +948,8 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="aa9697e8d71701586a6ee1b6d4b31e996"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa9697e8d71701586a6ee1b6d4b31e996">&#9670;&nbsp;</a></span>CancelNotification()</h2>
+<a id="a902bbe1c5e343dcdc4da4f736a7b644d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a902bbe1c5e343dcdc4da4f736a7b644d">&#9670;&nbsp;</a></span>CancelNotification()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -978,7 +978,7 @@ Public Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">string[]&#160;</td>
+          <td class="paramtype">string&#160;</td>
           <td class="paramname"><em>targets</em>&#160;</td>
         </tr>
         <tr>
@@ -1008,8 +1008,8 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a0e18c9c53cb1b745d6f44ee9a2de0fe4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0e18c9c53cb1b745d6f44ee9a2de0fe4">&#9670;&nbsp;</a></span>CancelNotify()</h2>
+<a id="a461275ffe7aa16437588e216809d2ff5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a461275ffe7aa16437588e216809d2ff5">&#9670;&nbsp;</a></span>CancelNotify()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1038,7 +1038,7 @@ Public Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">string[]&#160;</td>
+          <td class="paramtype">string&#160;</td>
           <td class="paramname"><em>targets</em>&#160;</td>
         </tr>
         <tr>
@@ -2722,8 +2722,8 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a4a84ec85aeb7f14693ccd8f77d698693"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4a84ec85aeb7f14693ccd8f77d698693">&#9670;&nbsp;</a></span>Notify() <span class="overload">[1/2]</span></h2>
+<a id="afd01c4889a7c3a33e1a0c790d3fb552f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd01c4889a7c3a33e1a0c790d3fb552f">&#9670;&nbsp;</a></span>Notify() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2741,6 +2741,12 @@ Public Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>targets</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
           <td class="paramname"><em>sourceUri</em>, </td>
         </tr>
         <tr>
@@ -2753,13 +2759,7 @@ Public Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>text</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string[]&#160;</td>
-          <td class="paramname"><em>targets</em>&#160;</td>
+          <td class="paramname"><em>text</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -2789,8 +2789,8 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="aa528a878400dfb5927c0c682049fba2b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa528a878400dfb5927c0c682049fba2b">&#9670;&nbsp;</a></span>Notify() <span class="overload">[2/2]</span></h2>
+<a id="ab13663f82e717a508ea9b747e3acfc38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab13663f82e717a508ea9b747e3acfc38">&#9670;&nbsp;</a></span>Notify() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2803,6 +2803,12 @@ Public Attributes</h2></td></tr>
           <td>(</td>
           <td class="paramtype">IRelayWorkflow&#160;</td>
           <td class="paramname"><em>relayWorkflow</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>targets</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -2821,12 +2827,6 @@ Public Attributes</h2></td></tr>
           <td></td>
           <td class="paramtype">string&#160;</td>
           <td class="paramname"><em>text</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string[]&#160;</td>
-          <td class="paramname"><em>targets</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -3871,8 +3871,8 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="acea42e1c626001c8868ce145eb96fa13"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acea42e1c626001c8868ce145eb96fa13">&#9670;&nbsp;</a></span>SetVar()</h2>
+<a id="a967df5e6d9f6c41f4fc15f25d88914c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a967df5e6d9f6c41f4fc15f25d88914c1">&#9670;&nbsp;</a></span>SetVar()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3895,7 +3895,7 @@ Public Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">object&#160;</td>
+          <td class="paramtype">string&#160;</td>
           <td class="paramname"><em>value</em>&#160;</td>
         </tr>
         <tr>
