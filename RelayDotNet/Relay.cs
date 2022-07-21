@@ -1644,7 +1644,6 @@ namespace RelayDotNet
                 targets,
                 new Dictionary<string, object>
                 {
-                    ["_type"] = RequestType.Notification.SerializedName,
                     ["originator"] = sourceUri,
                     ["type"] = notificationType.SerializedName,
                     ["name"] = name,
