@@ -28,7 +28,8 @@ jobs:
           sudo apt-get install doxygen doxygen-doc doxygen-gui graphviz
           doxygen -g
           doxygen ../DocumentationConfig/Doxyfile
-          sudo html-to-markdown classRelayDotNet_1_1Relay.html > Relay.md
+          sudo apt install php-league-html-to-markdown
+          html-to-markdown classRelayDotNet_1_1Relay.html > Relay.md
           
       - uses: actions/checkout@v3
         with:
