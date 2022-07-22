@@ -37,7 +37,7 @@ jobs:
       - name: promote
         run: |
           cd web
-          cp -rp ../src/RelayDotNet/classRelayDotNet_1_1Relay.html index.html
+          cp -rp ../src/RelayDotNet/html/classRelayDotNet_1_1Relay.html index.html
           
       - uses: EndBug/add-and-commit@v9
         with:
