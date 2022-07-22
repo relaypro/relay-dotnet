@@ -28,7 +28,7 @@ jobs:
           sudo apt-get install doxygen doxygen-doc doxygen-gui graphviz
           doxygen -g
           doxygen ../DocumentationConfig/Doxyfile
-          html-to-markdown classRelayDotNet_1_1Relay.html > Relay.md
+          sudo html-to-markdown classRelayDotNet_1_1Relay.html > Relay.md
           
       - uses: actions/checkout@v3
         with:
