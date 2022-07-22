@@ -29,7 +29,7 @@ jobs:
           doxygen -g
           doxygen ../DocumentationConfig/Doxyfile
           sudo apt install php-league-html-to-markdown
-          html-to-markdown classRelayDotNet_1_1Relay.html > Relay.md
+          html-to-markdown ./html/classRelayDotNet_1_1Relay.html > Relay.md
           
       - uses: actions/checkout@v3
         with:
