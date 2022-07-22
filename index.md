@@ -194,18 +194,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a28d1ad3573ab5d7848ce8130322957ee"><td class="memItemLeft" align="right" valign="top">async Task&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#a28d1ad3573ab5d7848ce8130322957ee">GetNumberVar</a> (IRelayWorkflow relayWorkflow, string name, int defaultValue=-1)</td></tr>
 <tr class="memdesc:a28d1ad3573ab5d7848ce8130322957ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves a variable that is an integer type.  <a href="classRelayDotNet_1_1Relay.html#a28d1ad3573ab5d7848ce8130322957ee">More...</a><br /></td></tr>
 <tr class="separator:a28d1ad3573ab5d7848ce8130322957ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af0bae904854f2e7f9bfce0c5103338cc"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#af0bae904854f2e7f9bfce0c5103338cc">Listen</a> (IRelayWorkflow relayWorkflow, string sourceUri)</td></tr>
-<tr class="memdesc:af0bae904854f2e7f9bfce0c5103338cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Listens for the user to speak into the device. Utilizes speech to text functionality to interact with the user.  <a href="classRelayDotNet_1_1Relay.html#af0bae904854f2e7f9bfce0c5103338cc">More...</a><br /></td></tr>
-<tr class="separator:af0bae904854f2e7f9bfce0c5103338cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5814e4da1febbbef39ed1e3da77a120b"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#a5814e4da1febbbef39ed1e3da77a120b">Listen</a> (IRelayWorkflow relayWorkflow, string sourceUri, string[] phrases)</td></tr>
-<tr class="memdesc:a5814e4da1febbbef39ed1e3da77a120b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Listens for the user to speak into the device. Utilizes speech to text functionality to interact with the user.  <a href="classRelayDotNet_1_1Relay.html#a5814e4da1febbbef39ed1e3da77a120b">More...</a><br /></td></tr>
-<tr class="separator:a5814e4da1febbbef39ed1e3da77a120b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae69a5d38c458820952ae4e54e43e66df"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#ae69a5d38c458820952ae4e54e43e66df">Listen</a> (IRelayWorkflow relayWorkflow, string sourceUri, Language language)</td></tr>
-<tr class="memdesc:ae69a5d38c458820952ae4e54e43e66df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Listens for the user to speak into the device. Utilizes speech to text functionality to interact with the user.  <a href="classRelayDotNet_1_1Relay.html#ae69a5d38c458820952ae4e54e43e66df">More...</a><br /></td></tr>
-<tr class="separator:ae69a5d38c458820952ae4e54e43e66df"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a61c0cbb0b689feecca8fa848d4066b48"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#a61c0cbb0b689feecca8fa848d4066b48">Listen</a> (IRelayWorkflow relayWorkflow, string sourceUri, string[] phrases, Language altLanguage, bool transcribe=true, int timeout=60)</td></tr>
-<tr class="memdesc:a61c0cbb0b689feecca8fa848d4066b48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Listens for the user to speak into the device. Utilizes speech to text functionality to interact with the user.  <a href="classRelayDotNet_1_1Relay.html#a61c0cbb0b689feecca8fa848d4066b48">More...</a><br /></td></tr>
-<tr class="separator:a61c0cbb0b689feecca8fa848d4066b48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ec661ea0c18d5f03b5597bd0c6bf470"><td class="memItemLeft" align="right" valign="top">async Task&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#a9ec661ea0c18d5f03b5597bd0c6bf470">Listen</a> (IRelayWorkflow relayWorkflow, string sourceUri)</td></tr>
+<tr class="memdesc:a9ec661ea0c18d5f03b5597bd0c6bf470"><td class="mdescLeft">&#160;</td><td class="mdescRight">Listens for the user to speak into the device. Utilizes speech to text functionality to interact with the user.  <a href="classRelayDotNet_1_1Relay.html#a9ec661ea0c18d5f03b5597bd0c6bf470">More...</a><br /></td></tr>
+<tr class="separator:a9ec661ea0c18d5f03b5597bd0c6bf470"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9e896079fba56a8e5ba84dc3ccca591"><td class="memItemLeft" align="right" valign="top">async Task&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#ac9e896079fba56a8e5ba84dc3ccca591">Listen</a> (IRelayWorkflow relayWorkflow, string sourceUri, string[] phrases)</td></tr>
+<tr class="memdesc:ac9e896079fba56a8e5ba84dc3ccca591"><td class="mdescLeft">&#160;</td><td class="mdescRight">Listens for the user to speak into the device. Utilizes speech to text functionality to interact with the user.  <a href="classRelayDotNet_1_1Relay.html#ac9e896079fba56a8e5ba84dc3ccca591">More...</a><br /></td></tr>
+<tr class="separator:ac9e896079fba56a8e5ba84dc3ccca591"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7131b836d8dd94f4b1269ee2cd442df1"><td class="memItemLeft" align="right" valign="top">async Task&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#a7131b836d8dd94f4b1269ee2cd442df1">Listen</a> (IRelayWorkflow relayWorkflow, string sourceUri, Language language)</td></tr>
+<tr class="memdesc:a7131b836d8dd94f4b1269ee2cd442df1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Listens for the user to speak into the device. Utilizes speech to text functionality to interact with the user.  <a href="classRelayDotNet_1_1Relay.html#a7131b836d8dd94f4b1269ee2cd442df1">More...</a><br /></td></tr>
+<tr class="separator:a7131b836d8dd94f4b1269ee2cd442df1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3fa8d84f0ee9bcfd240e58fad5fe1d4b"><td class="memItemLeft" align="right" valign="top">async Task&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#a3fa8d84f0ee9bcfd240e58fad5fe1d4b">Listen</a> (IRelayWorkflow relayWorkflow, string sourceUri, string[] phrases, Language altLanguage, bool transcribe=true, int timeout=60)</td></tr>
+<tr class="memdesc:a3fa8d84f0ee9bcfd240e58fad5fe1d4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Listens for the user to speak into the device. Utilizes speech to text functionality to interact with the user.  <a href="classRelayDotNet_1_1Relay.html#a3fa8d84f0ee9bcfd240e58fad5fe1d4b">More...</a><br /></td></tr>
+<tr class="separator:a3fa8d84f0ee9bcfd240e58fad5fe1d4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad7c302c4b23d5c0c400063761c9f2c99"><td class="memItemLeft" align="right" valign="top">async Task&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#ad7c302c4b23d5c0c400063761c9f2c99">Translate</a> (IRelayWorkflow relayWorkflow, string text, Language from, Language to)</td></tr>
 <tr class="separator:ad7c302c4b23d5c0c400063761c9f2c99"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a843642df8b27e7006d7259bcbd1d68c7"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#a843642df8b27e7006d7259bcbd1d68c7">PlayUnreadInboxMessages</a> (IRelayWorkflow relayWorkflow, string sourceUri)</td></tr>
@@ -2383,8 +2383,8 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="af0bae904854f2e7f9bfce0c5103338cc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af0bae904854f2e7f9bfce0c5103338cc">&#9670;&nbsp;</a></span>Listen() <span class="overload">[1/4]</span></h2>
+<a id="a9ec661ea0c18d5f03b5597bd0c6bf470"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ec661ea0c18d5f03b5597bd0c6bf470">&#9670;&nbsp;</a></span>Listen() <span class="overload">[1/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2393,7 +2393,7 @@ Public Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">async Task&lt;Dictionary&lt;string, object&gt; &gt; RelayDotNet.Relay.Listen </td>
+          <td class="memname">async Task&lt;string&gt; RelayDotNet.Relay.Listen </td>
           <td>(</td>
           <td class="paramtype">IRelayWorkflow&#160;</td>
           <td class="paramname"><em>relayWorkflow</em>, </td>
@@ -2429,8 +2429,8 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="ae69a5d38c458820952ae4e54e43e66df"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae69a5d38c458820952ae4e54e43e66df">&#9670;&nbsp;</a></span>Listen() <span class="overload">[2/4]</span></h2>
+<a id="a7131b836d8dd94f4b1269ee2cd442df1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7131b836d8dd94f4b1269ee2cd442df1">&#9670;&nbsp;</a></span>Listen() <span class="overload">[2/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2439,7 +2439,7 @@ Public Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">async Task&lt;Dictionary&lt;string, object&gt; &gt; RelayDotNet.Relay.Listen </td>
+          <td class="memname">async Task&lt;string&gt; RelayDotNet.Relay.Listen </td>
           <td>(</td>
           <td class="paramtype">IRelayWorkflow&#160;</td>
           <td class="paramname"><em>relayWorkflow</em>, </td>
@@ -2482,8 +2482,8 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a5814e4da1febbbef39ed1e3da77a120b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5814e4da1febbbef39ed1e3da77a120b">&#9670;&nbsp;</a></span>Listen() <span class="overload">[3/4]</span></h2>
+<a id="ac9e896079fba56a8e5ba84dc3ccca591"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9e896079fba56a8e5ba84dc3ccca591">&#9670;&nbsp;</a></span>Listen() <span class="overload">[3/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2492,7 +2492,7 @@ Public Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">async Task&lt;Dictionary&lt;string, object&gt; &gt; RelayDotNet.Relay.Listen </td>
+          <td class="memname">async Task&lt;string&gt; RelayDotNet.Relay.Listen </td>
           <td>(</td>
           <td class="paramtype">IRelayWorkflow&#160;</td>
           <td class="paramname"><em>relayWorkflow</em>, </td>
@@ -2535,8 +2535,8 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a61c0cbb0b689feecca8fa848d4066b48"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a61c0cbb0b689feecca8fa848d4066b48">&#9670;&nbsp;</a></span>Listen() <span class="overload">[4/4]</span></h2>
+<a id="a3fa8d84f0ee9bcfd240e58fad5fe1d4b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3fa8d84f0ee9bcfd240e58fad5fe1d4b">&#9670;&nbsp;</a></span>Listen() <span class="overload">[4/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2545,7 +2545,7 @@ Public Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">async Task&lt;Dictionary&lt;string, object&gt; &gt; RelayDotNet.Relay.Listen </td>
+          <td class="memname">async Task&lt;string&gt; RelayDotNet.Relay.Listen </td>
           <td>(</td>
           <td class="paramtype">IRelayWorkflow&#160;</td>
           <td class="paramname"><em>relayWorkflow</em>, </td>
