@@ -29,9 +29,9 @@ namespace SamplesLibrary
                 var sourceUri = (string) dictionary["source_uri"];
                 var deviceName = await Relay.GetDeviceName(this, sourceUri);
                 await Relay.SayAndWait(this, sourceUri, "What is your name?");
-                string listenResponse = await Relay.Listen(this, sourceUri);
+                var listenResponse = await Relay.Listen(this, sourceUri);
                 var greeting = await Relay.GetVar(this, "greeting", "hello");
-                await Relay.SayAndWait(this, sourceUri, $"{greeting} {listenResponse}! You are currently using {deviceName}");
+                await Relay.SayAndWait(this, sourceUri, $"{greeting} {listenResponse["text"]}! You are currently using {deviceName}");
                 Relay.EndInteraction(this, sourceUri, "hello world");
             }
             else if (type == InteractionLifecycleType.Ended)

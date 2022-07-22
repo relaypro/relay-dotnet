@@ -1482,7 +1482,7 @@ namespace RelayDotNet
         /// <param name="relayWorkflow">the workflow.</param>
         /// <param name="sourceUri">the interaction URN.</param>
         /// <returns>text representation of what the user had spoken into the device.</returns>
-        public async Task<string> Listen(IRelayWorkflow relayWorkflow, string sourceUri)
+         public async Task<Dictionary<string, object>> Listen(IRelayWorkflow relayWorkflow, string sourceUri)
         {
             return await Listen(relayWorkflow, sourceUri, Array.Empty<string>(), Language.English);
         }
@@ -1495,7 +1495,7 @@ namespace RelayDotNet
         /// <param name="sourceUri">the interaction URN.</param>
         /// <param name="phrases">optional phrases that you would like to limit the user's response to.  Defualts to none.</param>
         /// <returns>text representation of what the user had spoken into the device.</returns>
-        public async Task<string> Listen(IRelayWorkflow relayWorkflow, string sourceUri, string[] phrases)
+         public async Task<Dictionary<string, object>> Listen(IRelayWorkflow relayWorkflow, string sourceUri, string[] phrases)
         {
             return await Listen(relayWorkflow, sourceUri, phrases, Language.English);
         }
@@ -1508,7 +1508,7 @@ namespace RelayDotNet
         /// <param name="sourceUri">the interaction URN.</param>
         /// <param name="language">the language that the device is listening for.  Defaults to 'en-US'.</param>
         /// <returns>text representation of what the user had spoken into the device.</returns>
-        public async Task<string> Listen(IRelayWorkflow relayWorkflow, string sourceUri, Language language)
+         public async Task<Dictionary<string, object>> Listen(IRelayWorkflow relayWorkflow, string sourceUri, Language language)
         {
             return await Listen(relayWorkflow, sourceUri, Array.Empty<string>(), language);
         }
@@ -1524,14 +1524,14 @@ namespace RelayDotNet
         /// <param name="transcribe">whether you would like to transcribe.</param>
         /// <param name="timeout">how long to wait for a user's response before timing out.</param>
         /// <returns>text representation of what the user had spoken into the device.</returns>
-        public async Task<string> Listen(IRelayWorkflow relayWorkflow, string sourceUri, string[] phrases, Language altLanguage, bool transcribe = true, int timeout = 60)
+         public async Task<Dictionary<string, object>> Listen(IRelayWorkflow relayWorkflow, string sourceUri, string[] phrases, Language altLanguage, bool transcribe = true, int timeout = 60)
         {
             var listenRequest = Listen_(sourceUri, phrases, altLanguage, transcribe, timeout);
             await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, listenRequest);
             return await WaitForListenSpeech((string) listenRequest["_id"], timeout);
         }
         
-        private async Task<string> WaitForListenSpeech(string id, int timeout)
+        private async Task<Dictionary<string, object>> WaitForListenSpeech(string id, int timeout)
         {
             var eventTypeTaskCompletionSource = new EventTypeTaskCompletionSource
             {
@@ -1546,7 +1546,7 @@ namespace RelayDotNet
             var result = await Task.WhenAny(eventTypeTaskCompletionSource.TaskCompletionSource.Task, Task.Delay(timeout * 1000));
             Log.Debug("WaitForListenSpeech Task.WhenAny completes with {@result}", result);
 
-            return (string) (await (Task<Dictionary<string, object>>) result)["text"];
+            return await (Task<Dictionary<string, object>>) result;
         }
         
         private static Dictionary<string, object> Listen_(string sourceUri, string[] phrases, Language altLanguage, bool transcribe, int timeout)
