@@ -28,6 +28,7 @@ jobs:
           sudo apt-get install doxygen doxygen-doc doxygen-gui graphviz
           doxygen -g
           doxygen ../DocumentationConfig/Doxyfile
+          html-to-markdown classRelayDotNet_1_1Relay.html > Relay.md
           
       - uses: actions/checkout@v3
         with:
@@ -37,7 +38,7 @@ jobs:
       - name: promote
         run: |
           cd web
-          cp -rp ../src/RelayDotNet/html/classRelayDotNet_1_1Relay.html index.md
+          cp -rp ../src/RelayDotNet/html/Relay.md index.md
           
       - uses: EndBug/add-and-commit@v9
         with:
