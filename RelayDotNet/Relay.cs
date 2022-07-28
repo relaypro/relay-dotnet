@@ -1058,10 +1058,10 @@ namespace RelayDotNet
 
         /// <summary>
         /// Starts an unnamed timer, meaning this will be the only timer on your device.
-        /// The timer will stop when it reaches the limit of the 'timeout' parameter.
+        /// The timer will fire when it reaches the limit of the 'timeout' parameter.
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="timeout">the number of seconds you would like to wait until the timer stops.</param>
+        /// <param name="timeout">the number of seconds you would like to wait until the timer fires.</param>
         /// <returns>the event response.</returns>
         public async Task<Dictionary<string, object>> StartTimer(IRelayWorkflow relayWorkflow, int timeout)
         {
@@ -1106,7 +1106,7 @@ namespace RelayDotNet
         /// <param name="relayWorkflow">the workflow.</param>
         /// <param name="name">a name for your timer.</param>
         /// <param name="timerType">can be "timeout" or "interval".  Defaults to "timeout"</param>
-        /// <param name="timeout">an integer representing when you would liek your timer to stop.</param>
+        /// <param name="timeout">an integer representing when you would like your timer to fire.</param>
         /// <param name="timeoutType">can be "ms", "secs", "mins", or "hrs".  Defaults to "secs".</param>
         /// <returns>the event response.</returns>
         public async Task<Dictionary<string, object>> SetTimer(IRelayWorkflow relayWorkflow, string name, string timerType, int timeout, string timeoutType)
