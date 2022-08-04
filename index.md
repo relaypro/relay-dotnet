@@ -141,7 +141,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:aa071d6386572e9d6cbe705e6d907c629"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes the device vibrate in a particular pattern. You can specify how many vibrations you would like, the duration of each vibration in milliseconds, and how long you would like the pauses between each vibration to last in milliseconds.  <a href="classRelayDotNet_1_1Relay.html#aa071d6386572e9d6cbe705e6d907c629">More...</a><br /></td></tr>
 <tr class="separator:aa071d6386572e9d6cbe705e6d907c629"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ade72d063b710b5eaaee8049f8ae4d728"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#ade72d063b710b5eaaee8049f8ae4d728">StartTimer</a> (IRelayWorkflow relayWorkflow, int timeout)</td></tr>
-<tr class="memdesc:ade72d063b710b5eaaee8049f8ae4d728"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts an unnamed timer, meaning this will be the only timer on your device. The timer will stop when it reaches the limit of the 'timeout' parameter.  <a href="classRelayDotNet_1_1Relay.html#ade72d063b710b5eaaee8049f8ae4d728">More...</a><br /></td></tr>
+<tr class="memdesc:ade72d063b710b5eaaee8049f8ae4d728"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts an unnamed timer, meaning this will be the only timer on your device. The timer will fire when it reaches the limit of the 'timeout' parameter.  <a href="classRelayDotNet_1_1Relay.html#ade72d063b710b5eaaee8049f8ae4d728">More...</a><br /></td></tr>
 <tr class="separator:ade72d063b710b5eaaee8049f8ae4d728"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2d40218be7fe15bd9a9e6de01ced0fdf"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#a2d40218be7fe15bd9a9e6de01ced0fdf">StopTimer</a> (IRelayWorkflow relayWorkflow)</td></tr>
 <tr class="memdesc:a2d40218be7fe15bd9a9e6de01ced0fdf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops an unnamed timer.  <a href="classRelayDotNet_1_1Relay.html#a2d40218be7fe15bd9a9e6de01ced0fdf">More...</a><br /></td></tr>
@@ -3802,7 +3802,7 @@ Public Attributes</h2></td></tr>
     <tr><td class="paramname">relayWorkflow</td><td>the workflow.</td></tr>
     <tr><td class="paramname">name</td><td>a name for your timer.</td></tr>
     <tr><td class="paramname">timerType</td><td>can be "timeout" or "interval". Defaults to "timeout"</td></tr>
-    <tr><td class="paramname">timeout</td><td>an integer representing when you would liek your timer to stop.</td></tr>
+    <tr><td class="paramname">timeout</td><td>an integer representing when you would like your timer to fire.</td></tr>
     <tr><td class="paramname">timeoutType</td><td>can be "ms", "secs", "mins", or "hrs". Defaults to "secs".</td></tr>
   </table>
   </dd>
@@ -4043,11 +4043,11 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Starts an unnamed timer, meaning this will be the only timer on your device. The timer will stop when it reaches the limit of the 'timeout' parameter. </p>
+<p>Starts an unnamed timer, meaning this will be the only timer on your device. The timer will fire when it reaches the limit of the 'timeout' parameter. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">relayWorkflow</td><td>the workflow.</td></tr>
-    <tr><td class="paramname">timeout</td><td>the number of seconds you would like to wait until the timer stops.</td></tr>
+    <tr><td class="paramname">timeout</td><td>the number of seconds you would like to wait until the timer fires.</td></tr>
   </table>
   </dd>
 </dl>
