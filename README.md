@@ -86,5 +86,9 @@ relay.Start();
 More thorough documentation on how to register your workflow on a Relay device
 can be found at [https://developer.relaypro.com/docs/register-workflows](https://developer.relaypro.com/docs/register-workflows)
 
+## API Reference Documentation
+
+The generated doxygen documentation is available at https://relaypro.github.io/relay-dotnet/
+
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
