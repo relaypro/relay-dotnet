@@ -6,10 +6,13 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Text.Json;
+using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Net.Http.Headers;
 using Serilog;
+using Microsoft.AspNetCore.WebUtilities;
 
 namespace RelayDotNet
 {
@@ -780,7 +783,7 @@ namespace RelayDotNet
             var options = new JsonSerializerOptions();
             options.Converters.Add(new DictionaryStringObjectJsonConverterCustomWrite());
             
-            return JsonSerializer.Serialize(dictionary, options);
+            return System.Text.Json.JsonSerializer.Serialize(dictionary, options);
         }
 
         private async Task<RunningRelayWorkflow> GetRunningRelayWorkflowOrThrow(IRelayWorkflow relayWorkflow)
@@ -1946,5 +1949,103 @@ namespace RelayDotNet
                 }
             );
         }
+
+        string serverHostname = "all-main-pro-ibot.relaysvr.com";
+        string version = "relay-sdk-dotnet/2.0.0";
+        string auth_hostname = "auth.relaygo.com";
+
+
+        public async Task<string> UpdateAccessToken(string refreshToken, string clientId) {
+            string url = $"https://{auth_hostname}/oauth2/token";
+            var grantUrl = new Uri(@url);
+            var grantPayload = new Dictionary<string, string>() {
+                ["grant_type"] = "refresh_token",
+                ["refresh_token"] = refreshToken,
+                ["client_id"] = clientId
+            };
+
+            HttpClient httpClient = new HttpClient();
+            httpClient.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json"));
+            httpClient.DefaultRequestHeaders.Add("User-Agent", version);
+            var encodedContent = new FormUrlEncodedContent(grantPayload);
+            var grantResponse = await httpClient.PostAsync(grantUrl, encodedContent);
+
+            if(grantResponse.StatusCode != System.Net.HttpStatusCode.OK) {
+                throw new Exception($"Unable to get access token: {grantResponse.StatusCode}");
+            }
+            // create a json file with the grantResponse to make a dictionary, set the access 
+            // token equal to the 'access_token' field, return that access token
+            Dictionary<string, string> dictionary = (Dictionary<string, string>) JsonSerializer.Deserialize(grantResponse.ToString(), typeof(Dictionary<string, string>));
+            return dictionary["access_token"];
+        }
+
+        public async Task<Dictionary<string, object>> TriggerWorkflow(string accessToken, string refreshToken, string clientId, string workflowId, string subscriberId, string userId, Dictionary<string, string> actionArgs) {
+            
+            string url = $"https://{serverHostname}/ibot/workflow/{workflowId}";
+            var uri = new Uri(@url);
+            var queryParams = new Dictionary<string, string>()  {
+                ["subscriberId"] = subscriberId,
+                ["userId"] = userId,
+                ["action"] = "invoke"
+            };
+            
+            if (actionArgs != null) {
+                queryParams.Add("action_args", actionArgs.ToString());
+            }
+
+            HttpClient httpClient = new HttpClient();
+            httpClient.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json"));            
+            httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {accessToken}");
+            httpClient.DefaultRequestHeaders.Add("User-Agent", version);
+            var encodedContent = new FormUrlEncodedContent(queryParams);
+            var response = await httpClient.PostAsync(url, encodedContent);
+
+            if((response.StatusCode) == System.Net.HttpStatusCode.Unauthorized) {
+                Log.Debug("Got 401 on workflow trigger, trying to get new access token");
+                accessToken = await UpdateAccessToken(refreshToken, clientId);
+                httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {accessToken}");
+                response = await httpClient.PostAsync(url, encodedContent);
+            }
+
+            Log.Debug($"Workflow trigger status code: {response.StatusCode}");
+
+            return new Dictionary<string, object> {
+                ["response"] = await response.Content.ReadAsStringAsync(),
+                ["access_token"] = accessToken
+            };
+        }
+
+        public async Task<Dictionary<string, object>> FetchDevice(string accessToken, string refreshToken, string clientId, string subscriberId, string userId) {
+            string url = $"https://{serverHostname}/relaypro/api/v1/device/{userId}";
+            var queryParams = new Dictionary<string, string>() {
+                ["subscriber_id"] = subscriberId
+            };
+            var uri = QueryHelpers.AddQueryString(url, queryParams);
+            HttpClient httpClient = new HttpClient();
+            // httpClient.DefaultRequestHeaders.Accept.Add(
+            //     new MediaTypeWithQualityHeaderValue("application/json"));
+            httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {accessToken}");
+            httpClient.DefaultRequestHeaders.Add("User-Agent", version);
+            var response = await httpClient.GetAsync(uri);
+            if(response.StatusCode == System.Net.HttpStatusCode.Unauthorized) {
+                Log.Debug("Got 401 on get, trying new access token");
+                accessToken = await UpdateAccessToken(refreshToken, clientId);
+                httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {accessToken}");
+                var encodedContent = new FormUrlEncodedContent(queryParams);
+                response = await httpClient.PostAsync(url, encodedContent);
+            }
+            
+            Log.Debug($"Device info status code: {response.StatusCode}");
+            return new Dictionary<string, object> {
+                ["response"] = await response.Content.ReadAsStringAsync(),
+                ["access_token"] = accessToken
+            };
+            //  https://all-main-qa-ibot.nocell.io:443 "GET /relaypro/api/v1/device/990007560151836?subscriber_id=8efb6648-c26c-4147-bee8-fa4c6811fd03 HTTP/1.1" 200 4856
+
+        }
+
     }
+        
 }
