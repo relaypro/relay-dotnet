@@ -1950,12 +1950,14 @@ namespace RelayDotNet
             );
         }
 
-        string serverHostname = "all-main-pro-ibot.relaysvr.com";
+        // string serverHostname = "all-main-pro-ibot.nocell.io";
+        string serverHostname = "all-main-qa-ibot.nocell.io";
         string version = "relay-sdk-dotnet/2.0.0";
-        string auth_hostname = "auth.relaygo.com";
+        string auth_hostname = "auth.relaygo.info";
+        // string auth_hostname = "auth.relaygo.com"
 
 
-        public async Task<string> UpdateAccessToken(string refreshToken, string clientId) {
+        private async Task<string> UpdateAccessToken(string refreshToken, string clientId) {
             string url = $"https://{auth_hostname}/oauth2/token";
             var grantUrl = new Uri(@url);
             var grantPayload = new Dictionary<string, string>() {
@@ -1974,10 +1976,13 @@ namespace RelayDotNet
             if(grantResponse.StatusCode != System.Net.HttpStatusCode.OK) {
                 throw new Exception($"Unable to get access token: {grantResponse.StatusCode}");
             }
+            
             // create a json file with the grantResponse to make a dictionary, set the access 
             // token equal to the 'access_token' field, return that access token
-            Dictionary<string, string> dictionary = (Dictionary<string, string>) JsonSerializer.Deserialize(grantResponse.ToString(), typeof(Dictionary<string, string>));
-            return dictionary["access_token"];
+
+            Log.Debug($"RESPONSE: {await grantResponse.Content.ReadAsStringAsync()}");
+            Dictionary<string, object> dictionary = (Dictionary<string, object>) JsonSerializer.Deserialize(await grantResponse.Content.ReadAsStringAsync(), typeof(Dictionary<string, object>));
+            return (string) dictionary["access_token"].ToString();
         }
 
         public async Task<Dictionary<string, object>> TriggerWorkflow(string accessToken, string refreshToken, string clientId, string workflowId, string subscriberId, string userId, Dictionary<string, string> actionArgs) {
@@ -1989,6 +1994,10 @@ namespace RelayDotNet
                 ["userId"] = userId,
                 ["action"] = "invoke"
             };
+
+            // var payload = new Dictionary<string, string>() {
+            //     ["action"] = "invoke"
+            // };
             
             if (actionArgs != null) {
                 queryParams.Add("action_args", actionArgs.ToString());
@@ -2000,13 +2009,13 @@ namespace RelayDotNet
             httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {accessToken}");
             httpClient.DefaultRequestHeaders.Add("User-Agent", version);
             var encodedContent = new FormUrlEncodedContent(queryParams);
-            var response = await httpClient.PostAsync(url, encodedContent);
+            var response = await httpClient.PostAsync(uri, encodedContent);
 
             if((response.StatusCode) == System.Net.HttpStatusCode.Unauthorized) {
                 Log.Debug("Got 401 on workflow trigger, trying to get new access token");
                 accessToken = await UpdateAccessToken(refreshToken, clientId);
                 httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {accessToken}");
-                response = await httpClient.PostAsync(url, encodedContent);
+                response = await httpClient.PostAsync(uri, encodedContent);
             }
 
             Log.Debug($"Workflow trigger status code: {response.StatusCode}");
@@ -2024,17 +2033,18 @@ namespace RelayDotNet
             };
             var uri = QueryHelpers.AddQueryString(url, queryParams);
             HttpClient httpClient = new HttpClient();
-            // httpClient.DefaultRequestHeaders.Accept.Add(
-            //     new MediaTypeWithQualityHeaderValue("application/json"));
+            Log.Debug($"Access Token: {accessToken}");
+            Log.Debug($"URL: {uri}");
             httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {accessToken}");
             httpClient.DefaultRequestHeaders.Add("User-Agent", version);
+            Log.Debug($"Headers: {httpClient.DefaultRequestHeaders}");
             var response = await httpClient.GetAsync(uri);
             if(response.StatusCode == System.Net.HttpStatusCode.Unauthorized) {
                 Log.Debug("Got 401 on get, trying new access token");
                 accessToken = await UpdateAccessToken(refreshToken, clientId);
+                httpClient.DefaultRequestHeaders.Remove("Authorization");
                 httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {accessToken}");
-                var encodedContent = new FormUrlEncodedContent(queryParams);
-                response = await httpClient.PostAsync(url, encodedContent);
+                response = await httpClient.GetAsync(uri);
             }
             
             Log.Debug($"Device info status code: {response.StatusCode}");
@@ -2042,8 +2052,6 @@ namespace RelayDotNet
                 ["response"] = await response.Content.ReadAsStringAsync(),
                 ["access_token"] = accessToken
             };
-            //  https://all-main-qa-ibot.nocell.io:443 "GET /relaypro/api/v1/device/990007560151836?subscriber_id=8efb6648-c26c-4147-bee8-fa4c6811fd03 HTTP/1.1" 200 4856
-
         }
 
     }
