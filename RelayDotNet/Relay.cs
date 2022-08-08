@@ -12,6 +12,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Net.Http.Headers;
 using Serilog;
+using System.IO;
+using Newtonsoft.Json;
 using Microsoft.AspNetCore.WebUtilities;
 
 namespace RelayDotNet
@@ -296,7 +298,7 @@ namespace RelayDotNet
                 WriteIndented = true,
             };
 
-            var dictionary = JsonSerializer.Deserialize<Dictionary<string, object>>(message, options);
+            var dictionary = System.Text.Json.JsonSerializer.Deserialize<Dictionary<string, object>>(message, options);
             if (dictionary == null)
             {
                 Log.Warning("{@WscInfo:l} OnMessage has null dictionary", WscInfo(webSocketConnection));
@@ -1976,50 +1978,80 @@ namespace RelayDotNet
             if(grantResponse.StatusCode != System.Net.HttpStatusCode.OK) {
                 throw new Exception($"Unable to get access token: {grantResponse.StatusCode}");
             }
-            
+
             // create a json file with the grantResponse to make a dictionary, set the access 
             // token equal to the 'access_token' field, return that access token
 
             Log.Debug($"RESPONSE: {await grantResponse.Content.ReadAsStringAsync()}");
-            Dictionary<string, object> dictionary = (Dictionary<string, object>) JsonSerializer.Deserialize(await grantResponse.Content.ReadAsStringAsync(), typeof(Dictionary<string, object>));
+            Dictionary<string, object> dictionary = (Dictionary<string, object>) System.Text.Json.JsonSerializer.Deserialize(await grantResponse.Content.ReadAsStringAsync(), typeof(Dictionary<string, object>));
             return (string) dictionary["access_token"].ToString();
         }
 
         public async Task<Dictionary<string, object>> TriggerWorkflow(string accessToken, string refreshToken, string clientId, string workflowId, string subscriberId, string userId, Dictionary<string, string> actionArgs) {
-            
-            string url = $"https://{serverHostname}/ibot/workflow/{workflowId}";
-            var uri = new Uri(@url);
+            // Make the url string
+            var url = $"https://{serverHostname}/ibot/workflow/{workflowId}";
+            string[] target_ids = {"990007560151836"}; 
+
+            var targetUri = new Dictionary<string, string[]> {
+                ["items"] = target_ids
+            };
+            // Set the query params
             var queryParams = new Dictionary<string, string>()  {
-                ["subscriberId"] = subscriberId,
-                ["userId"] = userId,
-                ["action"] = "invoke"
+                ["subscriber_id"] = subscriberId,
+                ["user_id"] = userId,
             };
 
-            // var payload = new Dictionary<string, string>() {
-            //     ["action"] = "invoke"
-            // };
+            // Set the payload
+            var payload = new Dictionary<string, string>() {
+                ["action"] = "invoke",
+                ["target_device_ids"] = $"{targetUri}"
+            };
             
+            // Add actionArgs if not null
             if (actionArgs != null) {
-                queryParams.Add("action_args", actionArgs.ToString());
+                payload.Add("action_args", actionArgs.ToString());
             }
 
-            HttpClient httpClient = new HttpClient();
+            // Create an http handler
+            HttpClientHandler httpHandler = new HttpClientHandler();
+            httpHandler.UseDefaultCredentials = true;
+            httpHandler.UseProxy = false;
+
+            // Create an http client that actually posts the request
+            HttpClient httpClient = new HttpClient(httpHandler);
+
+            // Add the headers
             httpClient.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue("application/json"));            
+                new MediaTypeWithQualityHeaderValue("application/json"));   
             httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {accessToken}");
             httpClient.DefaultRequestHeaders.Add("User-Agent", version);
-            var encodedContent = new FormUrlEncodedContent(queryParams);
-            var response = await httpClient.PostAsync(uri, encodedContent);
+            Log.Debug($"HEADERS: {httpClient.DefaultRequestHeaders}");
 
+
+            // Add the query string to the url
+            url = QueryHelpers.AddQueryString(url, queryParams);
+
+            // Create the uri object, and serialize the payload
+            Uri uri = new Uri(url);
+            Log.Debug($"URI: " + uri);
+            var json = JsonConvert.SerializeObject(payload);
+            var data = new StringContent(json, Encoding.UTF8, "application/json");
+
+            // Post the request, await the response
+            var response = await httpClient.PostAsync(uri, data);
+
+            // If the accessToken is expired, create a new one
             if((response.StatusCode) == System.Net.HttpStatusCode.Unauthorized) {
                 Log.Debug("Got 401 on workflow trigger, trying to get new access token");
                 accessToken = await UpdateAccessToken(refreshToken, clientId);
+                httpClient.DefaultRequestHeaders.Remove("Authorization");
                 httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {accessToken}");
-                response = await httpClient.PostAsync(uri, encodedContent);
+                response = await httpClient.PostAsync(uri, data);
             }
 
             Log.Debug($"Workflow trigger status code: {response.StatusCode}");
 
+            // Return the response and access token as a dictionary object
             return new Dictionary<string, object> {
                 ["response"] = await response.Content.ReadAsStringAsync(),
                 ["access_token"] = accessToken
