@@ -2052,10 +2052,7 @@ namespace RelayDotNet
 
             // Create the uri object, and serialize the payload
             Uri uri = new Uri(url);
-
-            // var json = JsonConvert.SerializeObject(payload);
             var json = JsonSerializer.Serialize<Dictionary<string, string>>(payload);
-
             var data = new StringContent(json, Encoding.UTF8, "application/json");
 
             // Post the request, await the response
