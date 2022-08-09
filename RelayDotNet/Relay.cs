@@ -1961,7 +1961,7 @@ namespace RelayDotNet
             string url = $"https://{auth_hostname}/oauth2/token";
             var grantUrl = new Uri(@url);
 
-            // Create a payload that will
+            // Create a payload to be sent with the request
             var grantPayload = new Dictionary<string, string>() {
                 ["grant_type"] = "refresh_token",
                 ["refresh_token"] = refreshToken,
@@ -1995,21 +1995,17 @@ namespace RelayDotNet
         /// A convenience method for sending an HTTP trigger to the Relay server.
         /// This generally would be used in a third-party system to start a Relay 
         /// workflow via an HTTP trigger and optionally pass data to it with
-        /// action_args.  Under the covers, this uses Python's "request" library
-        /// for using the https protocol. 
+        /// action_args.  
         /// 
         /// If the access_token has expired and the request gets a 401 response 
-        /// a new access_token will be automatically generated via the refresh_token
-        /// and the request will be resubmitted with the new access_token. Otherwise
+        /// a new access_token will be automatically generated via the refreshToken
+        /// and the request will be resubmitted with the new accessToken. Otherwise
         /// the refresh token won't be used.
         /// 
-        /// This method will return a tuple of (requests.Response, access_token)
-        /// where you can inspect the http response, and get the updated access_token
-        /// if it was updated (otherwise the original access_token will be returned).
         /// </summary>
         /// <param name="accessToken">the current access token.  Can be a placeholder value and this method will 
         /// generate a new one and return it.</param>
-        /// <param name="refreshToken">the permanent refresh_token that can be used to obtain a new access token.  
+        /// <param name="refreshToken">the permanent refresh token that can be used to obtain a new access token.  
         /// The caller should treat the refresh token as very sensitive data, and secure it appropriately.</param>
         /// <param name="clientId">the auth_sdk_id as returned from "relay env".</param>
         /// <param name="workflowId">the workflow_id as returned from "relay workflow list". Usually starts with "wf_".</param>
@@ -2092,7 +2088,7 @@ namespace RelayDotNet
         /// and this method will generate a new one and return it. If the
         /// original value of the access token passed in here has expired,
         /// this method will also generate a new one and return it.</param>
-        /// <param name="refreshToken">the permanent refresh_token that can be used to
+        /// <param name="refreshToken">the permanent refresh token that can be used to
         /// obtain a new access_token. The caller should treat the refresh
         /// token as very sensitive data, and secure it appropriately.</param>
         /// <param name="clientId">the auth_sdk_id as returned from "relay env".</param>
