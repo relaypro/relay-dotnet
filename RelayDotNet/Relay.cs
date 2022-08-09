@@ -12,7 +12,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Net.Http.Headers;
 using Serilog;
-using Newtonsoft.Json;
 using Microsoft.AspNetCore.WebUtilities;
 
 namespace RelayDotNet
@@ -297,7 +296,7 @@ namespace RelayDotNet
                 WriteIndented = true,
             };
 
-            var dictionary = System.Text.Json.JsonSerializer.Deserialize<Dictionary<string, object>>(message, options);
+            var dictionary = JsonSerializer.Deserialize<Dictionary<string, object>>(message, options);
             if (dictionary == null)
             {
                 Log.Warning("{@WscInfo:l} OnMessage has null dictionary", WscInfo(webSocketConnection));
@@ -784,7 +783,7 @@ namespace RelayDotNet
             var options = new JsonSerializerOptions();
             options.Converters.Add(new DictionaryStringObjectJsonConverterCustomWrite());
             
-            return System.Text.Json.JsonSerializer.Serialize(dictionary, options);
+            return JsonSerializer.Serialize(dictionary, options);
         }
 
         private async Task<RunningRelayWorkflow> GetRunningRelayWorkflowOrThrow(IRelayWorkflow relayWorkflow)
@@ -1955,7 +1954,6 @@ namespace RelayDotNet
         string version = "relay-sdk-dotnet/2.0.0";
         string auth_hostname = "auth.relaygo.com";
 
-
         private async Task<string> UpdateAccessToken(string refreshToken, string clientId) {
             // Create a uri object with the following url
             string url = $"https://{auth_hostname}/oauth2/token";
@@ -1987,7 +1985,7 @@ namespace RelayDotNet
 
             // Create a json file with the grantResponse to make a dictionary, set the access 
             // token equal to the 'access_token' field, return that access token
-            Dictionary<string, object> dictionary = (Dictionary<string, object>) System.Text.Json.JsonSerializer.Deserialize(await grantResponse.Content.ReadAsStringAsync(), typeof(Dictionary<string, object>));
+            Dictionary<string, object> dictionary = (Dictionary<string, object>) JsonSerializer.Deserialize(await grantResponse.Content.ReadAsStringAsync(), typeof(Dictionary<string, object>));
             return (string) dictionary["access_token"].ToString();
         }
 
@@ -2054,7 +2052,10 @@ namespace RelayDotNet
 
             // Create the uri object, and serialize the payload
             Uri uri = new Uri(url);
-            var json = JsonConvert.SerializeObject(payload);
+
+            // var json = JsonConvert.SerializeObject(payload);
+            var json = JsonSerializer.Serialize<Dictionary<string, string>>(payload);
+
             var data = new StringContent(json, Encoding.UTF8, "application/json");
 
             // Post the request, await the response
