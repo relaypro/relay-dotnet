@@ -1950,7 +1950,7 @@ namespace RelayDotNet
             );
         }
 
-        string serverHostname = "all-main-pro-ibot.nocell.io";
+        string serverHostname = "all-main-pro-ibot.relaysvr.com";
         string version = "relay-sdk-dotnet/2.0.0";
         string auth_hostname = "auth.relaygo.com";
 
@@ -1983,8 +1983,8 @@ namespace RelayDotNet
                 throw new Exception($"Unable to get access token: {grantResponse.StatusCode}");
             }
 
-            // Create a json file with the grantResponse to make a dictionary, set the access 
-            // token equal to the 'access_token' field, return that access token
+            // Parse grantResponse content into an instance of a Dictionary type, set the access 
+            // token equal to the 'access_token' key's value in the dictionary and return the access token
             Dictionary<string, object> dictionary = (Dictionary<string, object>) JsonSerializer.Deserialize(await grantResponse.Content.ReadAsStringAsync(), typeof(Dictionary<string, object>));
             return (string) dictionary["access_token"].ToString();
         }
