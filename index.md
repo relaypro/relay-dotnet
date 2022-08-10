@@ -318,6 +318,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:acbb938659b9eb28c471993627c7ecfd9"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#acbb938659b9eb28c471993627c7ecfd9">HangupCall</a> (IRelayWorkflow relayWorkflow, string sourceUri, string callId)</td></tr>
 <tr class="memdesc:acbb938659b9eb28c471993627c7ecfd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ends a call between two devices.  <a href="classRelayDotNet_1_1Relay.html#acbb938659b9eb28c471993627c7ecfd9">More...</a><br /></td></tr>
 <tr class="separator:acbb938659b9eb28c471993627c7ecfd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b31777836d28e1d5f61d8ca197b72aa"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#a1b31777836d28e1d5f61d8ca197b72aa">TriggerWorkflow</a> (string accessToken, string refreshToken, string clientId, string workflowId, string subscriberId, string userId, string[] targets, Dictionary&lt; string, string &gt; actionArgs)</td></tr>
+<tr class="memdesc:a1b31777836d28e1d5f61d8ca197b72aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">A convenience method for sending an HTTP trigger to the <a class="el" href="classRelayDotNet_1_1Relay.html" title="The Relay class is responsible for defining the main functionalities that are used within workflows,...">Relay</a> server. This generally would be used in a third-party system to start a <a class="el" href="classRelayDotNet_1_1Relay.html" title="The Relay class is responsible for defining the main functionalities that are used within workflows,...">Relay</a> workflow via an HTTP trigger and optionally pass data to it with action_args. <br  />
+  <a href="classRelayDotNet_1_1Relay.html#a1b31777836d28e1d5f61d8ca197b72aa">More...</a><br /></td></tr>
+<tr class="separator:a1b31777836d28e1d5f61d8ca197b72aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5ea1566b978efe6a3392712d93e6d3c"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#af5ea1566b978efe6a3392712d93e6d3c">FetchDevice</a> (string accessToken, string refreshToken, string clientId, string subscriberId, string userId)</td></tr>
+<tr class="memdesc:af5ea1566b978efe6a3392712d93e6d3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">A convenience method for getting all the details of a device.  <a href="classRelayDotNet_1_1Relay.html#af5ea1566b978efe6a3392712d93e6d3c">More...</a><br /></td></tr>
+<tr class="separator:af5ea1566b978efe6a3392712d93e6d3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -1524,6 +1531,74 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the event response.</dd></dl>
+
+</div>
+</div>
+<a id="af5ea1566b978efe6a3392712d93e6d3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5ea1566b978efe6a3392712d93e6d3c">&#9670;&nbsp;</a></span>FetchDevice()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt;Dictionary&lt;string, object&gt; &gt; RelayDotNet.Relay.FetchDevice </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>accessToken</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>refreshToken</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>clientId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>subscriberId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>userId</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A convenience method for getting all the details of a device. </p>
+<p>This will return quite a bit of data regarding device configuration and state. The result, if the query was successful, should have a large JSON dictionary.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">accessToken</td><td>the current access token. Can be a placeholder value and this method will generate a new one and return it. If the original value of the access token passed in here has expired, this method will also generate a new one and return it.</td></tr>
+    <tr><td class="paramname">refreshToken</td><td>the permanent refresh token that can be used to obtain a new access_token. The caller should treat the refresh token as very sensitive data, and secure it appropriately.</td></tr>
+    <tr><td class="paramname">clientId</td><td>the auth_sdk_id as returned from "relay env".</td></tr>
+    <tr><td class="paramname">subscriberId</td><td>the subcriber UUID as returned from "relay whoami".</td></tr>
+    <tr><td class="paramname">userId</td><td>the IMEI of the target device, such as 990007560023456.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a dictionary containing the response and access token.</dd></dl>
 
 </div>
 </div>
@@ -4448,6 +4523,97 @@ Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1b31777836d28e1d5f61d8ca197b72aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b31777836d28e1d5f61d8ca197b72aa">&#9670;&nbsp;</a></span>TriggerWorkflow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task&lt;Dictionary&lt;string, object&gt; &gt; RelayDotNet.Relay.TriggerWorkflow </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>accessToken</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>refreshToken</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>clientId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>workflowId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>subscriberId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>userId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string[]&#160;</td>
+          <td class="paramname"><em>targets</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Dictionary&lt; string, string &gt;&#160;</td>
+          <td class="paramname"><em>actionArgs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A convenience method for sending an HTTP trigger to the <a class="el" href="classRelayDotNet_1_1Relay.html" title="The Relay class is responsible for defining the main functionalities that are used within workflows,...">Relay</a> server. This generally would be used in a third-party system to start a <a class="el" href="classRelayDotNet_1_1Relay.html" title="The Relay class is responsible for defining the main functionalities that are used within workflows,...">Relay</a> workflow via an HTTP trigger and optionally pass data to it with action_args. <br  />
+ </p>
+<p>If the access_token has expired and the request gets a 401 response a new access_token will be automatically generated via the refreshToken and the request will be resubmitted with the new accessToken. Otherwise the refresh token won't be used.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">accessToken</td><td>the current access token. Can be a placeholder value and this method will generate a new one and return it.</td></tr>
+    <tr><td class="paramname">refreshToken</td><td>the permanent refresh token that can be used to obtain a new access token. <br  />
+ The caller should treat the refresh token as very sensitive data, and secure it appropriately.</td></tr>
+    <tr><td class="paramname">clientId</td><td>the auth_sdk_id as returned from "relay env".</td></tr>
+    <tr><td class="paramname">workflowId</td><td>the workflow_id as returned from "relay workflow list". Usually starts with "wf_".</td></tr>
+    <tr><td class="paramname">subscriberId</td><td>the subcriber UUID as returned from "relay whoami".</td></tr>
+    <tr><td class="paramname">userId</td><td>the IMEI of the target device, such as 990007560023456.</td></tr>
+    <tr><td class="paramname">targets</td><td>optional targets consisting of an array of the device IMEIs that you would like to run the triggered workflow on.</td></tr>
+    <tr><td class="paramname">actionArgs</td><td>a dict of any key/value arguments you want to pass in to the workflow that gets started by this trigger.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a dictionary containing the response information and access token.</dd></dl>
 
 </div>
 </div>
