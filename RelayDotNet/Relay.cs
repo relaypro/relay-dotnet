@@ -6,10 +6,13 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Text.Json;
+using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Net.Http.Headers;
 using Serilog;
+using Microsoft.AspNetCore.WebUtilities;
 
 namespace RelayDotNet
 {
@@ -2385,5 +2388,186 @@ namespace RelayDotNet
                 }
             );
         }
+
+        string serverHostname = "all-main-pro-ibot.relaysvr.com";
+        string version = "relay-sdk-dotnet/2.0.0";
+        string auth_hostname = "auth.relaygo.com";
+
+        private async Task<string> UpdateAccessToken(string refreshToken, string clientId) {
+            // Create a uri object with the following url
+            string url = $"https://{auth_hostname}/oauth2/token";
+            var grantUrl = new Uri(@url);
+
+            // Create a payload to be sent with the request
+            var grantPayload = new Dictionary<string, string>() {
+                ["grant_type"] = "refresh_token",
+                ["refresh_token"] = refreshToken,
+                ["client_id"] = clientId
+            };
+
+            // Create an http client that will post the request
+            HttpClient httpClient = new HttpClient();
+
+            // Add headers and the encoded content to the URL
+            httpClient.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json"));
+            httpClient.DefaultRequestHeaders.Add("User-Agent", version);
+            var encodedContent = new FormUrlEncodedContent(grantPayload);
+
+            // Post the request and retrieve the response
+            var grantResponse = await httpClient.PostAsync(grantUrl, encodedContent);
+
+            // If the resonse is not successful, throw an exception back to the client
+            if(grantResponse.StatusCode != System.Net.HttpStatusCode.OK) {
+                throw new Exception($"Unable to get access token: {grantResponse.StatusCode}");
+            }
+
+            // Parse grantResponse content into an instance of a Dictionary type, set the access 
+            // token equal to the 'access_token' key's value in the dictionary and return the access token
+            Dictionary<string, object> dictionary = (Dictionary<string, object>) JsonSerializer.Deserialize(await grantResponse.Content.ReadAsStringAsync(), typeof(Dictionary<string, object>));
+            return (string) dictionary["access_token"].ToString();
+        }
+
+        /// <summary>
+        /// A convenience method for sending an HTTP trigger to the Relay server.
+        /// This generally would be used in a third-party system to start a Relay 
+        /// workflow via an HTTP trigger and optionally pass data to it with
+        /// action_args.  
+        /// 
+        /// If the access_token has expired and the request gets a 401 response 
+        /// a new access_token will be automatically generated via the refreshToken
+        /// and the request will be resubmitted with the new accessToken. Otherwise
+        /// the refresh token won't be used.
+        /// 
+        /// </summary>
+        /// <param name="accessToken">the current access token.  Can be a placeholder value and this method will 
+        /// generate a new one and return it.</param>
+        /// <param name="refreshToken">the permanent refresh token that can be used to obtain a new access token.  
+        /// The caller should treat the refresh token as very sensitive data, and secure it appropriately.</param>
+        /// <param name="clientId">the auth_sdk_id as returned from "relay env".</param>
+        /// <param name="workflowId">the workflow_id as returned from "relay workflow list". Usually starts with "wf_".</param>
+        /// <param name="subscriberId">the subcriber UUID as returned from "relay whoami".</param>
+        /// <param name="userId">the IMEI of the target device, such as 990007560023456.</param>
+        /// <param name="targets">optional targets consisting of an array of the device IMEIs that you would like to run the triggered workflow on.</param>
+        /// <param name="actionArgs">a dict of any key/value arguments you want to pass in to the workflow that gets started by this trigger.</param>
+        /// <returns>a dictionary containing the response information and access token.</returns>
+        public async Task<Dictionary<string, object>> TriggerWorkflow(string accessToken, string refreshToken, string clientId, string workflowId, string subscriberId, string userId, string[] targets, Dictionary<string, string> actionArgs) {
+            // Create the url string
+            var url = $"https://{serverHostname}/ibot/workflow/{workflowId}";
+
+            // Set the query params
+            var queryParams = new Dictionary<string, string>()  {
+                ["subscriber_id"] = subscriberId,
+                ["user_id"] = userId,
+            };
+
+            // Set the payload
+            var payload = new Dictionary<string, string>() {
+                ["action"] = "invoke",
+            };
+            
+            // Add actionArgs if not null
+            if (actionArgs != null) {
+                payload.Add("action_args", $"{actionArgs}");
+            }
+
+            // Add targets if not null
+            if (targets != null) {
+                payload.Add("target_device_ids", $"{targets}");
+            }
+
+            // Create an http client that will post the request
+            HttpClient httpClient = new HttpClient();
+
+            // Add the headers
+            httpClient.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json"));   
+            httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {accessToken}");
+            httpClient.DefaultRequestHeaders.Add("User-Agent", version);
+
+
+            // Add the query string to the url
+            url = QueryHelpers.AddQueryString(url, queryParams);
+
+            // Create the uri object, and serialize the payload
+            Uri uri = new Uri(url);
+            var json = JsonSerializer.Serialize<Dictionary<string, string>>(payload);
+            var data = new StringContent(json, Encoding.UTF8, "application/json");
+
+            // Post the request, await the response
+            var response = await httpClient.PostAsync(uri, data);
+
+            // If the accessToken is expired, create a new one
+            if((response.StatusCode) == System.Net.HttpStatusCode.Unauthorized) {
+                Log.Debug("Got 401 on workflow trigger, trying to get new access token");
+                accessToken = await UpdateAccessToken(refreshToken, clientId);
+                httpClient.DefaultRequestHeaders.Remove("Authorization");
+                httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {accessToken}");
+                response = await httpClient.PostAsync(uri, data);
+            }
+
+            Log.Debug($"Workflow trigger status code: {response.StatusCode}");
+
+            // Return the response and access token as a dictionary object
+            return new Dictionary<string, object> {
+                ["response"] = await response.Content.ReadAsStringAsync(),
+                ["access_token"] = accessToken
+            };
+        }
+
+        /// <summary>
+        /// A convenience method for getting all the details of a device. 
+        /// 
+        /// This will return quite a bit of data regarding device configuration and
+        /// state. The result, if the query was successful, should have a large JSON dictionary.
+        /// </summary>
+        /// <param name="accessToken">the current access token. Can be a placeholder value 
+        /// and this method will generate a new one and return it. If the
+        /// original value of the access token passed in here has expired,
+        /// this method will also generate a new one and return it.</param>
+        /// <param name="refreshToken">the permanent refresh token that can be used to
+        /// obtain a new access_token. The caller should treat the refresh
+        /// token as very sensitive data, and secure it appropriately.</param>
+        /// <param name="clientId">the auth_sdk_id as returned from "relay env".</param>
+        /// <param name="subscriberId">the subcriber UUID as returned from "relay whoami".</param>
+        /// <param name="userId">the IMEI of the target device, such as 990007560023456.</param>
+        /// <returns>a dictionary containing the response and access token.</returns>
+        public async Task<Dictionary<string, object>> FetchDevice(string accessToken, string refreshToken, string clientId, string subscriberId, string userId) {
+            // Create the url string
+            string url = $"https://{serverHostname}/relaypro/api/v1/device/{userId}";
+
+            // Set the query params and add them to the URI
+            var queryParams = new Dictionary<string, string>() {
+                ["subscriber_id"] = subscriberId
+            };
+            var uri = QueryHelpers.AddQueryString(url, queryParams);
+
+            // Create http client and add the headers
+            HttpClient httpClient = new HttpClient();
+            httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {accessToken}");
+            httpClient.DefaultRequestHeaders.Add("User-Agent", version);
+
+            // Post the request, await the response
+            var response = await httpClient.GetAsync(uri);
+
+            // If the status code is Unauthorized, update the access token and post the request again
+            if(response.StatusCode == System.Net.HttpStatusCode.Unauthorized) {
+                Log.Debug("Got 401 on get, trying new access token");
+                accessToken = await UpdateAccessToken(refreshToken, clientId);
+                httpClient.DefaultRequestHeaders.Remove("Authorization");
+                httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {accessToken}");
+                response = await httpClient.GetAsync(uri);
+            }
+            
+            Log.Debug($"Device info status code: {response.StatusCode}");
+
+            // Return the response and access token as a dictionary object
+            return new Dictionary<string, object> {
+                ["response"] = await response.Content.ReadAsStringAsync(),
+                ["access_token"] = accessToken
+            };
+        }
+
     }
+        
 }
