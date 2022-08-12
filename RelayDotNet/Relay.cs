@@ -1714,48 +1714,6 @@ namespace RelayDotNet
         }
         
         /// <summary>
-        /// Sends out a notification message to a group of devices.
-        /// </summary>
-        /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the device URN that triggered then notification.</param>
-        /// <param name="name">a name for your notification.</param>
-        /// <param name="text">the text that you would like to be spoken out of the device as your notification.</param>
-        /// <param name="targets">the group URN that you would like to notify</param>
-        /// <returns>the event response.</returns>
-        public async Task<Dictionary<string, object>> Notify(IRelayWorkflow relayWorkflow, string targets, string sourceUri, string name, string text)
-        {
-            return await Notify(relayWorkflow, targets, sourceUri, name, text, null);
-        }
-        
-        /// <summary>
-        /// Sends out a notification message to a group of devices.
-        /// </summary>
-        /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the device URN that triggered the notification.</param>
-        /// <param name="name">a name for your notification.</param>
-        /// <param name="text">the text that you would like to be spoken out of the device as your notification.</param>
-        /// <param name="targets">the group URN that you would like to notify.</param>
-        /// <param name="notificationPushOptions">push options for if the notification is sent to the Relay app on a virtual device.  Defaults to {}.</param>
-        /// <returns>the event response.</returns>
-        public async Task<Dictionary<string, object>> Notify(IRelayWorkflow relayWorkflow, string targets, string sourceUri, string name, string text, NotificationPushOptions notificationPushOptions)
-        {
-            return await SendNotification(relayWorkflow, sourceUri, NotificationType.Notify, text, targets, name, notificationPushOptions);
-        }
-        
-        /// <summary>
-        /// Cancels the notification that was sent to a group of devices.
-        /// </summary>
-        /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the device URN that is cancelling the notification.</param>
-        /// <param name="name">the name of the notification that you would like to cancel.</param>
-        /// <param name="targets">the group URN that received the notification.</param>
-        /// <returns>the event response.</returns>
-        public async Task<Dictionary<string, object>> CancelNotify(IRelayWorkflow relayWorkflow, string sourceUri, string name, string targets)
-        {
-            return await CancelNotification(relayWorkflow, sourceUri, name, targets);
-        }
-        
-        /// <summary>
         /// Sends out an alert to the specified group of devices and the Relay Dash.
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
