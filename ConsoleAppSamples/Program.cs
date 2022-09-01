@@ -6,10 +6,12 @@ using System.Reflection;
 using System.Runtime.Loader;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 using RelayDotNet;
 using SamplesLibrary;
 using Serilog;
 using Serilog.Events;
+using Serilog.Configuration;
 
 namespace ConsoleAppSamples
 {
@@ -29,8 +31,8 @@ namespace ConsoleAppSamples
             Log.Debug("*     RelayDotNet Console Sample Starting     *");
             Log.Debug("***********************************************");
 
-            var relay = new Relay(Relay.WebSocketConnector.Fleck, "0.0.0.0", 3000, false);
-            await relay.AddWorkflow("/hello_world", typeof(HelloWorldWorkflow));
+            var relay = new Relay(Relay.WebSocketConnector.Fleck, "0.0.0.0", 8080, false);
+            await relay.AddWorkflow("/hellopath", typeof(HelloWorldWorkflow));
             relay.Start();
 
             TerminationEvent.WaitOne();
@@ -51,11 +53,18 @@ namespace ConsoleAppSamples
             {
                 return;
             }
+
+        // read logging config from appsettings.json instead of hardcoding MinimumLevel
+        var configuration = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json")
+            .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json", true)
+            .Build();
             
             Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Verbose()
+                .ReadFrom.Configuration(configuration)
                 .WriteTo.Console(LogEventLevel.Verbose, 
-                    outputTemplate: "{Timestamp:HH:mm:ss} [{ThreadId}] [{ThreadName}] [{Level:u3}] {Message} {NewLine}{Exception}")
+                    outputTemplate: "{Timestamp:HH:mm:ss.fff} [{ThreadId}] [{ThreadName}] [{Level:u3}] {Message} {NewLine}{Exception}")
                 .Enrich.WithThreadId()
                 .CreateLogger();
         }

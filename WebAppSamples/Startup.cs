@@ -22,11 +22,11 @@ namespace WebAppSamples
         
         public void ConfigureServices(IServiceCollection services)
         {
-            Relay relay = new Relay(Relay.WebSocketConnector.SystemKestral, "0.0.0.0", 3000, false);
-            relay.AddWorkflow("/hello_world", typeof(HelloWorldWorkflow));
+            Relay relay = new Relay(Relay.WebSocketConnector.SystemKestral, "0.0.0.0", 8080, false);
+            relay.AddWorkflow("/hellopath", typeof(HelloWorldWorkflow));
             relay.Start();
             services.AddSingleton(typeof(Relay), relay);
-            Log.Debug("added relay service");
+            Log.Debug("added Relay service");
             services.AddTransient<WebSocketMiddleware>();
         }
         

@@ -31,7 +31,7 @@ namespace WebAppSamples
 
                 try
                 {
-                    WebSocket webSocket = await context.WebSockets.AcceptWebSocketAsync(null);
+                    WebSocket webSocket = await context.WebSockets.AcceptWebSocketAsync();
                     
                     Relay relay = context.RequestServices.GetService(typeof(Relay)) as Relay;
                     string id = context.Connection.Id;

@@ -90,7 +90,7 @@ namespace RelayDotNet
                 {
                     _pathsToRelayWorkflows[path] = relayWorkflowType;
                 
-                    Log.Debug("Add {Path} to {@RelayWorkflow}", path, relayWorkflowType);
+                    Log.Information("Add {Path} to {@RelayWorkflow}", path, relayWorkflowType);
 
                     return true;
                 }
@@ -263,7 +263,7 @@ namespace RelayDotNet
 
         public async Task<bool> OnOpen(IRelayWebSocketConnection webSocketConnection)
         {
-            Log.Debug("{@WscInfo:l} OnOpen", WscInfo(webSocketConnection));
+            Log.Information("{@WscInfo:l} OnOpen", WscInfo(webSocketConnection));
 
             IRelayWorkflow relayWorkflow = await CreateInstanceRelayWorkflow(webSocketConnection.ConnectionInfo.Path);
                 
@@ -281,7 +281,7 @@ namespace RelayDotNet
 
         public async void OnClose(IRelayWebSocketConnection webSocketConnection)
         {
-            Log.Debug("{@WscInfo:l} OnClose", WscInfo(webSocketConnection));
+            Log.Information("{@WscInfo:l} OnClose", WscInfo(webSocketConnection));
 
             await RemoveRunningRelayWorkflow(webSocketConnection);
         }
@@ -456,10 +456,12 @@ namespace RelayDotNet
                         else
                         {
                             bool match = true;
-                            
+
                             foreach(KeyValuePair<string, object> kvp in eventTypeTaskCompletionSources[i].KeyValuesToMatch)
                             {
-                                if (!dictionary.ContainsKey(kvp.Key) || !dictionary[kvp.Key].Equals(kvp.Value))
+                                if (!dictionary.ContainsKey(kvp.Key)
+                                   || (dictionary[kvp.Key] is null)
+                                   || !dictionary[kvp.Key].Equals(kvp.Value))
                                 {
                                     match = false;
                                     break;
@@ -661,7 +663,12 @@ namespace RelayDotNet
         {
             Log.Debug("{@WscInfo:l} Send Dictionary: {@message}", WscInfo(webSocketConnection), dictionary);
 
-            TaskCompletionSource<Dictionary<string, object>> taskCompletionSource = await CreateAndStoreTaskCompletionSource(dictionary);
+            bool isTerminateRequest = (dictionary.ContainsKey("_type") && dictionary["_type"].Equals("wf_api_terminate_request"));
+            TaskCompletionSource<Dictionary<string, object>> taskCompletionSource = null;
+            // we'll never receive a response to wf_api_terminate_request
+            if (!isTerminateRequest) {
+                taskCompletionSource = await CreateAndStoreTaskCompletionSource(dictionary);
+            }
 
             string json = ToJson(dictionary);
             
@@ -669,13 +676,17 @@ namespace RelayDotNet
             
             await webSocketConnection.Send(json);
 
+            if (isTerminateRequest) {
+                return null;
+            }
+
             // listen for responses in a loop, repeating if a progress event is received
             for (; ; )
             {
                 
                 if (taskCompletionSource == null)
                 {
-                    Log.Error("{@WscInfo:l} Error listening for response for request: {@message}", WscInfo(webSocketConnection), json);
+                    Log.Error("{@WscInfo:l} Incomplete response for request: {@message}", WscInfo(webSocketConnection), json);
                     return new Dictionary<string, object>();
                 }
 
@@ -2387,6 +2398,22 @@ namespace RelayDotNet
                     ["call_id"] = callId
                 }
             );
+        }
+
+        public string GetSourceUriFromStartEvent(IDictionary<string, object> startEvent) {
+            IDictionary<string, object> trigger = null;
+            IDictionary<string, object> args = null;
+            string sourceUri = null;
+            if (startEvent is not null) {
+                trigger = startEvent["trigger"] as IDictionary<string, object>;
+            }
+            if (trigger is not null) {
+                args = trigger["args"] as IDictionary<string, object>;
+            }
+            if (args is not null) {
+                sourceUri = args["source_uri"] as string;
+            }
+            return sourceUri;
         }
 
         string serverHostname = "all-main-pro-ibot.relaysvr.com";
