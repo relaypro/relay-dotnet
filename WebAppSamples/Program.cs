@@ -22,7 +22,7 @@ namespace WebAppSamples
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Verbose()
                 .WriteTo.Console(LogEventLevel.Verbose, 
-                    outputTemplate: "{Timestamp:HH:mm:ss} [{ThreadId}] [{ThreadName}] [{Level:u3}] {Message} {NewLine}{Exception}")
+                    outputTemplate: "{Timestamp:HH:mm:ss.fff} [{ThreadId}] [{ThreadName}] [{Level:u3}] {Message} {NewLine}{Exception}")
                 .Enrich.WithThreadId()
                 .CreateLogger();
         }
@@ -38,7 +38,7 @@ namespace WebAppSamples
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseUrls(new[] {@"http://127.0.0.1:3000/"});
+                    webBuilder.UseUrls(new[] {@"http://0.0.0.0:8080/"});
                     webBuilder.UseStartup<Startup>();
                 });
     }
