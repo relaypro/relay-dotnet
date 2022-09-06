@@ -309,6 +309,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:acbb938659b9eb28c471993627c7ecfd9"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#acbb938659b9eb28c471993627c7ecfd9">HangupCall</a> (IRelayWorkflow relayWorkflow, string sourceUri, string callId)</td></tr>
 <tr class="memdesc:acbb938659b9eb28c471993627c7ecfd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ends a call between two devices.  <a href="classRelayDotNet_1_1Relay.html#acbb938659b9eb28c471993627c7ecfd9">More...</a><br /></td></tr>
 <tr class="separator:acbb938659b9eb28c471993627c7ecfd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf3c25119ff80f08882ac33cb09b0d41"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#aaf3c25119ff80f08882ac33cb09b0d41">GetSourceUriFromStartEvent</a> (IDictionary&lt; string, object &gt; startEvent)</td></tr>
+<tr class="separator:aaf3c25119ff80f08882ac33cb09b0d41"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b31777836d28e1d5f61d8ca197b72aa"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#a1b31777836d28e1d5f61d8ca197b72aa">TriggerWorkflow</a> (string accessToken, string refreshToken, string clientId, string workflowId, string subscriberId, string userId, string[] targets, Dictionary&lt; string, string &gt; actionArgs)</td></tr>
 <tr class="memdesc:a1b31777836d28e1d5f61d8ca197b72aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">A convenience method for sending an HTTP trigger to the <a class="el" href="classRelayDotNet_1_1Relay.html" title="The Relay class is responsible for defining the main functionalities that are used within workflows,...">Relay</a> server. This generally would be used in a third-party system to start a <a class="el" href="classRelayDotNet_1_1Relay.html" title="The Relay class is responsible for defining the main functionalities that are used within workflows,...">Relay</a> workflow via an HTTP trigger and optionally pass data to it with action_args. <br  />
   <a href="classRelayDotNet_1_1Relay.html#a1b31777836d28e1d5f61d8ca197b72aa">More...</a><br /></td></tr>
@@ -2198,6 +2200,32 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the variable requested</dd></dl>
+
+</div>
+</div>
+<a id="aaf3c25119ff80f08882ac33cb09b0d41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf3c25119ff80f08882ac33cb09b0d41">&#9670;&nbsp;</a></span>GetSourceUriFromStartEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string RelayDotNet.Relay.GetSourceUriFromStartEvent </td>
+          <td>(</td>
+          <td class="paramtype">IDictionary&lt; string, object &gt;&#160;</td>
+          <td class="paramname"><em>startEvent</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
