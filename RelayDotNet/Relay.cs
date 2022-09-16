@@ -2287,11 +2287,11 @@ namespace RelayDotNet
         }
         
         /// <summary>
-        /// Answers a call on your device.
+        /// Answers an incoming call on your device.
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the device URN.</param>
-        /// <param name="callId">the call ID.</param>
+        /// <param name="sourceUri">the device URN which will answer the call.</param>
+        /// <param name="callId">the ID of the call to answer.</param>
         /// <returns></returns>
         public async Task<Dictionary<string, object>> AnswerCall(IRelayWorkflow relayWorkflow, string sourceUri, string callId)
         {
@@ -2315,11 +2315,11 @@ namespace RelayDotNet
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
         /// <param name="sourceUri">the device that is placing the call.</param>
-        /// <param name="uri">the device that you would like to call.</param>
+        /// <param name="calleeUri">the device that you would like to call.</param>
         /// <returns>the event response.</returns>
-        public async Task<Dictionary<string, object>> PlaceCall(IRelayWorkflow relayWorkflow, string sourceUri, string uri)
+        public async Task<Dictionary<string, object>> PlaceCall(IRelayWorkflow relayWorkflow, string sourceUri, string calleeUri)
         {
-            return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, PlaceCall_(sourceUri, uri));
+            return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, PlaceCall_(sourceUri, calleeUri));
         }
         
         private static Dictionary<string, object> PlaceCall_(string sourceUri, string uri)
@@ -2335,11 +2335,11 @@ namespace RelayDotNet
         }
         
         /// <summary>
-        /// Ends a call between two devices.
+        /// Ends a call on a device.
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
         /// <param name="sourceUri">the device that is hanging up the call.</param>
-        /// <param name="callId">the call ID.</param>
+        /// <param name="callId">the ID of the call to hangup.</param>
         /// <returns>the event response.</returns>
         public async Task<Dictionary<string, object>> HangupCall(IRelayWorkflow relayWorkflow, string sourceUri, string callId)
         {
