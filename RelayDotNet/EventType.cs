@@ -2,8 +2,10 @@
 
 using System.Collections.Generic;
 
+// The main namespace.
 namespace RelayDotNet
 {
+    /// Events that can be sent from the Relay server to your workflow.
     public class EventType : SerializedType
     {
         private static readonly Dictionary<string, EventType> SerializedNamesToEventType = new Dictionary<string, EventType>();
@@ -43,12 +45,25 @@ namespace RelayDotNet
         public static EventType Sms => _Sms;
         public static EventType Audio => _Audio;
         public static EventType Incident => _Incident;
+        /// There is a request to make an outbound call. This event can occur on
+        /// the caller after using the "Call X" voice command on the Assistant.
         public static EventType CallStartRequest => _CallStartRequest;
+        /// The device is receiving an inbound call request. This event can occur on the callee.
         public static EventType CallReceived => _CallReceived;
+        /// The device we called is ringing. We are waiting for them to answer.
+        /// This event can occur on the caller.
         public static EventType CallRinging => _CallRinging;
+        /// The device we called is making progress on getting connected. This may
+        /// be interspersed with on_call_ringing. This event can occur on the caller.
         public static EventType CallProgressing => _CallProgressing;
+        /// A call attempt that was ringing, progressing, or incoming is now fully
+        /// connected. This event can occur on both the caller and the callee.
         public static EventType CallConnected => _CallConnected;
+        /// A call that was once connected has become disconnected. This event can
+        /// occur on both the caller and the callee.
         public static EventType CallDisconnected => _CallDisconnected;
+        /// A call failed to get connected. This event can occur on both the caller
+        /// and the callee.
         public static EventType CallFailed => _CallFailed;
         public static EventType PlayInboxMessage => _PlayInboxMessage;
         
