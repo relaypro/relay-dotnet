@@ -922,7 +922,6 @@ EXCLUDE                = AbstractRelayWorkflow.cs \
                          DeviceInfoQuery.cs \
                          DeviceType.cs \
                          DictionaryStringObjectJsonConverterCustomWrite.cs \
-                         EventType.cs \
                          EventTypeTaskCompletionSource.cs \
                          FleckRelayWebSocketConnection.cs \
                          FleckRelayWebSocketConnectionInfo.cs \

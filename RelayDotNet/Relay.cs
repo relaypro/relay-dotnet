@@ -14,6 +14,7 @@ using System.Net.Http.Headers;
 using Serilog;
 using Microsoft.AspNetCore.WebUtilities;
 
+/// The main namespace for the Relay workflow SDK.
 namespace RelayDotNet
 {
     /// <summary>
