@@ -301,13 +301,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6e04a5fa2eaa5b3e2c80037fbb8ce76f"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#a6e04a5fa2eaa5b3e2c80037fbb8ce76f">DisableHomeChannel</a> (IRelayWorkflow relayWorkflow, string sourceUri, string[] targets)</td></tr>
 <tr class="separator:a6e04a5fa2eaa5b3e2c80037fbb8ce76f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7954a5fe4c2705741f99b64d07803b5a"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#a7954a5fe4c2705741f99b64d07803b5a">AnswerCall</a> (IRelayWorkflow relayWorkflow, string sourceUri, string callId)</td></tr>
-<tr class="memdesc:a7954a5fe4c2705741f99b64d07803b5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Answers a call on your device.  <a href="classRelayDotNet_1_1Relay.html#a7954a5fe4c2705741f99b64d07803b5a">More...</a><br /></td></tr>
+<tr class="memdesc:a7954a5fe4c2705741f99b64d07803b5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Answers an incoming call on your device.  <a href="classRelayDotNet_1_1Relay.html#a7954a5fe4c2705741f99b64d07803b5a">More...</a><br /></td></tr>
 <tr class="separator:a7954a5fe4c2705741f99b64d07803b5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab96a229ca88b009834633235f1697752"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#ab96a229ca88b009834633235f1697752">PlaceCall</a> (IRelayWorkflow relayWorkflow, string sourceUri, string uri)</td></tr>
-<tr class="memdesc:ab96a229ca88b009834633235f1697752"><td class="mdescLeft">&#160;</td><td class="mdescRight">Places a call to another device.  <a href="classRelayDotNet_1_1Relay.html#ab96a229ca88b009834633235f1697752">More...</a><br /></td></tr>
-<tr class="separator:ab96a229ca88b009834633235f1697752"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa6a193924ee6a96e1bbdd4207825ffc"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#aaa6a193924ee6a96e1bbdd4207825ffc">PlaceCall</a> (IRelayWorkflow relayWorkflow, string sourceUri, string calleeUri)</td></tr>
+<tr class="memdesc:aaa6a193924ee6a96e1bbdd4207825ffc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Places a call to another device.  <a href="classRelayDotNet_1_1Relay.html#aaa6a193924ee6a96e1bbdd4207825ffc">More...</a><br /></td></tr>
+<tr class="separator:aaa6a193924ee6a96e1bbdd4207825ffc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acbb938659b9eb28c471993627c7ecfd9"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#acbb938659b9eb28c471993627c7ecfd9">HangupCall</a> (IRelayWorkflow relayWorkflow, string sourceUri, string callId)</td></tr>
-<tr class="memdesc:acbb938659b9eb28c471993627c7ecfd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ends a call between two devices.  <a href="classRelayDotNet_1_1Relay.html#acbb938659b9eb28c471993627c7ecfd9">More...</a><br /></td></tr>
+<tr class="memdesc:acbb938659b9eb28c471993627c7ecfd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ends a call on a device.  <a href="classRelayDotNet_1_1Relay.html#acbb938659b9eb28c471993627c7ecfd9">More...</a><br /></td></tr>
 <tr class="separator:acbb938659b9eb28c471993627c7ecfd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaf3c25119ff80f08882ac33cb09b0d41"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#aaf3c25119ff80f08882ac33cb09b0d41">GetSourceUriFromStartEvent</a> (IDictionary&lt; string, object &gt; startEvent)</td></tr>
 <tr class="separator:aaf3c25119ff80f08882ac33cb09b0d41"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -621,12 +621,12 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Answers a call on your device. </p>
+<p>Answers an incoming call on your device. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">relayWorkflow</td><td>the workflow.</td></tr>
-    <tr><td class="paramname">sourceUri</td><td>the device URN.</td></tr>
-    <tr><td class="paramname">callId</td><td>the call ID.</td></tr>
+    <tr><td class="paramname">sourceUri</td><td>the device URN which will answer the call.</td></tr>
+    <tr><td class="paramname">callId</td><td>the ID of the call to answer.</td></tr>
   </table>
   </dd>
 </dl>
@@ -2404,12 +2404,12 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Ends a call between two devices. </p>
+<p>Ends a call on a device. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">relayWorkflow</td><td>the workflow.</td></tr>
     <tr><td class="paramname">sourceUri</td><td>the device that is hanging up the call.</td></tr>
-    <tr><td class="paramname">callId</td><td>the call ID.</td></tr>
+    <tr><td class="paramname">callId</td><td>the ID of the call to hangup.</td></tr>
   </table>
   </dd>
 </dl>
@@ -2844,8 +2844,8 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="ab96a229ca88b009834633235f1697752"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab96a229ca88b009834633235f1697752">&#9670;&nbsp;</a></span>PlaceCall()</h2>
+<a id="aaa6a193924ee6a96e1bbdd4207825ffc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa6a193924ee6a96e1bbdd4207825ffc">&#9670;&nbsp;</a></span>PlaceCall()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2869,7 +2869,7 @@ Public Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>uri</em>&#160;</td>
+          <td class="paramname"><em>calleeUri</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -2889,7 +2889,7 @@ Public Attributes</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">relayWorkflow</td><td>the workflow.</td></tr>
     <tr><td class="paramname">sourceUri</td><td>the device that is placing the call.</td></tr>
-    <tr><td class="paramname">uri</td><td>the device that you would like to call.</td></tr>
+    <tr><td class="paramname">calleeUri</td><td>the device that you would like to call.</td></tr>
   </table>
   </dd>
 </dl>
