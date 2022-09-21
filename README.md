@@ -16,8 +16,6 @@ namespace SamplesLibrary
     public class HelloWorldWorkflow : AbstractRelayWorkflow
     {
 
-        private string interactionName = "hello interaction";
-
         public HelloWorldWorkflow(Relay relay) : base(relay)
         {
         }
@@ -25,7 +23,7 @@ namespace SamplesLibrary
         public override void OnStart(IDictionary<string, object> startEvent)
         {
             var deviceUri = Relay.GetSourceUriFromStartEvent(startEvent);
-            Relay.StartInteraction(this, deviceUri, interactionName, new Dictionary<string, object>());
+            Relay.StartInteraction(this, deviceUri, "hello interaction", new Dictionary<string, object>());
         }
 
         public override async void OnInteractionLifecycle(IDictionary<string, object> lifecycleEvent)
@@ -40,7 +38,7 @@ namespace SamplesLibrary
                 var listenResponse = await Relay.Listen(this, sourceUri);
                 var greeting = await Relay.GetVar(this, "greeting", "hello");
                 await Relay.SayAndWait(this, sourceUri, $"{greeting} {listenResponse["text"]}! You are currently using {deviceName}");
-                Relay.EndInteraction(this, sourceUri, interactionName);
+                Relay.EndInteraction(this, sourceUri);
             }
             else if (type == InteractionLifecycleType.Ended)
             {
