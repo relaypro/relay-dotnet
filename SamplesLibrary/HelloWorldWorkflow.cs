@@ -17,7 +17,7 @@ namespace SamplesLibrary
         public override void OnStart(IDictionary<string, object> startEvent)
         {
             var deviceUri = Relay.GetSourceUriFromStartEvent(startEvent);
-            Relay.StartInteraction(this, deviceUri, interactionName, new Dictionary<string, object>());
+            Relay.StartInteraction(this, deviceUri, interactionName);
         }
 
         public override async void OnInteractionLifecycle(IDictionary<string, object> lifecycleEvent)
