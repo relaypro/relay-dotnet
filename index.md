@@ -107,9 +107,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9346635f02704bc5dac4a66508aa7876"><td class="memItemLeft" align="right" valign="top">async void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#a9346635f02704bc5dac4a66508aa7876">Terminate</a> (IRelayWorkflow relayWorkflow)</td></tr>
 <tr class="memdesc:a9346635f02704bc5dac4a66508aa7876"><td class="mdescLeft">&#160;</td><td class="mdescRight">Terminates a workflow. This method is usually called after your workflow has completed and you would like to end the workflow by calling end_interaction(), where you can then terminate the workflow.  <a href="classRelayDotNet_1_1Relay.html#a9346635f02704bc5dac4a66508aa7876">More...</a><br /></td></tr>
 <tr class="separator:a9346635f02704bc5dac4a66508aa7876"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abc10788dda6035e1c83e6d4e382ed294"><td class="memItemLeft" align="right" valign="top">async void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#abc10788dda6035e1c83e6d4e382ed294">StartInteraction</a> (IRelayWorkflow relayWorkflow, string sourceUri, string name, Dictionary&lt; string, object &gt; options)</td></tr>
-<tr class="memdesc:abc10788dda6035e1c83e6d4e382ed294"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts an interaction with the user. Triggers an INTERACTION_STARTED event and allows the user to interact with the device via functions that require an interaction URN.  <a href="classRelayDotNet_1_1Relay.html#abc10788dda6035e1c83e6d4e382ed294">More...</a><br /></td></tr>
-<tr class="separator:abc10788dda6035e1c83e6d4e382ed294"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a573668b4b2a113a16129330a9254bf40"><td class="memItemLeft" align="right" valign="top">async void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#a573668b4b2a113a16129330a9254bf40">StartInteraction</a> (IRelayWorkflow relayWorkflow, string sourceUri, string name, Dictionary&lt; string, object &gt; options=null)</td></tr>
+<tr class="memdesc:a573668b4b2a113a16129330a9254bf40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts an interaction with the user. Triggers an INTERACTION_STARTED event and allows the user to interact with the device via functions that require an interaction URN.  <a href="classRelayDotNet_1_1Relay.html#a573668b4b2a113a16129330a9254bf40">More...</a><br /></td></tr>
+<tr class="separator:a573668b4b2a113a16129330a9254bf40"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab80f54bd7fdc31c436b639a72143a49b"><td class="memItemLeft" align="right" valign="top">async void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#ab80f54bd7fdc31c436b639a72143a49b">EndInteraction</a> (IRelayWorkflow relayWorkflow, string sourceUri, string name)</td></tr>
 <tr class="memdesc:ab80f54bd7fdc31c436b639a72143a49b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ends an interaction with the user. Triggers an INTERACTION_ENDED event to signify that the user is done interacting with the device.  <a href="classRelayDotNet_1_1Relay.html#ab80f54bd7fdc31c436b639a72143a49b">More...</a><br /></td></tr>
 <tr class="separator:ab80f54bd7fdc31c436b639a72143a49b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -3842,8 +3842,8 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="abc10788dda6035e1c83e6d4e382ed294"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abc10788dda6035e1c83e6d4e382ed294">&#9670;&nbsp;</a></span>StartInteraction()</h2>
+<a id="a573668b4b2a113a16129330a9254bf40"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a573668b4b2a113a16129330a9254bf40">&#9670;&nbsp;</a></span>StartInteraction()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3873,7 +3873,7 @@ Public Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">Dictionary&lt; string, object &gt;&#160;</td>
-          <td class="paramname"><em>options</em>&#160;</td>
+          <td class="paramname"><em>options</em> = <code>null</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
