@@ -51,6 +51,7 @@ namespace RelayDotNet
 
         private readonly Dictionary<EventType, List<EventTypeTaskCompletionSource>> _eventTypesToTaskCompletionSources = new Dictionary<EventType, List<EventTypeTaskCompletionSource>>();
         private readonly SemaphoreSlim _eventTypesToTaskCompletionSourcesSemaphore = new SemaphoreSlim(1);
+        private static readonly Dictionary<string, object> emptyDict = new Dictionary<string, object>();
         
         public Relay(WebSocketConnector webSocketConnector, string ip, int port, bool secure)
         {
@@ -836,13 +837,16 @@ namespace RelayDotNet
         /// <param name="name">a name for your interaction.</param>
         /// <param name="options">can be color, home channel, or input types.</param>
         /// <returns>the event response.</returns>
-        public async void StartInteraction(IRelayWorkflow relayWorkflow, string sourceUri, string name, Dictionary<string, object> options)
+        public async void StartInteraction(IRelayWorkflow relayWorkflow, string sourceUri, string name, Dictionary<string, object> options = null)
         {
             await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, StartInteraction_(sourceUri, name, options));
         }
 
         private static Dictionary<string, object> StartInteraction_(string sourceUri, string name, Dictionary<string, object> options)
         {
+            if (options == null) {
+                options = emptyDict;
+            }
             return Request(
                 RequestType.StartInteraction,
                 sourceUri,

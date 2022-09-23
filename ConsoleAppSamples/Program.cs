@@ -54,16 +54,16 @@ namespace ConsoleAppSamples
                 return;
             }
 
-        // read logging config from appsettings.json instead of hardcoding MinimumLevel
-        var configuration = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json")
-            .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json", true)
-            .Build();
-            
+            // read logging config from appsettings.json instead of hardcoding MinimumLevel
+            var configuration = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json")
+                .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json", true)
+                .Build();
+
             Log.Logger = new LoggerConfiguration()
                 .ReadFrom.Configuration(configuration)
-                .WriteTo.Console(LogEventLevel.Verbose, 
+                .WriteTo.Console(LogEventLevel.Verbose,
                     outputTemplate: "{Timestamp:HH:mm:ss.fff} [{ThreadId}] [{ThreadName}] [{Level:u3}] {Message} {NewLine}{Exception}")
                 .Enrich.WithThreadId()
                 .CreateLogger();
