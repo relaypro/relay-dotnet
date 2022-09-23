@@ -863,23 +863,19 @@ namespace RelayDotNet
         /// that the user is done interacting with the device.
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the device that you would like to end an interaction with.</param>
-        /// <param name="name">the name of the interaction that you would like to end.</param>
+        /// <param name="sourceUri">the interaction that you would like to end.</param>
         /// <returns>the event response.</returns>
-        public async void EndInteraction(IRelayWorkflow relayWorkflow, string sourceUri, string name)
+        public async void EndInteraction(IRelayWorkflow relayWorkflow, string sourceUri)
         {
-            await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, EndInteraction_(sourceUri, name));
+            await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, EndInteraction_(sourceUri));
         }
 
-        private static Dictionary<string, object> EndInteraction_(string sourceUri, string name)
+        private static Dictionary<string, object> EndInteraction_(string sourceUri)
         {
             return Request(
                 RequestType.EndInteraction,
                 sourceUri,
-                new Dictionary<string, object>()
-                {
-                    ["name"] = name,
-                }
+                null
             );
         }
 
@@ -2380,7 +2376,7 @@ namespace RelayDotNet
         }
 
         string serverHostname = "all-main-pro-ibot.relaysvr.com";
-        string version = "relay-sdk-dotnet/2.0.0";
+        string version = "relay-sdk-dotnet/2.0.0-pre";
         string auth_hostname = "auth.relaygo.com";
 
         private async Task<string> UpdateAccessToken(string refreshToken, string clientId) {
