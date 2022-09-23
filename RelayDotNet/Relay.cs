@@ -859,7 +859,7 @@ namespace RelayDotNet
         /// that the user is done interacting with the device.
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the device that you would like to end an interaction with.</param>
+        /// <param name="sourceUri">the interaction that you would like to end.</param>
         /// <returns>the event response.</returns>
         public async void EndInteraction(IRelayWorkflow relayWorkflow, string sourceUri)
         {
