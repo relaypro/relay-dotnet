@@ -110,9 +110,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a573668b4b2a113a16129330a9254bf40"><td class="memItemLeft" align="right" valign="top">async void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#a573668b4b2a113a16129330a9254bf40">StartInteraction</a> (IRelayWorkflow relayWorkflow, string sourceUri, string name, Dictionary&lt; string, object &gt; options=null)</td></tr>
 <tr class="memdesc:a573668b4b2a113a16129330a9254bf40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts an interaction with the user. Triggers an INTERACTION_STARTED event and allows the user to interact with the device via functions that require an interaction URN.  <a href="classRelayDotNet_1_1Relay.html#a573668b4b2a113a16129330a9254bf40">More...</a><br /></td></tr>
 <tr class="separator:a573668b4b2a113a16129330a9254bf40"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab80f54bd7fdc31c436b639a72143a49b"><td class="memItemLeft" align="right" valign="top">async void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#ab80f54bd7fdc31c436b639a72143a49b">EndInteraction</a> (IRelayWorkflow relayWorkflow, string sourceUri, string name)</td></tr>
-<tr class="memdesc:ab80f54bd7fdc31c436b639a72143a49b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ends an interaction with the user. Triggers an INTERACTION_ENDED event to signify that the user is done interacting with the device.  <a href="classRelayDotNet_1_1Relay.html#ab80f54bd7fdc31c436b639a72143a49b">More...</a><br /></td></tr>
-<tr class="separator:ab80f54bd7fdc31c436b639a72143a49b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57cadd17ad1c5541300c2743ab4572bb"><td class="memItemLeft" align="right" valign="top">async void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#a57cadd17ad1c5541300c2743ab4572bb">EndInteraction</a> (IRelayWorkflow relayWorkflow, string sourceUri)</td></tr>
+<tr class="memdesc:a57cadd17ad1c5541300c2743ab4572bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ends an interaction with the user. Triggers an INTERACTION_ENDED event to signify that the user is done interacting with the device.  <a href="classRelayDotNet_1_1Relay.html#a57cadd17ad1c5541300c2743ab4572bb">More...</a><br /></td></tr>
+<tr class="separator:a57cadd17ad1c5541300c2743ab4572bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abe8a6952117f8a61c9505bfe1cf1cb9c"><td class="memItemLeft" align="right" valign="top">async Task&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#abe8a6952117f8a61c9505bfe1cf1cb9c">Say</a> (IRelayWorkflow relayWorkflow, string sourceUri, string text)</td></tr>
 <tr class="memdesc:abe8a6952117f8a61c9505bfe1cf1cb9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Utilizes text to speech capabilities to make the device 'speak' to the user.  <a href="classRelayDotNet_1_1Relay.html#abe8a6952117f8a61c9505bfe1cf1cb9c">More...</a><br /></td></tr>
 <tr class="separator:abe8a6952117f8a61c9505bfe1cf1cb9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1414,8 +1414,8 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="ab80f54bd7fdc31c436b639a72143a49b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab80f54bd7fdc31c436b639a72143a49b">&#9670;&nbsp;</a></span>EndInteraction()</h2>
+<a id="a57cadd17ad1c5541300c2743ab4572bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a57cadd17ad1c5541300c2743ab4572bb">&#9670;&nbsp;</a></span>EndInteraction()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1433,13 +1433,7 @@ Public Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>sourceUri</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>name</em>&#160;</td>
+          <td class="paramname"><em>sourceUri</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1458,8 +1452,7 @@ Public Attributes</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">relayWorkflow</td><td>the workflow.</td></tr>
-    <tr><td class="paramname">sourceUri</td><td>the device that you would like to end an interaction with.</td></tr>
-    <tr><td class="paramname">name</td><td>the name of the interaction that you would like to end.</td></tr>
+    <tr><td class="paramname">sourceUri</td><td>the interaction that you would like to end.</td></tr>
   </table>
   </dd>
 </dl>
