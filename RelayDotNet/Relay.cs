@@ -833,23 +833,23 @@ namespace RelayDotNet
         /// interaction URN.
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the device that you would like to start an interaction with.</param>
+        /// <param name="target">the device that you would like to start an interaction with.</param>
         /// <param name="name">a name for your interaction.</param>
         /// <param name="options">can be color, home channel, or input types.</param>
         /// <returns>the event response.</returns>
-        public async void StartInteraction(IRelayWorkflow relayWorkflow, string sourceUri, string name, Dictionary<string, object> options = null)
+        public async void StartInteraction(IRelayWorkflow relayWorkflow, string target, string name, Dictionary<string, object> options = null)
         {
-            await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, StartInteraction_(sourceUri, name, options));
+            await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, StartInteraction_(target, name, options));
         }
 
-        private static Dictionary<string, object> StartInteraction_(string sourceUri, string name, Dictionary<string, object> options)
+        private static Dictionary<string, object> StartInteraction_(string target, string name, Dictionary<string, object> options)
         {
             if (options == null) {
                 options = emptyDict;
             }
             return Request(
                 RequestType.StartInteraction,
-                sourceUri,
+                target,
                 new Dictionary<string, object>()
                 {
                     ["name"] = name,
@@ -863,18 +863,18 @@ namespace RelayDotNet
         /// that the user is done interacting with the device.
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the interaction that you would like to end.</param>
+        /// <param name="target">the interaction that you would like to end.</param>
         /// <returns>the event response.</returns>
-        public async void EndInteraction(IRelayWorkflow relayWorkflow, string sourceUri)
+        public async void EndInteraction(IRelayWorkflow relayWorkflow, string target)
         {
-            await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, EndInteraction_(sourceUri));
+            await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, EndInteraction_(target));
         }
 
-        private static Dictionary<string, object> EndInteraction_(string sourceUri)
+        private static Dictionary<string, object> EndInteraction_(string target)
         {
             return Request(
                 RequestType.EndInteraction,
-                sourceUri,
+                target,
                 null
             );
         }
@@ -883,25 +883,25 @@ namespace RelayDotNet
         /// Utilizes text to speech capabilities to make the device 'speak' to the user.
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the interaction URN.</param>
+        /// <param name="target">the interaction URN.</param>
         /// <param name="text">what you would like the device to say.</param>
         /// <returns>the response ID after the device speaks to the user.</returns>
-        public async Task<string> Say(IRelayWorkflow relayWorkflow, string sourceUri, string text)
+        public async Task<string> Say(IRelayWorkflow relayWorkflow, string target, string text)
         {
-            return await Say(relayWorkflow, sourceUri, text, Language.English);
+            return await Say(relayWorkflow, target, text, Language.English);
         }
 
         /// <summary>
         /// Utilizes text to speech capabilities to make the device 'speak' to the user.
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the interaction URN.</param>
+        /// <param name="target">the interaction URN.</param>
         /// <param name="text">what you would like the device to say.</param>
         /// <param name="language">the language of the text that is being spoken.  Defaults to 'en-US'.</param>
         /// <returns>the response ID after the device speaks to the user.</returns>
-        public async Task<string> Say(IRelayWorkflow relayWorkflow, string sourceUri, string text, Language language)
+        public async Task<string> Say(IRelayWorkflow relayWorkflow, string target, string text, Language language)
         {
-            Dictionary<string, object> dictionary = await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, Say_(sourceUri, text, language));
+            Dictionary<string, object> dictionary = await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, Say_(target, text, language));
             return (dictionary != null) ? (string) dictionary["id"] : null;
         }
 
@@ -910,12 +910,12 @@ namespace RelayDotNet
         /// Waits until the text is fully played out on the device before continuing.
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the interaction URN.</param>
+        /// <param name="target">the interaction URN.</param>
         /// <param name="text">what you would like the device to say.</param>
         /// <returns>the response ID after the device speaks to the user.</returns>
-        public async Task<string> SayAndWait(IRelayWorkflow relayWorkflow, string sourceUri, string text)
+        public async Task<string> SayAndWait(IRelayWorkflow relayWorkflow, string target, string text)
         {
-            return await SayAndWait(relayWorkflow, sourceUri, text, Language.English);
+            return await SayAndWait(relayWorkflow, target, text, Language.English);
         }
         
         /// <summary>
@@ -923,14 +923,14 @@ namespace RelayDotNet
         /// Waits until the text is fully played out on the device before continuing.
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the interaction URN.</param>
+        /// <param name="target">the interaction URN.</param>
         /// <param name="text">what you would like the device to say.</param>
         /// <param name="language">the language of the text that is being spoken.  Defaults to 'en-US'.</param>
         /// <returns>the resonse ID after the device speaks to the user.</returns>
-        public async Task<string> SayAndWait(IRelayWorkflow relayWorkflow, string sourceUri, string text, Language language)
+        public async Task<string> SayAndWait(IRelayWorkflow relayWorkflow, string target, string text, Language language)
         {
             Log.Debug("SayAndWait enter for {text}", text);
-            string id = await Say(relayWorkflow, sourceUri, text, language);
+            string id = await Say(relayWorkflow, target, text, language);
             if (id == null)
             {
                 return null;
@@ -940,11 +940,11 @@ namespace RelayDotNet
             return id;
         }
         
-        private static Dictionary<string, object> Say_(string sourceUri, string text, Language language)
+        private static Dictionary<string, object> Say_(string target, string text, Language language)
         {
             return Request(
                 RequestType.Say,
-                sourceUri,
+                target,
                 new Dictionary<string, object>()
                 {
                     ["text"] = text,
@@ -957,12 +957,12 @@ namespace RelayDotNet
         /// Plays a custom audio file that was uploaded by the user.
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the interaction URN.</param>
+        /// <param name="target">the interaction URN.</param>
         /// <param name="filename">the name of the audio file.</param>
         /// <returns>the response ID after the audio file has been played on the device.</returns>
-        public async Task<string> Play(IRelayWorkflow relayWorkflow, string sourceUri, string filename)
+        public async Task<string> Play(IRelayWorkflow relayWorkflow, string target, string filename)
         {
-            Dictionary<string, object> dictionary = await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, Play_(sourceUri, filename));
+            Dictionary<string, object> dictionary = await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, Play_(target, filename));
             return (dictionary != null) ? (string) dictionary["id"] : null;
         }
         
@@ -971,13 +971,13 @@ namespace RelayDotNet
         /// file has finished playing before continuing through the workflow.
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the interaction URN.</param>
+        /// <param name="target">the interaction URN.</param>
         /// <param name="filename">the name of the audio file.</param>
         /// <returns>the response ID after the audio file has been played on the device.</returns>
-        public async Task<string> PlayAndWait(IRelayWorkflow relayWorkflow, string sourceUri, string filename)
+        public async Task<string> PlayAndWait(IRelayWorkflow relayWorkflow, string target, string filename)
         {
             Log.Debug("PlayAndWait enter for {text}", filename);
-            string id = await Play(relayWorkflow, sourceUri, filename);
+            string id = await Play(relayWorkflow, target, filename);
             await WaitForPromptStop(id);
             Log.Debug("PlayAndWait exit for {text}", filename);
             return id;
@@ -1000,11 +1000,11 @@ namespace RelayDotNet
             return id;
         }
         
-        private static Dictionary<string, object> Play_(string sourceUri, string filename)
+        private static Dictionary<string, object> Play_(string target, string filename)
         {
             return Request(
                 RequestType.Play,
-                sourceUri,
+                target,
                 new Dictionary<string, object>
                 {
                     ["filename"] = filename
@@ -1012,22 +1012,22 @@ namespace RelayDotNet
             );
         }
 
-        public async Task<Dictionary<string, object>> StopPlayback(IRelayWorkflow relayWorkflow, string sourceUri)
+        public async Task<Dictionary<string, object>> StopPlayback(IRelayWorkflow relayWorkflow, string target)
         {
-            return await StopPlayback(relayWorkflow, sourceUri, (string[]) null);
+            return await StopPlayback(relayWorkflow, target, (string[]) null);
         }
         
-        public async Task<Dictionary<string, object>> StopPlayback(IRelayWorkflow relayWorkflow, string sourceUri, string id)
+        public async Task<Dictionary<string, object>> StopPlayback(IRelayWorkflow relayWorkflow, string target, string id)
         {
-            return await StopPlayback(relayWorkflow, sourceUri, new[] {id});
+            return await StopPlayback(relayWorkflow, target, new[] {id});
         }
         
-        public async Task<Dictionary<string, object>> StopPlayback(IRelayWorkflow relayWorkflow, string sourceUri, string[] ids)
+        public async Task<Dictionary<string, object>> StopPlayback(IRelayWorkflow relayWorkflow, string target, string[] ids)
         {
-            return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, StopPlayback_(sourceUri, ids));
+            return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, StopPlayback_(target, ids));
         }
         
-        private static Dictionary<string, object> StopPlayback_(string sourceUri, string[] ids)
+        private static Dictionary<string, object> StopPlayback_(string target, string[] ids)
         {
             if (null == ids)
             {
@@ -1036,7 +1036,7 @@ namespace RelayDotNet
             
             return Request(
                 RequestType.StopPlayback,
-                sourceUri,
+                target,
                 new Dictionary<string, object>
                 {
                     ["ids"] = ids                    
@@ -1051,19 +1051,19 @@ namespace RelayDotNet
         /// in milliseconds.
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the interaction URN.</param>
+        /// <param name="target">the interaction URN.</param>
         /// <param name="pattern">an array representing the pattern of your vibration.  Defaults to none.</param>
         /// <returns>the event response.</returns>
-        public async Task<Dictionary<string, object>> Vibrate(IRelayWorkflow relayWorkflow, string sourceUri, int[] pattern)
+        public async Task<Dictionary<string, object>> Vibrate(IRelayWorkflow relayWorkflow, string target, int[] pattern)
         {
-            return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, Vibrate_(sourceUri, pattern));
+            return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, Vibrate_(target, pattern));
         }
         
-        private static Dictionary<string, object> Vibrate_(string sourceUri, int[] pattern)
+        private static Dictionary<string, object> Vibrate_(string target, int[] pattern)
         {
             return Request(
                 RequestType.Vibrate,
-                sourceUri,
+                target,
                 new Dictionary<string, object>
                 {
                     ["pattern"] = pattern                    
@@ -1219,18 +1219,18 @@ namespace RelayDotNet
         // /// Restarts a device during a workflow, without having to physically restart the device via hodling down the '-' button.
         // /// </summary>
         // /// <param name="relayWorkflow">the workflow.</param>
-        // /// <param name="sourceUri">the URN of the device you would like to restart.</param>
+        // /// <param name="target">the URN of the device you would like to restart.</param>
         // /// <returns></returns>
-        // public async Task<Dictionary<string, object>> RestartDevice(IRelayWorkflow relayWorkflow, string sourceUri)
+        // public async Task<Dictionary<string, object>> RestartDevice(IRelayWorkflow relayWorkflow, string target)
         // {
-        //     return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, RestartDevice_(sourceUri));
+        //     return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, RestartDevice_(target));
         // }
 
-        // private static Dictionary<string, object> RestartDevice_ (string sourceUri)
+        // private static Dictionary<string, object> RestartDevice_ (string target)
         // {
         //     return Request (
         //         RequestType.DevicePowerOff,
-        //         sourceUri,
+        //         target,
         //         new Dictionary<string, object>
         //         {
         //             ["restart"] = true
@@ -1242,18 +1242,18 @@ namespace RelayDotNet
         // /// Powers down a device during a workflow, without having to physically power down the device via holding down the '+' button.
         // /// </summary>
         // /// <param name="relayWorkflow">the workflow.</param>
-        // /// <param name="sourceUri">the URN of the device you would like to power down.</param>
+        // /// <param name="target">the URN of the device you would like to power down.</param>
         // /// <returns></returns>
-        // public async Task<Dictionary<string, object>> PowerDownDevice(IRelayWorkflow relayWorkflow, string sourceUri)
+        // public async Task<Dictionary<string, object>> PowerDownDevice(IRelayWorkflow relayWorkflow, string target)
         // {
-        //     return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, PowerDownDevice_(sourceUri));
+        //     return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, PowerDownDevice_(target));
         // }
 
-        // private static Dictionary<string, object> PowerDownDevice_ (string sourceUri)
+        // private static Dictionary<string, object> PowerDownDevice_ (string target)
         // {
         //     return Request (
         //         RequestType.DevicePowerOff,
-        //         sourceUri,
+        //         target,
         //         new Dictionary<string, object>
         //         {
         //             ["restart"] = false
@@ -1265,20 +1265,20 @@ namespace RelayDotNet
         /// Used for performing actions on the LEDs, such as creating a rainbow, flashing, rotating, etc.
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the interaction URN.</param>
+        /// <param name="target">the interaction URN.</param>
         /// <param name="ledEffect">effect to perform on the LEDs, can be 'rainbow', 'rotate', 'flash', 'breath', 'static', or 'off'.</param>
         /// <param name="ledInfo">information regarding the actions on the LED, such as the number of rotations, the count, etc.</param>
         /// <returns>the event response.</returns>
-        public async Task<Dictionary<string, object>> SetLed(IRelayWorkflow relayWorkflow, string sourceUri, LedEffect ledEffect, LedInfo ledInfo)
+        public async Task<Dictionary<string, object>> SetLed(IRelayWorkflow relayWorkflow, string target, LedEffect ledEffect, LedInfo ledInfo)
         {
-            return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, SetLed_(sourceUri, ledEffect, ledInfo));
+            return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, SetLed_(target, ledEffect, ledInfo));
         }
         
-        private static Dictionary<string, object> SetLed_(string sourceUri, LedEffect ledEffect, LedInfo ledInfo)
+        private static Dictionary<string, object> SetLed_(string target, LedEffect ledEffect, LedInfo ledInfo)
         {
             return Request(
                 RequestType.SetLed,
-                sourceUri,
+                target,
                 new Dictionary<string, object>
                 {
                     ["effect"] = ledEffect.SerializedName,
@@ -1291,38 +1291,38 @@ namespace RelayDotNet
         /// Switches on an LED at a particular index to a specified color.
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the interaction URN.</param>
+        /// <param name="target">the interaction URN.</param>
         /// <param name="ledIndex">the index of the LED, numbered 1-12.</param>
         /// <param name="color">the hex color code that you would like to set the LED to.</param>
         /// <returns>the event response.</returns>
-        public async Task<Dictionary<string, object>> SwitchLedOn(IRelayWorkflow relayWorkflow, string sourceUri, LedIndex ledIndex, string color)
+        public async Task<Dictionary<string, object>> SwitchLedOn(IRelayWorkflow relayWorkflow, string target, LedIndex ledIndex, string color)
         {
             LedInfo ledInfo = new LedInfo();
             ledInfo.SetColor(ledIndex, color);
-            return await SetLed(relayWorkflow, sourceUri, LedEffect.Static, ledInfo);
+            return await SetLed(relayWorkflow, target, LedEffect.Static, ledInfo);
         }
         
         /// <summary>
         /// Switches all of the LEDs on a device on to a specified color.
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the interaction URN.</param>
+        /// <param name="target">the interaction URN.</param>
         /// <param name="color">the hex color code you would like the LEDs to be.</param>
         /// <returns>the event response.</returns>
-        public async Task<Dictionary<string, object>> SwitchAllLedOn(IRelayWorkflow relayWorkflow, string sourceUri, string color)
+        public async Task<Dictionary<string, object>> SwitchAllLedOn(IRelayWorkflow relayWorkflow, string target, string color)
         {
-            return await SwitchLedOn(relayWorkflow, sourceUri, LedIndex.Ring, color);
+            return await SwitchLedOn(relayWorkflow, target, LedIndex.Ring, color);
         }
         
         /// <summary>
         /// Switches all of the LEDs on a device off.
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the interaction URN.</param>
+        /// <param name="target">the interaction URN.</param>
         /// <returns>the event response.</returns>
-        public async Task<Dictionary<string, object>> SwitchAllLedOff(IRelayWorkflow relayWorkflow, string sourceUri)
+        public async Task<Dictionary<string, object>> SwitchAllLedOff(IRelayWorkflow relayWorkflow, string target)
         {
-            return await SetLed(relayWorkflow, sourceUri, LedEffect.Off, new LedInfo());
+            return await SetLed(relayWorkflow, target, LedEffect.Off, new LedInfo());
         }
 
         /// <summary>
@@ -1330,11 +1330,11 @@ namespace RelayDotNet
         /// specified number of times.
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the interaction URN.</param>
+        /// <param name="target">the interaction URN.</param>
         /// <param name="rotations">the number of times you would like the rainbow to rotate.  Defaults to -1, meaning the 
         /// rainbow will rotate indefinitely.</param>
         /// <returns>the event response.</returns>
-        public async Task<Dictionary<string, object>> Rainbow(IRelayWorkflow relayWorkflow, string sourceUri, int rotations = -1)
+        public async Task<Dictionary<string, object>> Rainbow(IRelayWorkflow relayWorkflow, string target, int rotations = -1)
         {
             LedInfo ledInfo = new LedInfo();
             if (-1 != rotations)
@@ -1342,7 +1342,7 @@ namespace RelayDotNet
                 ledInfo.SetRotations(rotations);
             }
             
-            return await SetLed(relayWorkflow, sourceUri, LedEffect.Rainbow, ledInfo);
+            return await SetLed(relayWorkflow, target, LedEffect.Rainbow, ledInfo);
         }
         
         /// <summary>
@@ -1350,15 +1350,15 @@ namespace RelayDotNet
         /// of times.
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the interaction URN.</param>
+        /// <param name="target">the interaction URN.</param>
         /// <param name="color">the hex color code you would like to turn the LEDs to. Defaults to 'FFFFFF'.</param>
         /// <returns>the event response.</returns>
-        public async Task<Dictionary<string, object>> Rotate(IRelayWorkflow relayWorkflow, string sourceUri, string color = "FFFFFF")
+        public async Task<Dictionary<string, object>> Rotate(IRelayWorkflow relayWorkflow, string target, string color = "FFFFFF")
         {
             LedInfo ledInfo = new LedInfo();
             ledInfo.SetColor(LedIndex.Led1, color);
             
-            return await SetLed(relayWorkflow, sourceUri, LedEffect.Rotate, ledInfo);
+            return await SetLed(relayWorkflow, target, LedEffect.Rotate, ledInfo);
         }
         
         /// <summary>
@@ -1366,15 +1366,15 @@ namespace RelayDotNet
         /// a specified number of times.
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the interaction URN.</param>
+        /// <param name="target">the interaction URN.</param>
         /// <param name="color">the hex color code you would like to turn the LEDs to. Defaults to '0000FF'.</param>
         /// <returns>the event response.</returns>
-        public async Task<Dictionary<string, object>> Flash(IRelayWorkflow relayWorkflow, string sourceUri, string color = "0000FF")
+        public async Task<Dictionary<string, object>> Flash(IRelayWorkflow relayWorkflow, string target, string color = "0000FF")
         {
             LedInfo ledInfo = new LedInfo();
             ledInfo.SetColor(LedIndex.Ring, color);
             
-            return await SetLed(relayWorkflow, sourceUri, LedEffect.Flash, ledInfo);
+            return await SetLed(relayWorkflow, target, LedEffect.Flash, ledInfo);
         }
         
         /// <summary>
@@ -1382,15 +1382,15 @@ namespace RelayDotNet
         /// where the LEDs will slowly light up a specified number of times.
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the interaction URN.</param>
+        /// <param name="target">the interaction URN.</param>
         /// <param name="color">the hex color code you would like to turn the LEDs to. Defaults to '0000FF'.</param>
         /// <returns>the event response.</returns>
-        public async Task<Dictionary<string, object>> Breathe(IRelayWorkflow relayWorkflow, string sourceUri, string color = "0000FF")
+        public async Task<Dictionary<string, object>> Breathe(IRelayWorkflow relayWorkflow, string target, string color = "0000FF")
         {
             LedInfo ledInfo = new LedInfo();
             ledInfo.SetColor(LedIndex.Ring, color);
             
-            return await SetLed(relayWorkflow, sourceUri, LedEffect.Breathe, ledInfo);
+            return await SetLed(relayWorkflow, target, LedEffect.Breathe, ledInfo);
         }
         
         /// <summary>
@@ -1495,11 +1495,11 @@ namespace RelayDotNet
         /// with the user.
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the interaction URN.</param>
+        /// <param name="target">the interaction URN.</param>
         /// <returns>text representation of what the user had spoken into the device.</returns>
-         public async Task<Dictionary<string, object>> Listen(IRelayWorkflow relayWorkflow, string sourceUri)
+         public async Task<Dictionary<string, object>> Listen(IRelayWorkflow relayWorkflow, string target)
         {
-            return await Listen(relayWorkflow, sourceUri, Array.Empty<string>(), Language.English);
+            return await Listen(relayWorkflow, target, Array.Empty<string>(), Language.English);
         }
         
         /// <summary>
@@ -1507,12 +1507,12 @@ namespace RelayDotNet
         /// with the user.
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the interaction URN.</param>
+        /// <param name="target">the interaction URN.</param>
         /// <param name="phrases">optional phrases that you would like to limit the user's response to.  Defualts to none.</param>
         /// <returns>text representation of what the user had spoken into the device.</returns>
-         public async Task<Dictionary<string, object>> Listen(IRelayWorkflow relayWorkflow, string sourceUri, string[] phrases)
+         public async Task<Dictionary<string, object>> Listen(IRelayWorkflow relayWorkflow, string target, string[] phrases)
         {
-            return await Listen(relayWorkflow, sourceUri, phrases, Language.English);
+            return await Listen(relayWorkflow, target, phrases, Language.English);
         }
         
         /// <summary>
@@ -1520,12 +1520,12 @@ namespace RelayDotNet
         /// with the user.
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the interaction URN.</param>
+        /// <param name="target">the interaction URN.</param>
         /// <param name="language">the language that the device is listening for.  Defaults to 'en-US'.</param>
         /// <returns>text representation of what the user had spoken into the device.</returns>
-         public async Task<Dictionary<string, object>> Listen(IRelayWorkflow relayWorkflow, string sourceUri, Language language)
+         public async Task<Dictionary<string, object>> Listen(IRelayWorkflow relayWorkflow, string target, Language language)
         {
-            return await Listen(relayWorkflow, sourceUri, Array.Empty<string>(), language);
+            return await Listen(relayWorkflow, target, Array.Empty<string>(), language);
         }
         
         /// <summary>
@@ -1533,15 +1533,15 @@ namespace RelayDotNet
         /// with the user.
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the interaction URN.</param>
+        /// <param name="target">the interaction URN.</param>
         /// <param name="phrases">limits the user's response to these phrases.</param>
         /// <param name="altLanguage">the language that the device will listen for.  Defaults to 'en-US'.</param>
         /// <param name="transcribe">whether you would like to transcribe.</param>
         /// <param name="timeout">how long to wait for a user's response before timing out.</param>
         /// <returns>text representation of what the user had spoken into the device.</returns>
-         public async Task<Dictionary<string, object>> Listen(IRelayWorkflow relayWorkflow, string sourceUri, string[] phrases, Language altLanguage, bool transcribe = true, int timeout = 60)
+         public async Task<Dictionary<string, object>> Listen(IRelayWorkflow relayWorkflow, string target, string[] phrases, Language altLanguage, bool transcribe = true, int timeout = 60)
         {
-            var listenRequest = Listen_(sourceUri, phrases, altLanguage, transcribe, timeout);
+            var listenRequest = Listen_(target, phrases, altLanguage, transcribe, timeout);
             await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, listenRequest);
             return await WaitForListenSpeech((string) listenRequest["_id"], timeout);
         }
@@ -1564,11 +1564,11 @@ namespace RelayDotNet
             return await (Task<Dictionary<string, object>>) result;
         }
         
-        private static Dictionary<string, object> Listen_(string sourceUri, string[] phrases, Language altLanguage, bool transcribe, int timeout)
+        private static Dictionary<string, object> Listen_(string target, string[] phrases, Language altLanguage, bool transcribe, int timeout)
         {
             var listenRequest = Request(
                 RequestType.Listen,
-                sourceUri,
+                target,
                 new Dictionary<string, object>
                 {
                     ["transcribe"] = transcribe,
@@ -1603,17 +1603,17 @@ namespace RelayDotNet
 
         }
 
-        public async Task<Dictionary<string, object>> PlayUnreadInboxMessages(IRelayWorkflow relayWorkflow, string sourceUri)
+        public async Task<Dictionary<string, object>> PlayUnreadInboxMessages(IRelayWorkflow relayWorkflow, string target)
         {
-            return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, PlayUnreadInboxMessages_(sourceUri));
+            return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, PlayUnreadInboxMessages_(target));
 
         }
 
-        private static Dictionary<string, object> PlayUnreadInboxMessages_(string sourceUri)
+        private static Dictionary<string, object> PlayUnreadInboxMessages_(string target)
         {
             return Request(
                 RequestType.PlayInboxMessages, 
-                sourceUri,
+                target,
                 new Dictionary<string, object>
                 {
 
@@ -1621,9 +1621,9 @@ namespace RelayDotNet
             );
         }
 
-        public async Task<int> GetUnreadInboxSize(IRelayWorkflow relayWorkflow, string sourceUri)
+        public async Task<int> GetUnreadInboxSize(IRelayWorkflow relayWorkflow, string target)
         {
-            Dictionary<string, object> dictionary = await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, GetUnreadInboxSize_(sourceUri));
+            Dictionary<string, object> dictionary = await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, GetUnreadInboxSize_(target));
             if(null != dictionary && dictionary.ContainsKey("count") && null != dictionary["count"])
             {
                 return Int32.Parse((string) dictionary["count"]);
@@ -1631,11 +1631,11 @@ namespace RelayDotNet
             return -1;
         }
 
-        private static Dictionary<string, object> GetUnreadInboxSize_(string sourceUri)
+        private static Dictionary<string, object> GetUnreadInboxSize_(string target)
         {
             return Request(
                 RequestType.InboxCount,
-                sourceUri,
+                target,
                 new Dictionary<string, object>
                 {
 
@@ -1643,12 +1643,12 @@ namespace RelayDotNet
             );
         }
 
-        private async Task<Dictionary<string, object>> SendNotification(IRelayWorkflow relayWorkflow, string sourceUri, NotificationType notificationType, string text, string targets, string name, NotificationPushOptions notificationPushOptions)
+        private async Task<Dictionary<string, object>> SendNotification(IRelayWorkflow relayWorkflow, string originator, NotificationType notificationType, string text, string targets, string name, NotificationPushOptions notificationPushOptions)
         {
-            return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, SendNotification_(sourceUri, notificationType, text, targets, name, notificationPushOptions), DelayNotificationTimeout);
+            return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, SendNotification_(originator, notificationType, text, targets, name, notificationPushOptions), DelayNotificationTimeout);
         }
         
-        private static Dictionary<string, object> SendNotification_(string sourceUri, NotificationType notificationType, string text, string targets, string name, NotificationPushOptions notificationPushOptions)
+        private static Dictionary<string, object> SendNotification_(string originator, NotificationType notificationType, string text, string targets, string name, NotificationPushOptions notificationPushOptions)
         {
             if (notificationPushOptions == null)
             {
@@ -1659,7 +1659,7 @@ namespace RelayDotNet
                 targets,
                 new Dictionary<string, object>
                 {
-                    ["originator"] = sourceUri,
+                    ["originator"] = originator,
                     ["type"] = notificationType.SerializedName,
                     ["name"] = name,
                     ["text"] = text,
@@ -1672,13 +1672,13 @@ namespace RelayDotNet
         /// Cancels a notification of any type that was sent to a group of devices.
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the device or interacion URN that sent out the message.</param>
+        /// <param name="originator">the device or interacion URN that sent out the message.</param>
         /// <param name="name">the name of the notification to cancel.</param>
         /// <param name="targets">the group URN that received the notification.</param>
         /// <returns>the event response.</returns>
-        public async Task<Dictionary<string, object>> CancelNotification(IRelayWorkflow relayWorkflow, string sourceUri, string name, string targets)
+        public async Task<Dictionary<string, object>> CancelNotification(IRelayWorkflow relayWorkflow, string originator, string name, string targets)
         {
-            return await SendNotification(relayWorkflow, sourceUri, NotificationType.Cancel, null, targets, name, null);
+            return await SendNotification(relayWorkflow, originator, NotificationType.Cancel, null, targets, name, null);
         }
 
         /// <summary>
@@ -1686,14 +1686,14 @@ namespace RelayDotNet
         /// all devices, as well as sent to the Relay Dash.
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the device URN that triggered the broadcast.</param>
+        /// <param name="originator">the device URN that triggered the broadcast.</param>
         /// <param name="name">a name for your broadcast.</param>
         /// <param name="text">the text that you would like to be broadcasted to your group.</param>
         /// <param name="targets">the group URN that you would like to broadcast your message to.</param>
         /// <returns>the event response.</returns>
-        public async Task<Dictionary<string, object>> Broadcast(IRelayWorkflow relayWorkflow, string targets, string sourceUri, string name, string text)
+        public async Task<Dictionary<string, object>> Broadcast(IRelayWorkflow relayWorkflow, string targets, string originator, string name, string text)
         {
-            return await Broadcast(relayWorkflow, targets, sourceUri, name, text, null);
+            return await Broadcast(relayWorkflow, targets, originator, name, text, null);
         }
         
         /// <summary>
@@ -1701,57 +1701,57 @@ namespace RelayDotNet
         /// all devices, as well as sent to the Relay Dash.
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the device URN that triggered the broadcast.</param>
+        /// <param name="originator">the device URN that triggered the broadcast.</param>
         /// <param name="name">a name for your broadcast.</param>
         /// <param name="text">the text that you would like to be broadcasted to your group.</param>
         /// <param name="targets">the group URN that you would like to broadcast your message to.</param>
         /// <param name="notificationPushOptions">push options for if the notification is sent to the Relay app on a virtual device.  Defaults to {}.</param>
         /// <returns>the event response.</returns>
-        public async Task<Dictionary<string, object>> Broadcast(IRelayWorkflow relayWorkflow, string targets, string sourceUri, string name, string text, NotificationPushOptions notificationPushOptions)
+        public async Task<Dictionary<string, object>> Broadcast(IRelayWorkflow relayWorkflow, string targets, string originator, string name, string text, NotificationPushOptions notificationPushOptions)
         {
-            return await SendNotification(relayWorkflow, sourceUri, NotificationType.Broadcast, text, targets, name, notificationPushOptions);
+            return await SendNotification(relayWorkflow, originator, NotificationType.Broadcast, text, targets, name, notificationPushOptions);
         }
         
         /// <summary>
         /// Cancels the broadcast that was sent to a group of devices.
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the device URN that is cancelling the broadcast.</param>
+        /// <param name="originator">the device URN that is cancelling the broadcast.</param>
         /// <param name="name">the name of the broadcast you would like to cancel.</param>
         /// <param name="targets">the group URN that received the broadcast.</param>
         /// <returns>the event response.</returns>
-        public async Task<Dictionary<string, object>> CancelBroadcast(IRelayWorkflow relayWorkflow, string sourceUri, string name, string targets)
+        public async Task<Dictionary<string, object>> CancelBroadcast(IRelayWorkflow relayWorkflow, string originator, string name, string targets)
         {
-            return await CancelNotification(relayWorkflow, sourceUri, name, targets);
+            return await CancelNotification(relayWorkflow, originator, name, targets);
         }
         
         /// <summary>
         /// Sends out an alert to the specified group of devices and the Relay Dash.
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the URN of the device that triggered the alert.</param>
+        /// <param name="originator">the URN of the device that triggered the alert.</param>
         /// <param name="name">a name for your alert.</param>
         /// <param name="text">the text that you would like to be spoken to the group as your alert.</param>
         /// <param name="targets">the group URN that you would like to send your alert to.</param>
         /// <returns>the event response.</returns>
-        public async Task<Dictionary<string, object>> Alert(IRelayWorkflow relayWorkflow, string targets, string sourceUri, string name, string text)
+        public async Task<Dictionary<string, object>> Alert(IRelayWorkflow relayWorkflow, string targets, string originator, string name, string text)
         {
-            return await Alert(relayWorkflow, targets, sourceUri, name, text, null);
+            return await Alert(relayWorkflow, targets, originator, name, text, null);
         }
         
         /// <summary>
         /// Sends out an alert to the specified group of devices and the Relay Dash.
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the URN of the device that triggered the alert.</param>
+        /// <param name="originator">the URN of the device that triggered the alert.</param>
         /// <param name="name">a name for your alert.</param>
         /// <param name="text">the text that you would like to be spoken to the group as your alert.</param>
         /// <param name="targets">the group URN that you would like to send your alert to.</param>
         /// <param name="notificationPushOptions">push options for if the alert is sent to the Relay app on a virtual device. Defaults to {}.</param>
         /// <returns>the event response.</returns>
-        public async Task<Dictionary<string, object>> Alert(IRelayWorkflow relayWorkflow, string targets, string sourceUri, string name, string text, NotificationPushOptions notificationPushOptions)
+        public async Task<Dictionary<string, object>> Alert(IRelayWorkflow relayWorkflow, string targets, string originator, string name, string text, NotificationPushOptions notificationPushOptions)
         {
-            return await SendNotification(relayWorkflow, sourceUri, NotificationType.Alert, text, targets, name, notificationPushOptions);
+            return await SendNotification(relayWorkflow, originator, NotificationType.Alert, text, targets, name, notificationPushOptions);
         }
         
         /// <summary>
@@ -1759,13 +1759,13 @@ namespace RelayDotNet
         /// on all devices after one device has acknowledged the alert.
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the URN of the device that acknowledged or is cancelling the alert.</param>
+        /// <param name="originator">the URN of the device that acknowledged or is cancelling the alert.</param>
         /// <param name="name">the name of the alert.</param>
         /// <param name="targets">the group URN that received the alert.</param>
         /// <returns>the event response.</returns>
-        public async Task<Dictionary<string, object>> CancelAlert(IRelayWorkflow relayWorkflow, string sourceUri, string name, string targets)
+        public async Task<Dictionary<string, object>> CancelAlert(IRelayWorkflow relayWorkflow, string originator, string name, string targets)
         {
-            return await CancelNotification(relayWorkflow, sourceUri, name, targets);
+            return await CancelNotification(relayWorkflow, originator, name, targets);
         }
         
         /// <summary>
@@ -1797,16 +1797,16 @@ namespace RelayDotNet
             );
         }
         
-        private async Task<Dictionary<string, object>> GetDeviceInfo(IRelayWorkflow relayWorkflow, string sourceUri, DeviceInfoQuery deviceInfoQuery, bool refresh = false)
+        private async Task<Dictionary<string, object>> GetDeviceInfo(IRelayWorkflow relayWorkflow, string target, DeviceInfoQuery deviceInfoQuery, bool refresh = false)
         {
-            return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, GetDeviceInfo_(sourceUri, deviceInfoQuery, refresh), refresh ? DelayRefreshTimeout : DelayTimeout);
+            return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, GetDeviceInfo_(target, deviceInfoQuery, refresh), refresh ? DelayRefreshTimeout : DelayTimeout);
         }
         
-        private static Dictionary<string, object> GetDeviceInfo_(string sourceUri, DeviceInfoQuery deviceInfoQuery, bool refresh)
+        private static Dictionary<string, object> GetDeviceInfo_(string target, DeviceInfoQuery deviceInfoQuery, bool refresh)
         {
             return Request(
                 RequestType.GetDeviceInfo,
-                sourceUri, 
+                target, 
                 new Dictionary<string, object>
                 {
                     ["query"] = deviceInfoQuery.SerializedName,
@@ -1870,181 +1870,181 @@ namespace RelayDotNet
         /// Returns the name of a targeted device.
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the device or interaction URN.</param>
+        /// <param name="target">the device or interaction URN.</param>
         /// <returns>the name of the device.</returns>
-        public async Task<string> GetDeviceName(IRelayWorkflow relayWorkflow, string sourceUri)
+        public async Task<string> GetDeviceName(IRelayWorkflow relayWorkflow, string target)
         {
             DeviceInfoQuery deviceInfoQuery = DeviceInfoQuery.NameQuery;
-            return GetDictionaryKeyValueAsString(await GetDeviceInfo(relayWorkflow, sourceUri, deviceInfoQuery), deviceInfoQuery.SerializedName);
+            return GetDictionaryKeyValueAsString(await GetDeviceInfo(relayWorkflow, target, deviceInfoQuery), deviceInfoQuery.SerializedName);
         }
         
         /// <summary>
         /// Returns the location of a targeted device.
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the device or interaction URN.</param>
+        /// <param name="target">the device or interaction URN.</param>
         /// <param name="refresh">whether you would like to refresh before retrieving the location.  Defaults to false.</param>
         /// <returns>the location of the device.</returns>
-        public async Task<string> GetDeviceLocation(IRelayWorkflow relayWorkflow, string sourceUri, bool refresh)
+        public async Task<string> GetDeviceLocation(IRelayWorkflow relayWorkflow, string target, bool refresh)
         {
             DeviceInfoQuery deviceInfoQuery = DeviceInfoQuery.LocationQuery;
-            return GetDictionaryKeyValueAsString(await GetDeviceInfo(relayWorkflow, sourceUri, deviceInfoQuery, refresh), deviceInfoQuery.SerializedName);
+            return GetDictionaryKeyValueAsString(await GetDeviceInfo(relayWorkflow, target, deviceInfoQuery, refresh), deviceInfoQuery.SerializedName);
         }
         
         /// <summary>
         /// Returns the ID of a targeted device.
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the device or interaction URN.</param>
+        /// <param name="target">the device or interaction URN.</param>
         /// <returns>the device ID.</returns>
-        public async Task<string> GetDeviceId(IRelayWorkflow relayWorkflow, string sourceUri)
+        public async Task<string> GetDeviceId(IRelayWorkflow relayWorkflow, string target)
         {
             DeviceInfoQuery deviceInfoQuery = DeviceInfoQuery.IdQuery;
-            return GetDictionaryKeyValueAsString(await GetDeviceInfo(relayWorkflow, sourceUri, deviceInfoQuery), deviceInfoQuery.SerializedName);
+            return GetDictionaryKeyValueAsString(await GetDeviceInfo(relayWorkflow, target, deviceInfoQuery), deviceInfoQuery.SerializedName);
         }
         
         /// <summary>
         /// Returns the address of a targeted device.
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the device or interaction URN.</param>
+        /// <param name="target">the device or interaction URN.</param>
         /// <param name="refresh">whether you would like to refresh before retrieving the address.  Defaults to false.</param>
         /// <returns>the address of the device.</returns>
-        public async Task<string> GetDeviceAddress(IRelayWorkflow relayWorkflow, string sourceUri, bool refresh)
+        public async Task<string> GetDeviceAddress(IRelayWorkflow relayWorkflow, string target, bool refresh)
         {
-            return await GetDeviceLocation(relayWorkflow, sourceUri, refresh);
+            return await GetDeviceLocation(relayWorkflow, target, refresh);
         }
         
         /// <summary>
         /// Retrieves the coordinates of the device's location.
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the device or interaction URN.</param>
+        /// <param name="target">the device or interaction URN.</param>
         /// <param name="refresh">whether you would like to refresh before retrieving the coordinates.  Defaults to false.</param>
         /// <returns>the coordinates of the device's location.</returns>
-        public async Task<float[]> GetDeviceCoordinates(IRelayWorkflow relayWorkflow, string sourceUri, bool refresh)
+        public async Task<float[]> GetDeviceCoordinates(IRelayWorkflow relayWorkflow, string target, bool refresh)
         {
             DeviceInfoQuery deviceInfoQuery = DeviceInfoQuery.CoordinatesQuery;
-            return GetDictionaryKeyValueAsFloatArray(await GetDeviceInfo(relayWorkflow, sourceUri, deviceInfoQuery, refresh), deviceInfoQuery.SerializedName);
+            return GetDictionaryKeyValueAsFloatArray(await GetDeviceInfo(relayWorkflow, target, deviceInfoQuery, refresh), deviceInfoQuery.SerializedName);
         }
         
         /// <summary>
         /// Returns the latitude and longitude coordinates of a targeted device.
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the device or interaction URN.</param>
+        /// <param name="target">the device or interaction URN.</param>
         /// <param name="refresh">whether you would like to refresh before retrieving the coordinates.  Defaults to false.</param>
         /// <returns>an array containing the latitude and longitude of the device's location.</returns>
-        public async Task<float[]> GetDeviceLatLong(IRelayWorkflow relayWorkflow, string sourceUri, bool refresh)
+        public async Task<float[]> GetDeviceLatLong(IRelayWorkflow relayWorkflow, string target, bool refresh)
         {
-            return await GetDeviceCoordinates(relayWorkflow, sourceUri, refresh);
+            return await GetDeviceCoordinates(relayWorkflow, target, refresh);
         }
         
         /// <summary>
         /// Returns the indoor location of a targeted device.
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the device or interaction URN.</param>
+        /// <param name="target">the device or interaction URN.</param>
         /// <param name="refresh">whether you wouldlike to refresh before retrieving the location.  Defaults to false.</param>
         /// <returns>the indoor location of the device.</returns>
-        public async Task<float[]> GetDeviceIndoorLocation(IRelayWorkflow relayWorkflow, string sourceUri, bool refresh)
+        public async Task<float[]> GetDeviceIndoorLocation(IRelayWorkflow relayWorkflow, string target, bool refresh)
         {
             DeviceInfoQuery deviceInfoQuery = DeviceInfoQuery.IndoorLocationQuery;
-            return GetDictionaryKeyValueAsFloatArray(await GetDeviceInfo(relayWorkflow, sourceUri, deviceInfoQuery, refresh), deviceInfoQuery.SerializedName);
+            return GetDictionaryKeyValueAsFloatArray(await GetDeviceInfo(relayWorkflow, target, deviceInfoQuery, refresh), deviceInfoQuery.SerializedName);
         }
         
         /// <summary>
         /// Returns the battery level of a targeted device.
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the device or interaction URN.</param>
+        /// <param name="target">the device or interaction URN.</param>
         /// <param name="refresh">whether you would like to refresh before retrieving the battery.  Defaults to false.</param>
         /// <returns>the battery level on the device.</returns>
-        public async Task<int> GetDeviceBattery(IRelayWorkflow relayWorkflow, string sourceUri, bool refresh)
+        public async Task<int> GetDeviceBattery(IRelayWorkflow relayWorkflow, string target, bool refresh)
         {
             DeviceInfoQuery deviceInfoQuery = DeviceInfoQuery.BatteryQuery;
-            return GetDictionaryKeyValueAsInt(await GetDeviceInfo(relayWorkflow, sourceUri, deviceInfoQuery, refresh), deviceInfoQuery.SerializedName);
+            return GetDictionaryKeyValueAsInt(await GetDeviceInfo(relayWorkflow, target, deviceInfoQuery, refresh), deviceInfoQuery.SerializedName);
         }
         
         /// <summary>
         /// Returns the device type of a targeted device, i.e. gen 2, gen 3, etc.
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the device or interaction URN.</param>
+        /// <param name="target">the device or interaction URN.</param>
         /// <param name="refresh">whether you would like to refresh before retrieving the device type.</param>
         /// <returns>the device type.</returns>
-        public async Task<DeviceType> GetDeviceType(IRelayWorkflow relayWorkflow, string sourceUri, bool refresh)
+        public async Task<DeviceType> GetDeviceType(IRelayWorkflow relayWorkflow, string target, bool refresh)
         {
             DeviceInfoQuery deviceInfoQuery = DeviceInfoQuery.TypeQuery;
-            return GetDictionaryKeyValueAsDeviceType(await GetDeviceInfo(relayWorkflow, sourceUri, deviceInfoQuery, refresh), deviceInfoQuery.SerializedName);
+            return GetDictionaryKeyValueAsDeviceType(await GetDeviceInfo(relayWorkflow, target, deviceInfoQuery, refresh), deviceInfoQuery.SerializedName);
         }
 
-        // public async Task<Dictionary<string, object>> GetUnreadInboxSize(IRelayWorkflow relayWorkflow, string sourceUri)
+        // public async Task<Dictionary<string, object>> GetUnreadInboxSize(IRelayWorkflow relayWorkflow, string target)
         // {
-        //     Dictionary<string, object> response = await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, GetUnreadInboxSize_(sourceUri));
+        //     Dictionary<string, object> response = await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, GetUnreadInboxSize_(target));
         // }
 
-        // private static Dictionary<string, object> GetUnreadInboxSize(string sourceUri)
+        // private static Dictionary<string, object> GetUnreadInboxSize(string target)
         
         
         /// <summary>
         /// Returns the user profile of a targeted device.
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the device or interaction URN.</param>
+        /// <param name="target">the device or interaction URN.</param>
         /// <returns>the user profile registered to the device.</returns>
-        public async Task<string> GetUserProfile(IRelayWorkflow relayWorkflow, string sourceUri)
+        public async Task<string> GetUserProfile(IRelayWorkflow relayWorkflow, string target)
         {
             DeviceInfoQuery deviceInfoQuery = DeviceInfoQuery.UsernameQuery;
-            return GetDictionaryKeyValueAsString(await GetDeviceInfo(relayWorkflow, sourceUri, deviceInfoQuery), deviceInfoQuery.SerializedName);
+            return GetDictionaryKeyValueAsString(await GetDeviceInfo(relayWorkflow, target, deviceInfoQuery), deviceInfoQuery.SerializedName);
         }
 
         /// <summary>
         /// Enables the location services on a device.
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the device or interaction URN.</param>
+        /// <param name="target">the device or interaction URN.</param>
         /// <returns>the event response.</returns>
-        public async Task<Dictionary<string, object>> EnableLocation(IRelayWorkflow relayWorkflow, string sourceUri) 
+        public async Task<Dictionary<string, object>> EnableLocation(IRelayWorkflow relayWorkflow, string target) 
         {
-            return await SetDeviceInfo(relayWorkflow, sourceUri, DeviceInfoField.Location, "true");
+            return await SetDeviceInfo(relayWorkflow, target, DeviceInfoField.Location, "true");
         }
         
         /// <summary>
         /// Disables the location services on a device.
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the device or interaction URN.</param>
+        /// <param name="target">the device or interaction URN.</param>
         /// <returns>the event response.</returns>
-        public async Task<Dictionary<string, object>> DisableLocation(IRelayWorkflow relayWorkflow, string sourceUri) 
+        public async Task<Dictionary<string, object>> DisableLocation(IRelayWorkflow relayWorkflow, string target) 
         {
-            return await SetDeviceInfo(relayWorkflow, sourceUri, DeviceInfoField.Location, "false");
+            return await SetDeviceInfo(relayWorkflow, target, DeviceInfoField.Location, "false");
         }
 
         /// <summary>
         /// Returns true if the device's location services are enabled, false otherwise.
         /// </summary>
         /// <param name="relayWorkflow">the workflow</param>
-        /// <param name="sourceUri">the device or interaction URN.</param>
+        /// <param name="target">the device or interaction URN.</param>
         /// <param name="refresh">whether you would like to refresh before retrieving the query information.</param>
         /// <returns>true if the device's location services are enabled, false otherwise.</returns>
-        public async Task<bool> GetDeviceLocationEnabled(IRelayWorkflow relayWorkflow, string sourceUri, bool refresh) 
+        public async Task<bool> GetDeviceLocationEnabled(IRelayWorkflow relayWorkflow, string target, bool refresh) 
         {
             DeviceInfoQuery deviceInfoQuery = DeviceInfoQuery.LocationEnabledQuery;
-            return GetDictionaryKeyValueAsBool(await GetDeviceInfo(relayWorkflow, sourceUri, deviceInfoQuery, refresh), deviceInfoQuery.SerializedName);
+            return GetDictionaryKeyValueAsBool(await GetDeviceInfo(relayWorkflow, target, deviceInfoQuery, refresh), deviceInfoQuery.SerializedName);
         }
 
         /// <summary>
         /// Sets the profile of a user by updating the username.
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the device URN whose profile you would like to update.</param>
+        /// <param name="target">the device URN whose profile you would like to update.</param>
         /// <param name="username">the updated username for the device.</param>
         /// <param name="force">whether you would like to force this update.  Defaults to false.</param>
         /// <returns>a string array of the device names under the user's profile.</returns>
-        public async Task<string[]> SetUserProfile(IRelayWorkflow relayWorkflow, string sourceUri, string username, bool force = false)
+        public async Task<string[]> SetUserProfile(IRelayWorkflow relayWorkflow, string target, string username, bool force = false)
         {
-            Dictionary<string, object> dictionary = await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, SetUserProfile_(sourceUri, username, force));
+            Dictionary<string, object> dictionary = await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, SetUserProfile_(target, username, force));
             
             if (null != dictionary && dictionary.ContainsKey("device_names") && null != dictionary["device_names"])
             {
@@ -2054,11 +2054,11 @@ namespace RelayDotNet
             return Array.Empty<string>();
         }
         
-        private static Dictionary<string, object> SetUserProfile_(string sourceUri, string username, bool force)
+        private static Dictionary<string, object> SetUserProfile_(string target, string username, bool force)
         {
             return Request(
                 RequestType.SetUserProfile,
-                sourceUri, 
+                target, 
                 new Dictionary<string, object>
                 {
                     ["username"] = username,
@@ -2073,19 +2073,19 @@ namespace RelayDotNet
         // /// Sets the mode of the device.
         // /// </summary>
         // /// <param name="relayWorkflow">the workflow.</param>
-        // /// <param name="sourceUri">the device or interaction URN.</param>
+        // /// <param name="target">the device or interaction URN.</param>
         // /// <param name="mode">the updated mode of the device, which can be "panic", "alarm", or "none".  Defaults to "none".</param>
         // /// <returns></returns>
-        // public async Task<Dictionary<string, object>> SetDeviceMode(IRelayWorkflow relayWorkflow, string sourceUri, string mode)
+        // public async Task<Dictionary<string, object>> SetDeviceMode(IRelayWorkflow relayWorkflow, string target, string mode)
         // {
-        //     return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, SetDeviceMode_(sourceUri, mode));
+        //     return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, SetDeviceMode_(target, mode));
         // }
 
-        // private static Dictionary<string, object> SetDeviceMode_(string sourceUri, string mode)
+        // private static Dictionary<string, object> SetDeviceMode_(string target, string mode)
         // {
         //     return Request(
         //         RequestType.SetChannel,
-        //         sourceUri,
+        //         target,
         //         new Dictionary<string, object>
         //         {
         //             ["mode"] = mode
@@ -2100,15 +2100,15 @@ namespace RelayDotNet
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
         /// <param name="message">a description for your analytical event.</param>
-        /// <param name="sourceUri">the URN of a device that triggered this function.  Defaults to None.</param>
+        /// <param name="target">the URN of a device that triggered this function.  Defaults to None.</param>
         /// <param name="category">a category for your analytical event.</param>
         /// <returns></returns>
-        public async Task<Dictionary<string, object>> LogUserMessage(IRelayWorkflow relayWorkflow, string message, string sourceUri, string category)
+        public async Task<Dictionary<string, object>> LogUserMessage(IRelayWorkflow relayWorkflow, string message, string target, string category)
         {
-            return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, LogUserMessage_(message, sourceUri, category));
+            return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, LogUserMessage_(message, target, category));
         }  
 
-        private static Dictionary<string, object> LogUserMessage_(string message, string sourceUri, string category)
+        private static Dictionary<string, object> LogUserMessage_(string message, string target, string category)
         {
             return Request(
                 RequestType.LogAnalyticsEvent,
@@ -2117,7 +2117,7 @@ namespace RelayDotNet
                     ["content"] = message,
                     ["content_type"] = "text/plain",
                     ["category"] = category,
-                    ["device_uri"] = sourceUri
+                    ["device_uri"] = target
                 }
             );
         }
@@ -2149,16 +2149,16 @@ namespace RelayDotNet
             );
         }
 
-        private async Task<Dictionary<string, object>> SetDeviceInfo(IRelayWorkflow relayWorkflow, string sourceUri, DeviceInfoField deviceInfoField, string value)
+        private async Task<Dictionary<string, object>> SetDeviceInfo(IRelayWorkflow relayWorkflow, string target, DeviceInfoField deviceInfoField, string value)
         {
-            return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, SetDeviceInfo_(sourceUri, deviceInfoField, value));
+            return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, SetDeviceInfo_(target, deviceInfoField, value));
         }
         
-        private static Dictionary<string, object> SetDeviceInfo_(string sourceUri, DeviceInfoField deviceInfoField, string value)
+        private static Dictionary<string, object> SetDeviceInfo_(string target, DeviceInfoField deviceInfoField, string value)
         {
             return Request(
                 RequestType.SetDeviceInfo,
-                sourceUri,
+                target,
                 new Dictionary<string, object>
                 {
                     ["field"] = deviceInfoField.SerializedName,
@@ -2173,12 +2173,12 @@ namespace RelayDotNet
         /// on the Relay Dash.
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the device or interaction URN.</param>
+        /// <param name="target">the device or interaction URN.</param>
         /// <param name="name">a new name for your device.</param>
         /// <returns>the event response.</returns>
-        public async Task<Dictionary<string, object>> SetDeviceName(IRelayWorkflow relayWorkflow, string sourceUri, string name)
+        public async Task<Dictionary<string, object>> SetDeviceName(IRelayWorkflow relayWorkflow, string target, string name)
         {
-            return await SetDeviceInfo(relayWorkflow, sourceUri, DeviceInfoField.Label, name);
+            return await SetDeviceInfo(relayWorkflow, target, DeviceInfoField.Label, name);
         }
         
         // SETDEVICECHANNEL CURRENTLY DOES NOT WORK
@@ -2189,15 +2189,15 @@ namespace RelayDotNet
         // /// Relay Dash.
         // /// </summary>
         // /// <param name="relayWorkflow">the workflow.</param> 
-        // /// <param name="sourceUri">the device or interaction URN.</param>
+        // /// <param name="target">the device or interaction URN.</param>
         // /// <param name="channel">the channel that you would like to update your device to.</param>
         // /// <returns>the event response.</returns>
-        // public async Task<Dictionary<string, object>> SetDeviceChannel(IRelayWorkflow relayWorkflow, string sourceUri, string channel)
+        // public async Task<Dictionary<string, object>> SetDeviceChannel(IRelayWorkflow relayWorkflow, string target, string channel)
         // {
-        //     return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, SetDeviceChannel_(sourceUri, channel));
+        //     return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, SetDeviceChannel_(target, channel));
         // }
 
-        // private static Dictionary<string, object> SetDeviceChannel_(string sourceUri, string channel)
+        // private static Dictionary<string, object> SetDeviceChannel_(string target, string channel)
         // {
         //     return Request (
         //         RequestType.
@@ -2209,22 +2209,22 @@ namespace RelayDotNet
         /// where the channel will also be updated on the Relay Dash.
         /// </summary>
         /// <param name="relayWorkflow">the workflow.</param>
-        /// <param name="sourceUri">the device or interaction URN.</param>
+        /// <param name="target">the device or interaction URN.</param>
         /// <param name="channel">the name of the channel that you would like to set your device to.</param>
         /// <param name="targets">the group URN whose channel you would like to set.</param>
         /// <param name="suppressTts">whether you would like to surpress the text to speech.  Defaults to false.</param>
         /// <param name="disableHomeChannel">whether you would like to disable the home channel.  Defaults to false.</param>
         /// <returns>the event response.</returns>
-        public async Task<Dictionary<string, object>> SetChannel(IRelayWorkflow relayWorkflow, string sourceUri, string channel, string[] targets, bool suppressTts = false, bool disableHomeChannel = false)
+        public async Task<Dictionary<string, object>> SetChannel(IRelayWorkflow relayWorkflow, string target, string channel, string[] targets, bool suppressTts = false, bool disableHomeChannel = false)
         {
-            return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, SetChannel_(sourceUri, channel, targets, suppressTts, disableHomeChannel));
+            return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, SetChannel_(target, channel, targets, suppressTts, disableHomeChannel));
         }
         
-        private static Dictionary<string, object> SetChannel_(string sourceUri, string channel, string[] targets, bool suppressTts, bool disableHomeChannel)
+        private static Dictionary<string, object> SetChannel_(string target, string channel, string[] targets, bool suppressTts, bool disableHomeChannel)
         {
             return Request(
                 RequestType.SetChannel,
-                sourceUri,
+                target,
                 new Dictionary<string, object>
                 {
                     ["channel_name"] = channel,
