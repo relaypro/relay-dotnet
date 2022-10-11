@@ -809,6 +809,36 @@ namespace RelayDotNet
 
             return runningRelayWorkflow;
         }
+
+        /// <summary>
+        /// Get the source URN from a workflow trigger
+        /// </summary>
+        /// <param name="trigger">workflow trigger</param>
+        /// <returns>the source URN as a string from the trigger</returns>
+        public static string GetSourceUriFromTrigger(IDictionary<string, object> trigger) 
+        {
+            IDictionary<string, object> args = null;
+            string sourceUri = null;
+            if (trigger is not null) {
+                args = trigger["args"] as IDictionary<string, object>; 
+            }
+            if (args is not null) {
+                sourceUri = args["source_uri"] as string;
+            }
+            return sourceUri;
+        }
+
+        /// <summary>
+        /// Creates a target object from a source URN.
+        /// </summary>
+        /// <param name="sourceUri">source uri that will be used to create a target.</param>
+        /// <returns>the target that was created from a source URN.</returns>
+         public static Dictionary<string, object> TargetsFromSourceUri(string sourceUri) {
+            return new Dictionary<string, object>
+            {
+                ["uri"] = sourceUri
+            };
+         }
         
         /// <summary>
         /// Terminates a workflow.  This method is usually called
