@@ -37,13 +37,14 @@ jobs:
       - name: promote
         run: |
           cd web
-          cp -rp ../src/RelayDotNet/html/classRelayDotNet_1_1Relay.html index.md
+          cp -rpv ../src/RelayDotNet/html/* .
+          cp -pv annotated.html index.html
           
       - uses: EndBug/add-and-commit@v9
         with:
           message: 'publish generated docs'
-          add: 'index.md'
           cwd: './web/'
+          add: '.'
           author_name: 'Relay Pro builder'
           author_email: 'info@relaypro.com'
           push: true
