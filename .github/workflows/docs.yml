@@ -2,7 +2,7 @@ name: docs
 
 on:
   push:
-    branches: [ master ]
+    branches: [ fix-404 ]
 
   workflow_dispatch:
 
@@ -38,7 +38,6 @@ jobs:
         run: |
           cd web
           cp -rpv ../src/RelayDotNet/html/* .
-          cp -pv classes.html index.md
           
       - uses: EndBug/add-and-commit@v9
         with:
