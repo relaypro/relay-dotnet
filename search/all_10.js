@@ -1,0 +1,25 @@
+var searchData=
+[
+  ['rainbow_214',['Rainbow',['../classRelayDotNet_1_1LedEffect.html#a8552c74a2081bdb7ab5888159ccf66be',1,'RelayDotNet.LedEffect.Rainbow()'],['../classRelayDotNet_1_1Relay.html#a0afe1da4237ed8854f60701180d0b806',1,'RelayDotNet.Relay.Rainbow()']]],
+  ['read_215',['Read',['../classRelayDotNet_1_1DictionaryStringObjectJsonConverterCustomWrite.html#a4474958296bcc9ed9b6803c3e6fc2c1c',1,'RelayDotNet::DictionaryStringObjectJsonConverterCustomWrite']]],
+  ['relay_216',['Relay',['../classRelayDotNet_1_1Relay.html',1,'RelayDotNet.Relay'],['../classRelayDotNet_1_1AbstractRelayWorkflow.html#a265e36da2279f431d13c35f40c14250f',1,'RelayDotNet.AbstractRelayWorkflow.Relay()'],['../classRelayDotNet_1_1DeviceType.html#a94331ec0cab800232d3b021974b1bec9',1,'RelayDotNet.DeviceType.Relay()'],['../classRelayDotNet_1_1Relay.html#ad058ffa5829109f8560ac37d9b52648b',1,'RelayDotNet.Relay.Relay()']]],
+  ['relay_2ecs_217',['Relay.cs',['../Relay_8cs.html',1,'']]],
+  ['relay2_218',['Relay2',['../classRelayDotNet_1_1DeviceType.html#a1ded94bb15c171a28c93b07dc7c90418',1,'RelayDotNet::DeviceType']]],
+  ['relayapp_219',['RelayApp',['../classRelayDotNet_1_1DeviceType.html#a6dea2d0e99d5a920aabbf2727302f948',1,'RelayDotNet::DeviceType']]],
+  ['relaydotnet_220',['RelayDotNet',['../namespaceRelayDotNet.html',1,'']]],
+  ['relayuri_221',['RelayUri',['../classRelayDotNet_1_1RelayUri.html',1,'RelayDotNet']]],
+  ['relayuri_2ecs_222',['RelayUri.cs',['../RelayUri_8cs.html',1,'']]],
+  ['relaywebsocketconnector_223',['RelayWebSocketConnector',['../classRelayDotNet_1_1Relay.html#af26e3167ec9929b5f652959b1348b226',1,'RelayDotNet::Relay']]],
+  ['relayworkflow_224',['RelayWorkflow',['../classRelayDotNet_1_1RunningRelayWorkflow.html#ae1211453ce1182ca6d2a8e95bbae0032',1,'RelayDotNet::RunningRelayWorkflow']]],
+  ['removeworkflow_225',['RemoveWorkflow',['../classRelayDotNet_1_1Relay.html#a59a021ecd2a435ab930a93fedcad08d5',1,'RelayDotNet::Relay']]],
+  ['requesttype_226',['RequestType',['../classRelayDotNet_1_1RequestType.html',1,'RelayDotNet.RequestType'],['../classRelayDotNet_1_1RequestType.html#ab2d70716bc0f390d428e7ae330d4880b',1,'RelayDotNet.RequestType.RequestType()']]],
+  ['requesttype_2ecs_227',['RequestType.cs',['../RequestType_8cs.html',1,'']]],
+  ['resolveincident_228',['ResolveIncident',['../classRelayDotNet_1_1RequestType.html#a3c33affa48c2e06a6018c8dd48536257',1,'RelayDotNet.RequestType.ResolveIncident()'],['../classRelayDotNet_1_1Relay.html#ad0473751c1f6f4b02aa89e7a426d48c2',1,'RelayDotNet.Relay.ResolveIncident()']]],
+  ['resumed_229',['Resumed',['../classRelayDotNet_1_1InteractionLifecycleType.html#af3b0d8a9fca8f14045bd0c43553770e0',1,'RelayDotNet::InteractionLifecycleType']]],
+  ['ring_230',['Ring',['../classRelayDotNet_1_1LedIndex.html#aca46bc66090db57630be61334b8efb2f',1,'RelayDotNet::LedIndex']]],
+  ['roip_231',['Roip',['../classRelayDotNet_1_1DeviceType.html#a0332a68f007b65488f4cbc2b93e3cf5d',1,'RelayDotNet::DeviceType']]],
+  ['rotate_232',['Rotate',['../classRelayDotNet_1_1LedEffect.html#a733e8facc79291fee51cc9b9427fa877',1,'RelayDotNet.LedEffect.Rotate()'],['../classRelayDotNet_1_1Relay.html#a115c5a575294f2c7ce5f2509cacb4980',1,'RelayDotNet.Relay.Rotate()']]],
+  ['runningrelayworkflow_233',['RunningRelayWorkflow',['../classRelayDotNet_1_1RunningRelayWorkflow.html',1,'RelayDotNet.RunningRelayWorkflow'],['../classRelayDotNet_1_1RunningRelayWorkflow.html#a0f20bb0034b7dd2afff66fe3964004e1',1,'RelayDotNet.RunningRelayWorkflow.RunningRelayWorkflow()']]],
+  ['runningrelayworkflow_2ecs_234',['RunningRelayWorkflow.cs',['../RunningRelayWorkflow_8cs.html',1,'']]],
+  ['russian_235',['Russian',['../classRelayDotNet_1_1Language.html#a14a5da44d997e7b1dd29cb84c90bcc77',1,'RelayDotNet::Language']]]
+];

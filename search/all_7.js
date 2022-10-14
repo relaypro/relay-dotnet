@@ -1,0 +1,25 @@
+var searchData=
+[
+  ['genericoriginator_77',['GenericOriginator',['../classRelayDotNet_1_1RelayUri.html#ab6204bcc9770e1bbdbbda63988d80ac3',1,'RelayDotNet::RelayUri']]],
+  ['german_78',['German',['../classRelayDotNet_1_1Language.html#a4f1e9913d668585fe7a586b734198b61',1,'RelayDotNet::Language']]],
+  ['getdeviceaddress_79',['GetDeviceAddress',['../classRelayDotNet_1_1Relay.html#a99fc1ba347ec483df981726028a54ed9',1,'RelayDotNet::Relay']]],
+  ['getdevicebattery_80',['GetDeviceBattery',['../classRelayDotNet_1_1Relay.html#a01dd32dd25e77e781558c9031267147d',1,'RelayDotNet::Relay']]],
+  ['getdevicecoordinates_81',['GetDeviceCoordinates',['../classRelayDotNet_1_1Relay.html#a7d2d62a6eb8a269389575e6bb289bbea',1,'RelayDotNet::Relay']]],
+  ['getdeviceid_82',['GetDeviceId',['../classRelayDotNet_1_1Relay.html#acdf98ebe32ae2fed81dbee8da17747be',1,'RelayDotNet::Relay']]],
+  ['getdeviceindoorlocation_83',['GetDeviceIndoorLocation',['../classRelayDotNet_1_1Relay.html#a0a70d233394096563966493686bb9f8a',1,'RelayDotNet::Relay']]],
+  ['getdeviceinfo_84',['GetDeviceInfo',['../classRelayDotNet_1_1RequestType.html#af627e117c1e68ef8e77d1e7a03403426',1,'RelayDotNet::RequestType']]],
+  ['getdevicelatlong_85',['GetDeviceLatLong',['../classRelayDotNet_1_1Relay.html#a6650ece34c4cfc6d57f8e6c85b63d5a7',1,'RelayDotNet::Relay']]],
+  ['getdevicelocation_86',['GetDeviceLocation',['../classRelayDotNet_1_1Relay.html#ac8fe33d15f96dba1f2b66eda451b0183',1,'RelayDotNet::Relay']]],
+  ['getdevicelocationenabled_87',['GetDeviceLocationEnabled',['../classRelayDotNet_1_1Relay.html#a2f7fd4e23807dbeafd7cc51d06e24615',1,'RelayDotNet::Relay']]],
+  ['getdevicename_88',['GetDeviceName',['../classRelayDotNet_1_1Relay.html#a6af13ba4e980069478f4dfa16986121d',1,'RelayDotNet::Relay']]],
+  ['getdevicetype_89',['GetDeviceType',['../classRelayDotNet_1_1Relay.html#af71db7bae10ad9ed3f7f50c345493bec',1,'RelayDotNet::Relay']]],
+  ['getgroupmembers_90',['GetGroupMembers',['../classRelayDotNet_1_1Relay.html#a100e260d4bd0107cc7b21f0e00bd50da',1,'RelayDotNet::Relay']]],
+  ['getnumbervar_91',['GetNumberVar',['../classRelayDotNet_1_1Relay.html#a28d1ad3573ab5d7848ce8130322957ee',1,'RelayDotNet::Relay']]],
+  ['getsourceurifromstartevent_92',['GetSourceUriFromStartEvent',['../classRelayDotNet_1_1Relay.html#aaf3c25119ff80f08882ac33cb09b0d41',1,'RelayDotNet::Relay']]],
+  ['getunreadinboxsize_93',['GetUnreadInboxSize',['../classRelayDotNet_1_1Relay.html#a058985c59a49c77b8a0bf27bfa4833c2',1,'RelayDotNet::Relay']]],
+  ['getuserprofile_94',['GetUserProfile',['../classRelayDotNet_1_1Relay.html#a99dfe272da1fc4c5d96817e0f1932886',1,'RelayDotNet::Relay']]],
+  ['getvar_95',['GetVar',['../classRelayDotNet_1_1RequestType.html#aebfd88ed1c0b8ef385fe80121e65a3c5',1,'RelayDotNet.RequestType.GetVar()'],['../classRelayDotNet_1_1Relay.html#a8e4a49291b750122f52e804e8399033e',1,'RelayDotNet.Relay.GetVar()']]],
+  ['groupid_96',['GroupId',['../classRelayDotNet_1_1RelayUri.html#a1297b206b771ceca1770f3255ecc7892',1,'RelayDotNet::RelayUri']]],
+  ['groupmember_97',['GroupMember',['../classRelayDotNet_1_1RelayUri.html#a5d4c8cb782192baca89abae6d7911449',1,'RelayDotNet::RelayUri']]],
+  ['groupname_98',['GroupName',['../classRelayDotNet_1_1RelayUri.html#a273819869a26caa21ba048f458054a1b',1,'RelayDotNet::RelayUri']]]
+];
