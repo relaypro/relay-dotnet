@@ -917,36 +917,7 @@ RECURSIVE              = YES
 # Note that relative paths are relative to the directory from which doxygen is
 # run.
 
-EXCLUDE                = AbstractRelayWorkflow.cs \
-                         DeviceInfoField.cs \
-                         DeviceInfoQuery.cs \
-                         DeviceType.cs \
-                         DictionaryStringObjectJsonConverterCustomWrite.cs \
-                         EventTypeTaskCompletionSource.cs \
-                         FleckRelayWebSocketConnection.cs \
-                         FleckRelayWebSocketConnectionInfo.cs \
-                         FleckRelayWebSocketConnector.cs \
-                         InteractionLifecycleType.cs \
-                         IRelayWebSocketConnection.cs \
-                         IRelayWebSocketConnectionInfo.cs \
-                         IRelayWebSocketConnector.cs \
-                         IRelayWorkflow.cs \
-                         Language.cs \
-                         LedEffect.cs \
-                         LedIndex.cs \
-                         LedInfo.cs \
-                         NotificationPriority.cs \
-                         NotificationPushOptions.cs \
-                         NotificationSound.cs \
-                         NotificationType.cs \
-                         RequestType.cs \
-                         RunningRelayWorkflow.cs \
-                         SerializedType.cs \
-                         SystemHttpListenerRelayWebSocketConnector.cs \
-                         SystemKestralRelayWebSocketConnector.cs \
-                         SystemRelayWebSocketConnection.cs \
-                         SystemRelayWebSocketConnectionInfo.cs \
-                         SystemRelayWebSocketConnector.cs 
+EXCLUDE                = 
 
 # The EXCLUDE_SYMLINKS tag can be used to select whether or not files or
 # directories that are symbolic links (a Unix file system feature) are excluded
