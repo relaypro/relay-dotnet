@@ -38,6 +38,7 @@ jobs:
         run: |
           cd web
           cp -rpv ../src/RelayDotNet/html/* .
+          cp -pv annotated.html index.html
           
       - uses: EndBug/add-and-commit@v9
         with:
