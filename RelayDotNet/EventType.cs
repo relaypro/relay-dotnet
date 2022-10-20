@@ -32,18 +32,49 @@ namespace RelayDotNet
         private static readonly EventType _CallFailed = Add("CallFailed", "call_failed");
         private static readonly EventType _PlayInboxMessage = Add("PlayInboxMessage", "play_inbox_message");
         
+        /// Your workflow has been triggered.
         public static EventType Start => _Start;
+
+        /// Your workflow has stopped, which might be due to a normal completion after you call
+	    /// terminate() or from an abnormal completion error.
         public static EventType Stop => _Stop;
+
+        /// An interaction lifecycle event has occurred.  This could indicate that an interaction
+	    /// has started, resumed, been suspended, ended, or failed.
         public static EventType InteractionLifecycle => _InteractionLifecycle;
+        
+        /// An unnamed timer has fired.
         public static EventType Timer => _Timer;
+
+        /// A named timer has fired.
         public static EventType TimerFired => _TimerFired;
+
+        /// When a text-to-speech is being streamed to a Relay device, this event will mark
+	    /// the beginning and end of that stream delivery.
         public static EventType Prompt => _Prompt;
+
+        /// You have spoken into the device by holding down the action button. Typically seen
+	    /// when the listen() funciton is happening on a device.
         public static EventType Speech => _Speech;
+
+        /// Your workflow is progressing.
         public static EventType Progress => _Progress;
+
+        /// A button has been pressed on your device during a running workflow.  This event occurs on a single, double or triple
+        /// tap of the action button or a tap of the assistant button.  Note this is separate from a button
+        /// trigger.
         public static EventType Button => _Button;
+
+        /// A device has acknowledged an alert that was sent out to a group of devices.
         public static EventType Notification => _Notification;
+
+        /// A text message event.
         public static EventType Sms => _Sms;
+
+        /// An audio file is being played on the device.
         public static EventType Audio => _Audio;
+
+        /// An incident has been resolved.
         public static EventType Incident => _Incident;
         /// There is a request to make an outbound call. This event can occur on
         /// the caller after using the "Call X" voice command on the Assistant.
@@ -65,6 +96,8 @@ namespace RelayDotNet
         /// A call failed to get connected. This event can occur on both the caller
         /// and the callee.
         public static EventType CallFailed => _CallFailed;
+
+        /// Inbox messages are being played on the device.
         public static EventType PlayInboxMessage => _PlayInboxMessage;
         
 
