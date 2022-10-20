@@ -36,11 +36,11 @@ namespace RelayDotNet
         public static EventType Start => _Start;
 
         /// Your workflow has stopped, which might be due to a normal completion after you call
-	    /// terminate() or from an abnormal completion error.
+        /// terminate() or from an abnormal completion error.
         public static EventType Stop => _Stop;
 
         /// An interaction lifecycle event has occurred.  This could indicate that an interaction
-	    /// has started, resumed, been suspended, ended, or failed.
+        /// has started, resumed, been suspended, ended, or failed.
         public static EventType InteractionLifecycle => _InteractionLifecycle;
         
         /// An unnamed timer has fired.
@@ -50,11 +50,11 @@ namespace RelayDotNet
         public static EventType TimerFired => _TimerFired;
 
         /// When a text-to-speech is being streamed to a Relay device, this event will mark
-	    /// the beginning and end of that stream delivery.
+        /// the beginning and end of that stream delivery.
         public static EventType Prompt => _Prompt;
 
         /// You have spoken into the device by holding down the action button. Typically seen
-	    /// when the listen() funciton is happening on a device.
+        /// when the listen() funciton is happening on a device.
         public static EventType Speech => _Speech;
 
         /// Your workflow is progressing.
