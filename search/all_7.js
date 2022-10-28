@@ -15,7 +15,7 @@ var searchData=
   ['getdevicetype_89',['GetDeviceType',['../classRelayDotNet_1_1Relay.html#af71db7bae10ad9ed3f7f50c345493bec',1,'RelayDotNet::Relay']]],
   ['getgroupmembers_90',['GetGroupMembers',['../classRelayDotNet_1_1Relay.html#a100e260d4bd0107cc7b21f0e00bd50da',1,'RelayDotNet::Relay']]],
   ['getnumbervar_91',['GetNumberVar',['../classRelayDotNet_1_1Relay.html#a28d1ad3573ab5d7848ce8130322957ee',1,'RelayDotNet::Relay']]],
-  ['getsourceurifromstartevent_92',['GetSourceUriFromStartEvent',['../classRelayDotNet_1_1Relay.html#aaf3c25119ff80f08882ac33cb09b0d41',1,'RelayDotNet::Relay']]],
+  ['getsourceurifromstartevent_92',['GetSourceUriFromStartEvent',['../classRelayDotNet_1_1Relay.html#a8f06fc6220f8c370960b1254022bded2',1,'RelayDotNet::Relay']]],
   ['getunreadinboxsize_93',['GetUnreadInboxSize',['../classRelayDotNet_1_1Relay.html#a058985c59a49c77b8a0bf27bfa4833c2',1,'RelayDotNet::Relay']]],
   ['getuserprofile_94',['GetUserProfile',['../classRelayDotNet_1_1Relay.html#a99dfe272da1fc4c5d96817e0f1932886',1,'RelayDotNet::Relay']]],
   ['getvar_95',['GetVar',['../classRelayDotNet_1_1RequestType.html#aebfd88ed1c0b8ef385fe80121e65a3c5',1,'RelayDotNet.RequestType.GetVar()'],['../classRelayDotNet_1_1Relay.html#a8e4a49291b750122f52e804e8399033e',1,'RelayDotNet.Relay.GetVar()']]],

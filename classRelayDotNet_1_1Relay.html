@@ -68,6 +68,7 @@ $(function() {
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="classRelayDotNet_1_1Relay-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -309,8 +310,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:acbb938659b9eb28c471993627c7ecfd9"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#acbb938659b9eb28c471993627c7ecfd9">HangupCall</a> (<a class="el" href="interfaceRelayDotNet_1_1IRelayWorkflow.html">IRelayWorkflow</a> relayWorkflow, string sourceUri, string callId)</td></tr>
 <tr class="memdesc:acbb938659b9eb28c471993627c7ecfd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ends a call on a device.  <a href="classRelayDotNet_1_1Relay.html#acbb938659b9eb28c471993627c7ecfd9">More...</a><br /></td></tr>
 <tr class="separator:acbb938659b9eb28c471993627c7ecfd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaf3c25119ff80f08882ac33cb09b0d41"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#aaf3c25119ff80f08882ac33cb09b0d41">GetSourceUriFromStartEvent</a> (IDictionary&lt; string, object &gt; startEvent)</td></tr>
-<tr class="separator:aaf3c25119ff80f08882ac33cb09b0d41"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b31777836d28e1d5f61d8ca197b72aa"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#a1b31777836d28e1d5f61d8ca197b72aa">TriggerWorkflow</a> (string accessToken, string refreshToken, string clientId, string workflowId, string subscriberId, string userId, string[] targets, Dictionary&lt; string, string &gt; actionArgs)</td></tr>
 <tr class="memdesc:a1b31777836d28e1d5f61d8ca197b72aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">A convenience method for sending an HTTP trigger to the <a class="el" href="classRelayDotNet_1_1Relay.html" title="The Relay class is responsible for defining the main functionalities that are used within workflows,...">Relay</a> server. This generally would be used in a third-party system to start a <a class="el" href="classRelayDotNet_1_1Relay.html" title="The Relay class is responsible for defining the main functionalities that are used within workflows,...">Relay</a> workflow via an HTTP trigger and optionally pass data to it with action_args. <br  />
   <a href="classRelayDotNet_1_1Relay.html#a1b31777836d28e1d5f61d8ca197b72aa">More...</a><br /></td></tr>
@@ -318,6 +317,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af5ea1566b978efe6a3392712d93e6d3c"><td class="memItemLeft" align="right" valign="top">async Task&lt; Dictionary&lt; string, object &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#af5ea1566b978efe6a3392712d93e6d3c">FetchDevice</a> (string accessToken, string refreshToken, string clientId, string subscriberId, string userId)</td></tr>
 <tr class="memdesc:af5ea1566b978efe6a3392712d93e6d3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">A convenience method for getting all the details of a device.  <a href="classRelayDotNet_1_1Relay.html#af5ea1566b978efe6a3392712d93e6d3c">More...</a><br /></td></tr>
 <tr class="separator:af5ea1566b978efe6a3392712d93e6d3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:aaf12690c1649301e9eb6e02855dd74df"><td class="memItemLeft" align="right" valign="top">static Dictionary&lt; string, object &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#aaf12690c1649301e9eb6e02855dd74df">TargetsFromSourceUri</a> (string sourceUri)</td></tr>
+<tr class="memdesc:aaf12690c1649301e9eb6e02855dd74df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a target object from a source URN.  <a href="classRelayDotNet_1_1Relay.html#aaf12690c1649301e9eb6e02855dd74df">More...</a><br /></td></tr>
+<tr class="separator:aaf12690c1649301e9eb6e02855dd74df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f06fc6220f8c370960b1254022bded2"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRelayDotNet_1_1Relay.html#a8f06fc6220f8c370960b1254022bded2">GetSourceUriFromStartEvent</a> (IDictionary&lt; string, object &gt; startEvent)</td></tr>
+<tr class="memdesc:a8f06fc6220f8c370960b1254022bded2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses out and retrieves the source URN from a Start Event  <a href="classRelayDotNet_1_1Relay.html#a8f06fc6220f8c370960b1254022bded2">More...</a><br /></td></tr>
+<tr class="separator:a8f06fc6220f8c370960b1254022bded2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -2196,8 +2204,8 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="aaf3c25119ff80f08882ac33cb09b0d41"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaf3c25119ff80f08882ac33cb09b0d41">&#9670;&nbsp;</a></span>GetSourceUriFromStartEvent()</h2>
+<a id="a8f06fc6220f8c370960b1254022bded2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f06fc6220f8c370960b1254022bded2">&#9670;&nbsp;</a></span>GetSourceUriFromStartEvent()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2206,7 +2214,7 @@ Public Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">string RelayDotNet.Relay.GetSourceUriFromStartEvent </td>
+          <td class="memname">static string RelayDotNet.Relay.GetSourceUriFromStartEvent </td>
           <td>(</td>
           <td class="paramtype">IDictionary&lt; string, object &gt;&#160;</td>
           <td class="paramname"><em>startEvent</em></td><td>)</td>
@@ -2215,10 +2223,19 @@ Public Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Parses out and retrieves the source URN from a Start Event </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">startEvent</td><td>the start event</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the source URN</dd></dl>
 
 </div>
 </div>
@@ -4252,6 +4269,41 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the event response.</dd></dl>
+
+</div>
+</div>
+<a id="aaf12690c1649301e9eb6e02855dd74df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf12690c1649301e9eb6e02855dd74df">&#9670;&nbsp;</a></span>TargetsFromSourceUri()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static Dictionary&lt;string, object&gt; RelayDotNet.Relay.TargetsFromSourceUri </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>sourceUri</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Creates a target object from a source URN. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sourceUri</td><td>source uri that will be used to create a target.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>the target that was created from a source URN.</dd></dl>
 
 </div>
 </div>
