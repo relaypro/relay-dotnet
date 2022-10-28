@@ -809,6 +809,18 @@ namespace RelayDotNet
 
             return runningRelayWorkflow;
         }
+
+        /// <summary>
+        /// Creates a target object from a source URN.
+        /// </summary>
+        /// <param name="sourceUri">source uri that will be used to create a target.</param>
+        /// <returns>the target that was created from a source URN.</returns>
+         public static Dictionary<string, object> TargetsFromSourceUri(string sourceUri) {
+            return new Dictionary<string, object>
+            {
+                ["uri"] = sourceUri
+            };
+         }
         
         /// <summary>
         /// Terminates a workflow.  This method is usually called
@@ -2359,7 +2371,12 @@ namespace RelayDotNet
             );
         }
 
-        public string GetSourceUriFromStartEvent(IDictionary<string, object> startEvent) {
+        /// <summary>
+        /// Parses out and retrieves the source URN from a Start Event
+        /// </summary>
+        /// <param name="startEvent">the start event</param>
+        /// <returns>the source URN</returns>
+        public static string GetSourceUriFromStartEvent(IDictionary<string, object> startEvent) {
             IDictionary<string, object> trigger = null;
             IDictionary<string, object> args = null;
             string sourceUri = null;
