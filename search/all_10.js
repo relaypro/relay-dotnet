@@ -2,7 +2,7 @@ var searchData=
 [
   ['rainbow_214',['Rainbow',['../classRelayDotNet_1_1LedEffect.html#a8552c74a2081bdb7ab5888159ccf66be',1,'RelayDotNet.LedEffect.Rainbow()'],['../classRelayDotNet_1_1Relay.html#a0afe1da4237ed8854f60701180d0b806',1,'RelayDotNet.Relay.Rainbow()']]],
   ['read_215',['Read',['../classRelayDotNet_1_1DictionaryStringObjectJsonConverterCustomWrite.html#a4474958296bcc9ed9b6803c3e6fc2c1c',1,'RelayDotNet::DictionaryStringObjectJsonConverterCustomWrite']]],
-  ['relay_216',['Relay',['../classRelayDotNet_1_1Relay.html',1,'RelayDotNet.Relay'],['../classRelayDotNet_1_1AbstractRelayWorkflow.html#a265e36da2279f431d13c35f40c14250f',1,'RelayDotNet.AbstractRelayWorkflow.Relay()'],['../classRelayDotNet_1_1DeviceType.html#a94331ec0cab800232d3b021974b1bec9',1,'RelayDotNet.DeviceType.Relay()'],['../classRelayDotNet_1_1Relay.html#ad058ffa5829109f8560ac37d9b52648b',1,'RelayDotNet.Relay.Relay()']]],
+  ['relay_216',['Relay',['../classRelayDotNet_1_1Relay.html#ad058ffa5829109f8560ac37d9b52648b',1,'RelayDotNet.Relay.Relay()'],['../classRelayDotNet_1_1DeviceType.html#a94331ec0cab800232d3b021974b1bec9',1,'RelayDotNet.DeviceType.Relay()'],['../classRelayDotNet_1_1AbstractRelayWorkflow.html#a265e36da2279f431d13c35f40c14250f',1,'RelayDotNet.AbstractRelayWorkflow.Relay()'],['../classRelayDotNet_1_1Relay.html',1,'RelayDotNet.Relay']]],
   ['relay_2ecs_217',['Relay.cs',['../Relay_8cs.html',1,'']]],
   ['relay2_218',['Relay2',['../classRelayDotNet_1_1DeviceType.html#a1ded94bb15c171a28c93b07dc7c90418',1,'RelayDotNet::DeviceType']]],
   ['relayapp_219',['RelayApp',['../classRelayDotNet_1_1DeviceType.html#a6dea2d0e99d5a920aabbf2727302f948',1,'RelayDotNet::DeviceType']]],

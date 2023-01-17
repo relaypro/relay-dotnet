@@ -1,4 +1,21 @@
 var searchData=
 [
-  ['path_673',['Path',['../interfaceRelayDotNet_1_1IRelayWebSocketConnectionInfo.html#a686caaa5d947fe9dafc7ffc5f53093ef',1,'RelayDotNet.IRelayWebSocketConnectionInfo.Path()'],['../classRelayDotNet_1_1SystemRelayWebSocketConnectionInfo.html#adfdb68ce5fc931235a8266f02d55742a',1,'RelayDotNet.SystemRelayWebSocketConnectionInfo.Path()']]]
+  ['call_542',['Call',['../classRelayDotNet_1_1RequestType.html#a4d5cf795a10272fc8ab99ebad470c084',1,'RelayDotNet::RequestType']]],
+  ['callconnected_543',['CallConnected',['../classRelayDotNet_1_1EventType.html#a55d20d2f1be2760c15717016178456c5',1,'RelayDotNet::EventType']]],
+  ['calldisconnected_544',['CallDisconnected',['../classRelayDotNet_1_1EventType.html#a3b293953b52f0eb82fb005a6b33cf370',1,'RelayDotNet::EventType']]],
+  ['callfailed_545',['CallFailed',['../classRelayDotNet_1_1EventType.html#a088e5bf290c13e5cea50e11a930d2e38',1,'RelayDotNet::EventType']]],
+  ['callprogressing_546',['CallProgressing',['../classRelayDotNet_1_1EventType.html#a4350e57c90b8fa7e6f8853b2a4fd5eeb',1,'RelayDotNet::EventType']]],
+  ['callreceived_547',['CallReceived',['../classRelayDotNet_1_1EventType.html#a80bab23ede42616540946d93ed3e94c8',1,'RelayDotNet::EventType']]],
+  ['callringing_548',['CallRinging',['../classRelayDotNet_1_1EventType.html#a8971c744fd3fc2b8b20f9e1b650994b5',1,'RelayDotNet::EventType']]],
+  ['callstartrequest_549',['CallStartRequest',['../classRelayDotNet_1_1EventType.html#a81706a29406d18362f64ddc6134e026a',1,'RelayDotNet::EventType']]],
+  ['cancel_550',['Cancel',['../classRelayDotNet_1_1NotificationType.html#afd3d13963df2ca039428e0d841e15f7d',1,'RelayDotNet::NotificationType']]],
+  ['channel_551',['Channel',['../classRelayDotNet_1_1DeviceInfoField.html#a207508ce4d1e2595b8e303f92bdc4594',1,'RelayDotNet::DeviceInfoField']]],
+  ['chinese_552',['Chinese',['../classRelayDotNet_1_1Language.html#a9c707097ed23209686ab68c631d5d0df',1,'RelayDotNet::Language']]],
+  ['cleartimer_553',['ClearTimer',['../classRelayDotNet_1_1RequestType.html#ab5604ccce9654554d4331583ba432560',1,'RelayDotNet::RequestType']]],
+  ['clientipaddress_554',['ClientIpAddress',['../classRelayDotNet_1_1FleckRelayWebSocketConnectionInfo.html#a56e5aff36f06bbc0126d757695179ba6',1,'RelayDotNet.FleckRelayWebSocketConnectionInfo.ClientIpAddress()'],['../classRelayDotNet_1_1SystemRelayWebSocketConnectionInfo.html#a21d1db198c85d106acf7e08ab8b38e80',1,'RelayDotNet.SystemRelayWebSocketConnectionInfo.ClientIpAddress()'],['../interfaceRelayDotNet_1_1IRelayWebSocketConnectionInfo.html#a8b8042caed011d17553f1e27335b5681',1,'RelayDotNet.IRelayWebSocketConnectionInfo.ClientIpAddress()']]],
+  ['clientport_555',['ClientPort',['../classRelayDotNet_1_1FleckRelayWebSocketConnectionInfo.html#a35058075140626741b081da19711fe0c',1,'RelayDotNet.FleckRelayWebSocketConnectionInfo.ClientPort()'],['../interfaceRelayDotNet_1_1IRelayWebSocketConnectionInfo.html#a2c5a3934d7efddf301d04ad7b26a6e1e',1,'RelayDotNet.IRelayWebSocketConnectionInfo.ClientPort()'],['../classRelayDotNet_1_1SystemRelayWebSocketConnectionInfo.html#ad1d36aed396adf0b52732f47546c1f5d',1,'RelayDotNet.SystemRelayWebSocketConnectionInfo.ClientPort()']]],
+  ['connectioninfo_556',['ConnectionInfo',['../classRelayDotNet_1_1FleckRelayWebSocketConnection.html#ae0af18f076180c197808fccacd10c88d',1,'RelayDotNet.FleckRelayWebSocketConnection.ConnectionInfo()'],['../interfaceRelayDotNet_1_1IRelayWebSocketConnection.html#af7a1b9ea0e7a7026442f94726ba71dde',1,'RelayDotNet.IRelayWebSocketConnection.ConnectionInfo()'],['../classRelayDotNet_1_1SystemRelayWebSocketConnection.html#a087d80a9455a16e5a983e3f4ca6663a5',1,'RelayDotNet.SystemRelayWebSocketConnection.ConnectionInfo()']]],
+  ['coordinatesquery_557',['CoordinatesQuery',['../classRelayDotNet_1_1DeviceInfoQuery.html#aa6658bdbecf769e3c7876267f051ed4a',1,'RelayDotNet::DeviceInfoQuery']]],
+  ['createincident_558',['CreateIncident',['../classRelayDotNet_1_1RequestType.html#ac425ee31e6cc4ec5572fe067fa26ce54',1,'RelayDotNet::RequestType']]],
+  ['critical_559',['Critical',['../classRelayDotNet_1_1NotificationPriority.html#a36b8601250fb704368ad1a3d47b5aaab',1,'RelayDotNet::NotificationPriority']]]
 ];

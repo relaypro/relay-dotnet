@@ -1,0 +1,27 @@
+var searchData=
+[
+  ['say_635',['Say',['../classRelayDotNet_1_1RequestType.html#a5885482e716d38115abd2718070a74d4',1,'RelayDotNet::RequestType']]],
+  ['semaphore_636',['Semaphore',['../classRelayDotNet_1_1RunningRelayWorkflow.html#af2619b12fe2670c76de401ed9c98a8dc',1,'RelayDotNet::RunningRelayWorkflow']]],
+  ['serializedname_637',['SerializedName',['../classRelayDotNet_1_1SerializedType.html#a5130f62d336e14dd4d14fe6083b13d4b',1,'RelayDotNet::SerializedType']]],
+  ['setchannel_638',['SetChannel',['../classRelayDotNet_1_1RequestType.html#ae0626d1eeded791ecb21600b9cb396df',1,'RelayDotNet::RequestType']]],
+  ['setdeviceinfo_639',['SetDeviceInfo',['../classRelayDotNet_1_1RequestType.html#a75ad0987209f872fee69b0b2d13f5c9e',1,'RelayDotNet::RequestType']]],
+  ['setdevicemode_640',['SetDeviceMode',['../classRelayDotNet_1_1RequestType.html#a674037e51cb95156351dc1c0d6484f83',1,'RelayDotNet::RequestType']]],
+  ['sethomechannelstate_641',['SetHomeChannelState',['../classRelayDotNet_1_1RequestType.html#ad54482f7c2cbf8ff4f4cc419f93a43bd',1,'RelayDotNet::RequestType']]],
+  ['setled_642',['SetLed',['../classRelayDotNet_1_1RequestType.html#aafb1eaffb77b0731d28a734d2d270f6c',1,'RelayDotNet::RequestType']]],
+  ['settimer_643',['SetTimer',['../classRelayDotNet_1_1RequestType.html#ad6c146d7c7211ec362f05f3e2632bb8a',1,'RelayDotNet::RequestType']]],
+  ['setuserprofile_644',['SetUserProfile',['../classRelayDotNet_1_1RequestType.html#aa539cdb00278849f74761fb09040191f',1,'RelayDotNet::RequestType']]],
+  ['setvar_645',['SetVar',['../classRelayDotNet_1_1RequestType.html#ab60cb506cd8c09b522c25d32fd8ae07f',1,'RelayDotNet::RequestType']]],
+  ['sms_646',['Sms',['../classRelayDotNet_1_1RequestType.html#ad9ea5639ffe34e0943038052ef73315c',1,'RelayDotNet.RequestType.Sms()'],['../classRelayDotNet_1_1EventType.html#a04cffc9f923e754e46e0154c27de0286',1,'RelayDotNet.EventType.Sms()']]],
+  ['sos_647',['Sos',['../classRelayDotNet_1_1NotificationSound.html#a5c48cb2eb2eb31f9fd793a83b4e5e3a7',1,'RelayDotNet::NotificationSound']]],
+  ['spanish_648',['Spanish',['../classRelayDotNet_1_1Language.html#a9478a5ff898acb07523fb726a5e8de4d',1,'RelayDotNet::Language']]],
+  ['speech_649',['Speech',['../classRelayDotNet_1_1EventType.html#a0389a6501a7fe8c6c9fb2d8355ba2140',1,'RelayDotNet::EventType']]],
+  ['start_650',['Start',['../classRelayDotNet_1_1EventType.html#afddda6e8b23e9ac22280694a376712aa',1,'RelayDotNet::EventType']]],
+  ['startinteraction_651',['StartInteraction',['../classRelayDotNet_1_1RequestType.html#a36ad5e0efc7968e4eedc695928be7c10',1,'RelayDotNet::RequestType']]],
+  ['starttimer_652',['StartTimer',['../classRelayDotNet_1_1RequestType.html#a44785935ef6fd47b63214bb71a88d62f',1,'RelayDotNet::RequestType']]],
+  ['static_653',['Static',['../classRelayDotNet_1_1LedEffect.html#a06b1f8893e092585fb6ee22cb2f27812',1,'RelayDotNet::LedEffect']]],
+  ['stop_654',['Stop',['../classRelayDotNet_1_1EventType.html#a789c593c9ca3b9599aba50f4cc6b7512',1,'RelayDotNet::EventType']]],
+  ['stopped_655',['Stopped',['../classRelayDotNet_1_1RunningRelayWorkflow.html#a01f2ab36f626dd8cc1d36053ad5ebae8',1,'RelayDotNet::RunningRelayWorkflow']]],
+  ['stopplayback_656',['StopPlayback',['../classRelayDotNet_1_1RequestType.html#a8f0fa34d0af82aac5228cb380c4d6bc2',1,'RelayDotNet::RequestType']]],
+  ['stoptimer_657',['StopTimer',['../classRelayDotNet_1_1RequestType.html#a22e7730d4f701024b34bdc63441dbf5e',1,'RelayDotNet::RequestType']]],
+  ['swedish_658',['Swedish',['../classRelayDotNet_1_1Language.html#a13ff635faba6c6f8d9b2e45e2d3a40c7',1,'RelayDotNet::Language']]]
+];

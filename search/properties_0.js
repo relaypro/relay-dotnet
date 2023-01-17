@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['clientipaddress_669',['ClientIpAddress',['../interfaceRelayDotNet_1_1IRelayWebSocketConnectionInfo.html#a8b8042caed011d17553f1e27335b5681',1,'RelayDotNet.IRelayWebSocketConnectionInfo.ClientIpAddress()'],['../classRelayDotNet_1_1SystemRelayWebSocketConnectionInfo.html#a21d1db198c85d106acf7e08ab8b38e80',1,'RelayDotNet.SystemRelayWebSocketConnectionInfo.ClientIpAddress()']]],
-  ['clientport_670',['ClientPort',['../interfaceRelayDotNet_1_1IRelayWebSocketConnectionInfo.html#a2c5a3934d7efddf301d04ad7b26a6e1e',1,'RelayDotNet.IRelayWebSocketConnectionInfo.ClientPort()'],['../classRelayDotNet_1_1SystemRelayWebSocketConnectionInfo.html#ad1d36aed396adf0b52732f47546c1f5d',1,'RelayDotNet.SystemRelayWebSocketConnectionInfo.ClientPort()']]],
-  ['connectioninfo_671',['ConnectionInfo',['../interfaceRelayDotNet_1_1IRelayWebSocketConnection.html#af7a1b9ea0e7a7026442f94726ba71dde',1,'RelayDotNet::IRelayWebSocketConnection']]]
+  ['addressquery_534',['AddressQuery',['../classRelayDotNet_1_1DeviceInfoQuery.html#a9188373ba787a8064a0b246608f81cd4',1,'RelayDotNet::DeviceInfoQuery']]],
+  ['alert_535',['Alert',['../classRelayDotNet_1_1NotificationType.html#ab365abdfa35f09ddd01853c403db9517',1,'RelayDotNet::NotificationType']]],
+  ['answer_536',['Answer',['../classRelayDotNet_1_1RequestType.html#aaf51f627f97eb5a1356e35855b2a7378',1,'RelayDotNet::RequestType']]],
+  ['audio_537',['Audio',['../classRelayDotNet_1_1EventType.html#ac0ce1dc07142b1a62a7fa4777a6321be',1,'RelayDotNet::EventType']]]
 ];

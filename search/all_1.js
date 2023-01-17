@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['abstractrelayworkflow_3',['AbstractRelayWorkflow',['../classRelayDotNet_1_1AbstractRelayWorkflow.html',1,'RelayDotNet.AbstractRelayWorkflow'],['../classRelayDotNet_1_1AbstractRelayWorkflow.html#a46ff0ff2b2617ec05b146a0f3dcf94e3',1,'RelayDotNet.AbstractRelayWorkflow.AbstractRelayWorkflow()']]],
+  ['abstractrelayworkflow_3',['AbstractRelayWorkflow',['../classRelayDotNet_1_1AbstractRelayWorkflow.html#a46ff0ff2b2617ec05b146a0f3dcf94e3',1,'RelayDotNet.AbstractRelayWorkflow.AbstractRelayWorkflow()'],['../classRelayDotNet_1_1AbstractRelayWorkflow.html',1,'RelayDotNet.AbstractRelayWorkflow']]],
   ['abstractrelayworkflow_2ecs_4',['AbstractRelayWorkflow.cs',['../AbstractRelayWorkflow_8cs.html',1,'']]],
   ['addressquery_5',['AddressQuery',['../classRelayDotNet_1_1DeviceInfoQuery.html#a9188373ba787a8064a0b246608f81cd4',1,'RelayDotNet::DeviceInfoQuery']]],
   ['addworkflow_6',['AddWorkflow',['../classRelayDotNet_1_1Relay.html#aa0190530a8a1e360b8c1e9e757148bbc',1,'RelayDotNet::Relay']]],
