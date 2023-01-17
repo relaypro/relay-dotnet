@@ -2392,11 +2392,11 @@ namespace RelayDotNet
             return sourceUri;
         }
 
-        string serverHostname = "all-main-pro-ibot.relaysvr.com";
-        string version = "relay-sdk-dotnet/2.0.0-pre";
-        string auth_hostname = "auth.relaygo.com";
+        static string serverHostname = "all-main-pro-ibot.relaysvr.com";
+        static string version = "relay-sdk-dotnet/2.0.0-pre";
+        static string auth_hostname = "auth.relaygo.com";
 
-        private async Task<string> UpdateAccessToken(string refreshToken, string clientId) {
+        private static async Task<string> UpdateAccessToken(string refreshToken, string clientId) {
             // Create a uri object with the following url
             string url = $"https://{auth_hostname}/oauth2/token";
             var grantUrl = new Uri(@url);
@@ -2454,7 +2454,7 @@ namespace RelayDotNet
         /// <param name="targets">optional targets consisting of an array of the device IMEIs that you would like to run the triggered workflow on.</param>
         /// <param name="actionArgs">a dict of any key/value arguments you want to pass in to the workflow that gets started by this trigger.</param>
         /// <returns>a dictionary containing the response information and access token.</returns>
-        public async Task<Dictionary<string, object>> TriggerWorkflow(string accessToken, string refreshToken, string clientId, string workflowId, string subscriberId, string userId, string[] targets, Dictionary<string, string> actionArgs) {
+        public static async Task<Dictionary<string, object>> TriggerWorkflow(string accessToken, string refreshToken, string clientId, string workflowId, string subscriberId, string userId, string[] targets, Dictionary<string, string> actionArgs) {
             // Create the url string
             var url = $"https://{serverHostname}/ibot/workflow/{workflowId}";
 
@@ -2535,7 +2535,7 @@ namespace RelayDotNet
         /// <param name="subscriberId">the subcriber UUID as returned from "relay whoami".</param>
         /// <param name="userId">the IMEI of the target device, such as 990007560023456.</param>
         /// <returns>a dictionary containing the response and access token.</returns>
-        public async Task<Dictionary<string, object>> FetchDevice(string accessToken, string refreshToken, string clientId, string subscriberId, string userId) {
+        public static async Task<Dictionary<string, object>> FetchDevice(string accessToken, string refreshToken, string clientId, string subscriberId, string userId) {
             // Create the url string
             string url = $"https://{serverHostname}/relaypro/api/v1/device/{userId}";
 
