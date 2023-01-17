@@ -2,7 +2,7 @@ name: docs
 
 on:
   push:
-    branches: [ master, fit_git_actions ]
+    branches: [ master, fix_git_actions ]
 
   workflow_dispatch:
 
