@@ -24,9 +24,9 @@ jobs:
 
       - name: generate markdown and concatenate
         run: |
+          sudo apt-get update
           cd src/RelayDotNet
           sudo apt-get install doxygen doxygen-doc doxygen-gui graphviz
-          doxygen -g
           doxygen ../DocumentationConfig/Doxyfile
           
       - uses: actions/checkout@v3
