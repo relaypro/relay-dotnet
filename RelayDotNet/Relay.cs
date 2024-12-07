@@ -2161,6 +2161,29 @@ namespace RelayDotNet
             );
         }
 
+        /// <summary>
+        /// Log a debug message that is visible with the CLI command
+        /// `relay workflow debug`. This is helpful for debugging workflows.
+        /// </summary>
+        /// <param name="relayWorkflow">the workflow.</param>
+        /// <param name="message">what you want to appear in the log stream.</param>
+        /// <returns></returns>
+        public async Task<Dictionary<string, object>> DebugLog(IRelayWorkflow relayWorkflow, string message)
+        {
+            return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, DebugLog_(message));
+        }
+
+        private static Dictionary<string, object> DebugLog_(string message)
+        {
+            return Request(
+                RequestType.DebugLog,
+                new Dictionary<string, object>
+                {
+                    ["content"] = message,
+                }
+            );
+        }
+
         private async Task<Dictionary<string, object>> SetDeviceInfo(IRelayWorkflow relayWorkflow, string target, DeviceInfoField deviceInfoField, string value)
         {
             return await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, SetDeviceInfo_(target, deviceInfoField, value));

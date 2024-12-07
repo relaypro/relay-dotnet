@@ -18,6 +18,7 @@ namespace RelayDotNet
         private static readonly RequestType _InboxCount = Add("InboxCount", "inbox_count");
         private static readonly RequestType _PlayInboxMessages = Add("PlayInboxMessages", "play_inbox_messages");
         private static readonly RequestType _LogAnalyticsEvent = Add("LogAnalyticsEvent", "log_analytics_event");
+        private static readonly RequestType _DebugLog = Add("DebugLog", "debug_log");
         private static readonly RequestType _SetLed = Add("SetLed", "set_led");
         private static readonly RequestType _Translate = Add("Translate", "translate");
         private static readonly RequestType _ListGroupMembers = Add("ListGroupMembers", "list_group_members");
@@ -55,6 +56,7 @@ namespace RelayDotNet
         public static RequestType InboxCount => _InboxCount;
         public static RequestType PlayInboxMessages => _PlayInboxMessages;
         public static RequestType LogAnalyticsEvent => _LogAnalyticsEvent;
+        public static RequestType DebugLog => _DebugLog;
         public static RequestType SetLed => _SetLed;
         public static RequestType Translate => _Translate;
         public static RequestType ListGroupMembers => _ListGroupMembers;
