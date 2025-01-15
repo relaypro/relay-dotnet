@@ -1,5 +1,6 @@
 // Copyright © 2022 Relay Inc.
 
+using System;
 using System.Collections.Generic;
 using RelayDotNet;
 
@@ -26,10 +27,24 @@ namespace SamplesLibrary
             {
                 var sourceUri = (string) lifecycleEvent["source_uri"];
                 var deviceName = await Relay.GetDeviceName(this, sourceUri);
-                await Relay.SayAndWait(this, sourceUri, "What is your name?");
-                var listenResponse = await Relay.Listen(this, sourceUri);
-                var greeting = await Relay.GetVar(this, "greeting", "hello");
-                await Relay.SayAndWait(this, sourceUri, $"{greeting} {listenResponse["text"]}! You are currently using {deviceName}");
+                Dictionary<string, object> listenResponse;
+                do
+                {
+                    await Relay.SayAndWait(this, sourceUri, "What is your name?");
+                    listenResponse = await Relay.Listen(this, sourceUri, Array.Empty<string>(), Language.English, true, 5);
+                    if (listenResponse.ContainsKey("error"))
+                    {
+                        await Relay.SayAndWait(this, sourceUri,
+                            $"There was an error listening, the error was: {listenResponse["error"]}");
+                    }
+                    else
+                    {
+                        var greeting = await Relay.GetVar(this, "greeting", "hello");
+                        await Relay.SayAndWait(this, sourceUri,
+                            $"{greeting} {listenResponse["text"]}! You are currently using {deviceName}");
+                    }
+                } while (listenResponse.ContainsKey("error"));
+                    
                 Relay.EndInteraction(this, sourceUri);
             }
             else if (type == InteractionLifecycleType.Ended)

@@ -1568,12 +1568,34 @@ namespace RelayDotNet
                 }
             };
             StoreEventTypeTaskCompletionSource(EventType.Speech, eventTypeTaskCompletionSource);
+            
+            var delayTask = Task.Delay(timeout * 1000);
 
-            Log.Debug("Going to wait for speech with request_id {Id}", id);
-            var result = await Task.WhenAny(eventTypeTaskCompletionSource.TaskCompletionSource.Task, Task.Delay(timeout * 1000));
+            Log.Debug($"Going to wait {timeout} secs for speech with request_id {id}", id);
+            var result = await Task.WhenAny(eventTypeTaskCompletionSource.TaskCompletionSource.Task, delayTask);
             Log.Debug("WaitForListenSpeech Task.WhenAny completes with {@result}", result);
 
-            return await (Task<Dictionary<string, object>>) result;
+            if (result == delayTask)
+            {
+                List<TaskCompletionSource<Dictionary<string, object>>> taskCompletionSources = await GetAndRemoveEventTypeTaskCompletionSources(EventType.Speech, new Dictionary<string, object>
+                {
+                    ["request_id"] = id
+                });
+
+                var errorResultDictionary = new Dictionary<string, object>
+                {
+                    ["error"] = "timeout"
+                };
+                
+                Log.Debug($"WaitForListenSpeech determined to have timed out, setting error on {taskCompletionSources.Count} task completion sources");
+                
+                foreach (TaskCompletionSource<Dictionary<string, object>> taskCompletionSource in taskCompletionSources)
+                {
+                    taskCompletionSource.SetResult(errorResultDictionary);
+                }
+            }
+
+            return await eventTypeTaskCompletionSource.TaskCompletionSource.Task;
         }
         
         private static Dictionary<string, object> Listen_(string target, string[] phrases, Language altLanguage, bool transcribe, int timeout)
