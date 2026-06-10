@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
 using System.Net.Http;
@@ -52,7 +53,10 @@ namespace RelayDotNet
         private readonly Dictionary<EventType, List<EventTypeTaskCompletionSource>> _eventTypesToTaskCompletionSources = new Dictionary<EventType, List<EventTypeTaskCompletionSource>>();
         private readonly SemaphoreSlim _eventTypesToTaskCompletionSourcesSemaphore = new SemaphoreSlim(1);
         private static readonly Dictionary<string, object> emptyDict = new Dictionary<string, object>();
-        
+
+        private static readonly Regex RxResponse = new Regex(@"^wf_api_(\w+)_response$", RegexOptions.Compiled, TimeSpan.FromMilliseconds(500));
+        private static readonly Regex RxEvent = new Regex(@"^wf_api_(\w+)_event$", RegexOptions.Compiled, TimeSpan.FromMilliseconds(500));
+
         public Relay(WebSocketConnector webSocketConnector, string ip, int port, bool secure)
         {
             switch (webSocketConnector)
@@ -313,12 +317,8 @@ namespace RelayDotNet
                 return;
             }
             string type = (string)dictionary["_type"];
-
-            var rxResponse = new Regex(@"^wf_api_(\w+)_response$", RegexOptions.Compiled);
-            var rxEvent = new Regex(@"^wf_api_(\w+)_event$", RegexOptions.Compiled);
-
-            var matchResponse = rxResponse.Match(type);
-            var matchEvent = rxEvent.Match(type);
+            var matchResponse = RxResponse.Match(type);
+            var matchEvent = RxEvent.Match(type);
 
             //
             // Response
@@ -747,13 +747,13 @@ namespace RelayDotNet
             _relayWebSocketConnector.Dispose();
             Log.Debug("disposed");
         }
-        
+
         private static string MakeId()
         {
-            Random random = new Random();
-            var bytes = new Byte[16];
-            random.NextBytes(bytes);
-            return BitConverter.ToString(bytes).Replace("-", string.Empty);
+            var bytes = new byte[16];
+            RandomNumberGenerator.Fill(bytes);
+
+            return Convert.ToHexString(bytes);
         }
 
         private static Dictionary<string, object> Request(RequestType requestType)
@@ -831,7 +831,11 @@ namespace RelayDotNet
         /// <param name="relayWorkflow">the workflow.</param>
         public async void Terminate(IRelayWorkflow relayWorkflow)
         {
-            await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, Terminate_());            
+            try
+            {
+                await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, Terminate_());
+            }
+            catch { }
         }
         
         private static Dictionary<string, object> Terminate_()
@@ -879,7 +883,11 @@ namespace RelayDotNet
         /// <returns>the event response.</returns>
         public async void EndInteraction(IRelayWorkflow relayWorkflow, string target)
         {
-            await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, EndInteraction_(target));
+            try
+            {
+                await Send((await GetRunningRelayWorkflowOrThrow(relayWorkflow)).WebSocketConnection, EndInteraction_(target));
+            }
+            catch { }
         }
 
         private static Dictionary<string, object> EndInteraction_(string target)
@@ -1829,7 +1837,7 @@ namespace RelayDotNet
 
         private static string GetDictionaryKeyValueAsString(Dictionary<string, object> dictionary, string key)
         {
-            if (dictionary.ContainsKey(key))
+            if (dictionary != null && dictionary.ContainsKey(key))
             {
                 return (string) dictionary[key];
             }
@@ -2422,7 +2430,7 @@ namespace RelayDotNet
 
             // If the resonse is not successful, throw an exception back to the client
             if(grantResponse.StatusCode != System.Net.HttpStatusCode.OK) {
-                throw new Exception($"Unable to get access token: {grantResponse.StatusCode}");
+                throw new HttpRequestException($"Unable to get access token: {grantResponse.StatusCode}", null, grantResponse.StatusCode);
             }
 
             // Parse grantResponse content into an instance of a Dictionary type, set the access 
@@ -2465,18 +2473,18 @@ namespace RelayDotNet
             };
 
             // Set the payload
-            var payload = new Dictionary<string, string>() {
+            var payload = new Dictionary<string, object>() {
                 ["action"] = "invoke",
             };
             
             // Add actionArgs if not null
             if (actionArgs != null) {
-                payload.Add("action_args", $"{actionArgs}");
+                payload.Add("action_args", actionArgs);
             }
 
             // Add targets if not null
             if (targets != null) {
-                payload.Add("target_device_ids", $"{targets}");
+                payload.Add("target_device_ids", targets);
             }
 
             // Create an http client that will post the request
@@ -2494,7 +2502,7 @@ namespace RelayDotNet
 
             // Create the uri object, and serialize the payload
             Uri uri = new Uri(url);
-            var json = JsonSerializer.Serialize<Dictionary<string, string>>(payload);
+            var json = JsonSerializer.Serialize(payload);
             var data = new StringContent(json, Encoding.UTF8, "application/json");
 
             // Post the request, await the response
