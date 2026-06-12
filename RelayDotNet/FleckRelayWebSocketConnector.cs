@@ -32,7 +32,7 @@ namespace RelayDotNet
         {
             _webSocketServer.Start(webSocketConnection =>
             {
-                webSocketConnection.OnOpen = () => OnFleckOpen(webSocketConnection);
+                webSocketConnection.OnOpen = async () => await OnFleckOpen(webSocketConnection);
                 webSocketConnection.OnClose = () => OnFleckClose(webSocketConnection);
                 webSocketConnection.OnMessage = message => OnFleckMessage(webSocketConnection, message);
             });
